@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Questioner.Repository.Classes.Entities
@@ -6,6 +7,7 @@ namespace Questioner.Repository.Classes.Entities
     [Table("Answers")]
     public class Answer : BaseEntity
     {
+        [StringLength(1000)]
         public string AnswerText { get; set; }
 
         public bool IsCorrect { get; set; }

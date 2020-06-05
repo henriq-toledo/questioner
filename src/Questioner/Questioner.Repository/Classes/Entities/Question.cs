@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Questioner.Repository.Classes.Entities
@@ -6,6 +7,7 @@ namespace Questioner.Repository.Classes.Entities
     [Table("Questions")]
     public class Question : BaseEntity
     {
+        [StringLength(1500)]
         public string QuestionText { get; set; }
 
         public long Topic_Id { get; set; }
