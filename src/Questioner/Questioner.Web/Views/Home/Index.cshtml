@@ -1,4 +1,10 @@
-﻿@{
+﻿@using System.Collections.Generic
+@using Questioner.Web.Models
+
+@model List<Questioner.Web.Models.ThemeViewModel>
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +12,43 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                #
+            </th scope="col">
+            <th scope="col">
+                @Html.DisplayNameFor(model => new ThemeViewModel().Name)
+            </th scope="col">
+            <th scope="col">
+                @Html.DisplayNameFor(model => new ThemeViewModel().TopicsQuantity)
+            </th scope="col">
+            <th scope="col">
+                @Html.DisplayNameFor(model => new ThemeViewModel().QuestionsQuantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach(var theme in Model)
+{
+        @Html.HiddenFor(model => theme.Name)
+
+        <tr>
+            <th scope="row">
+                @(Array.IndexOf(Model.ToArray(), theme) + 1)
+            </th scope="col">        
+            <td>                
+                @Html.DisplayFor(model => theme.Name)
+            </td>
+            <td>                
+                @Html.DisplayFor(model => theme.TopicsQuantity)
+            </td>
+            <td>                
+                @Html.DisplayFor(model => theme.QuestionsQuantity)
+            </td>    
+        </tr>
+}
+    </tbody>
+</table>
