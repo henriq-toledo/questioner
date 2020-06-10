@@ -1,0 +1,44 @@
+@using Questioner.Web.Models 
+
+@model ThemeDetailViewModel
+
+@Html.HiddenFor(model => model.Id)
+
+<div>
+    @Html.DisplayNameFor(model => model.Name)
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<table class="table table-striped">
+    <caption style="caption-side: top;text-align: center;">@Html.DisplayNameFor(model => model.Topics)</caption>
+    <thead>
+        <tr>
+            <th scope="col">
+                #
+            </th scope="col">
+            <th scope="col">
+                @Html.DisplayNameFor(model => new TopicViewModel().Name)
+            </th scope="col">
+            <th scope="col">
+                @Html.DisplayNameFor(model => new TopicViewModel().QuestionsQuantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var topic in Model.Topics)
+{
+        <tr>
+            <th scope="row">
+                @(Array.IndexOf(Model.Topics.ToArray(), topic) + 1)
+            </th>        
+            <td>                
+                @Html.DisplayFor(model => topic.Name)
+            </td>
+            <td>                
+                @Html.DisplayFor(model => topic.QuestionsQuantity)
+            </td>    
+        </tr>    
+}
+    </tbody>
+</table>
+

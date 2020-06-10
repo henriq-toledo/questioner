@@ -33,14 +33,14 @@
     <tbody>
 @foreach(var theme in Model)
 {
-        @Html.HiddenFor(model => theme.Name)
+        @Html.HiddenFor(model => theme.Id)
 
         <tr>
             <th scope="row">
                 @(Array.IndexOf(Model.ToArray(), theme) + 1)
-            </th scope="col">        
-            <td>                
-                @Html.DisplayFor(model => theme.Name)
+            </th>        
+            <td>
+                @Html.ActionLink(theme.Name, "Details", "Theme", new {id = theme.Id})                
             </td>
             <td>                
                 @Html.DisplayFor(model => theme.TopicsQuantity)
