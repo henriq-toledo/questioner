@@ -1,8 +1,7 @@
 ﻿@using System.Collections.Generic
 @using Questioner.Web.Models
 
-@model List<Questioner.Web.Models.ThemeViewModel>
-
+@model List<Questioner.Web.Models.ThemeListViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -20,13 +19,13 @@
                 #
             </th scope="col">
             <th scope="col">
-                @Html.DisplayNameFor(model => new ThemeViewModel().Name)
+                @Html.DisplayNameFor(model => new ThemeListViewModel().Name)
             </th scope="col">
             <th scope="col">
-                @Html.DisplayNameFor(model => new ThemeViewModel().TopicsQuantity)
+                @Html.DisplayNameFor(model => new ThemeListViewModel().TopicsQuantity)
             </th scope="col">
             <th scope="col">
-                @Html.DisplayNameFor(model => new ThemeViewModel().QuestionsQuantity)
+                @Html.DisplayNameFor(model => new ThemeListViewModel().QuestionsQuantity)
             </th>
         </tr>
     </thead>

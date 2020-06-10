@@ -17,11 +17,14 @@
                 #
             </th scope="col">
             <th scope="col">
-                @Html.DisplayNameFor(model => new TopicViewModel().Name)
+                @Html.DisplayNameFor(model => new TopicDetailViewModel().Name)
             </th scope="col">
             <th scope="col">
-                @Html.DisplayNameFor(model => new TopicViewModel().QuestionsQuantity)
+                @Html.DisplayNameFor(model => new TopicDetailViewModel().Percentage)
             </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => new TopicDetailViewModel().QuestionsQuantity)
+            </th>            
         </tr>
     </thead>
     <tbody>
@@ -33,6 +36,9 @@
             </th>        
             <td>                
                 @Html.DisplayFor(model => topic.Name)
+            </td>
+            <td>                
+                @Html.DisplayFor(model => topic.Percentage)
             </td>
             <td>                
                 @Html.DisplayFor(model => topic.QuestionsQuantity)

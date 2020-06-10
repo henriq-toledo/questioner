@@ -20,27 +20,31 @@ namespace Questioner.Web.Controllers
             {
                 Id = 1,
                 Name = "Theme 1",
-                Topics = new List<TopicViewModel>()
+                Topics = new List<TopicDetailViewModel>()
                 {
-                    new TopicViewModel()
+                    new TopicDetailViewModel()
                     {
                         Name = "Topic 1",
-                        QuestionsQuantity = 15
+                        QuestionsQuantity = 15,
+                        Percentage = 20
                     },
-                    new TopicViewModel()
+                    new TopicDetailViewModel()
                     {
                         Name = "Topic 2",
-                        QuestionsQuantity = 15
+                        QuestionsQuantity = 15,
+                        Percentage = 20
                     },
-                    new TopicViewModel()
+                    new TopicDetailViewModel()
                     {
                         Name = "Topic 3",
-                        QuestionsQuantity = 15
+                        QuestionsQuantity = 15,
+                        Percentage = 25
                     },
-                    new TopicViewModel()
+                    new TopicDetailViewModel()
                     {
                         Name = "Topic 4",
-                        QuestionsQuantity = 15
+                        QuestionsQuantity = 15,
+                        Percentage = 35
                     }
                 }
             });
