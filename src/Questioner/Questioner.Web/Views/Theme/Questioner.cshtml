@@ -1,0 +1,35 @@
+@model Questioner.Web.Models.ThemeViewModel
+
+@using(Html.BeginForm("Result", "Theme", FormMethod.Post))
+{
+<div class="row">
+    @Html.HiddenFor(model => model.Name)
+    @Html.DisplayNameFor(model => model.Name)
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<div>
+@foreach (var question in Model.Topics.SelectMany(t => t.Questions).OrderBy(q => q.OrderId))
+{
+    <div class="row">
+        @Html.DisplayFor(model => question.OrderId)
+        -
+        @Html.DisplayFor(model => question.QuestionText)
+    </div>
+    <div>
+    @foreach (var answer in question.Answers.OrderBy(a => a.OrderId))
+    {
+        <div>
+            @Html.EditorFor(model => answer.Selected)
+            -
+            @Html.DisplayFor(model => answer.AnswerText)
+        </div>
+    }
+    </div>
+}
+</div>
+<div>
+    <input class="btn btn-primary" type="submit" value="Finish"/>
+</div>
+}
+

@@ -49,5 +49,64 @@ namespace Questioner.Web.Controllers
                 }
             });
         }
+
+        public ActionResult Questioner(int id)
+        {
+            return View(new ThemeViewModel()
+            {
+                Name = "Exam AZ-900",
+                Topics = new List<TopicViewModel>()
+                {                    
+                    new TopicViewModel()
+                    {
+                        Questions = new List<QuestionViewModel>()
+                        {
+                            new QuestionViewModel()
+                            {
+                                OrderId = 1,
+                                QuestionText = "Azure Web App is a PAAS service?",
+                                Answers = new List<AnswerViewModel>()
+                                {
+                                    new AnswerViewModel()
+                                    {
+                                        OrderId = 1,
+                                        AnswerText = "True"
+                                    },
+                                    new AnswerViewModel()
+                                    {
+                                        OrderId = 2,
+                                        AnswerText = "False"
+                                    }
+                                }
+                            },
+                            new QuestionViewModel()
+                            {
+                                OrderId = 2,
+                                QuestionText = "Azure Function is a PAAS service?",
+                                Answers = new List<AnswerViewModel>()
+                                {
+                                    new AnswerViewModel()
+                                    {
+                                        OrderId = 1,
+                                        AnswerText = "True"
+                                    },
+                                    new AnswerViewModel()
+                                    {
+                                        OrderId = 2,
+                                        AnswerText = "False"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        [HttpPost]
+        public ActionResult Result([FromForm]ThemeDetailViewModel theme)
+        {
+            return View();
+        }
     }
 }
