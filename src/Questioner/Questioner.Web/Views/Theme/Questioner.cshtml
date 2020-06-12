@@ -2,27 +2,32 @@
 
 @using(Html.BeginForm("Result", "Theme", FormMethod.Post))
 {
-<div class="row">
-    @Html.HiddenFor(model => model.Name)
+<div class="row">    
+    @Html.HiddenFor(model => model.Id)    
     @Html.DisplayNameFor(model => model.Name)
     @Html.DisplayFor(model => model.Name)
 </div>
 
 <div>
-@foreach (var question in Model.Topics.SelectMany(t => t.Questions).OrderBy(q => q.OrderId))
+@for (int i = 0; i < Model.Questions.Count; i ++)
 {
     <div class="row">
-        @Html.DisplayFor(model => question.OrderId)
-        -
-        @Html.DisplayFor(model => question.QuestionText)
+        @Html.HiddenFor(model => model.Questions[i].Id)
+
+        @i
+        -        
+        @Html.DisplayFor(model => model.Questions[i].QuestionText)
     </div>
     <div>
-    @foreach (var answer in question.Answers.OrderBy(a => a.OrderId))
+    @for (var j = 0; j < Model.Questions[i].Answers.Count; j++)
     {
         <div>
-            @Html.EditorFor(model => answer.Selected)
+            @Html.HiddenFor(model => Model.Questions[i].Answers[j].Id)
+            @Html.HiddenFor(model => Model.Questions[i].Answers[j].Selected)
+
+            @Html.EditorFor(model => Model.Questions[i].Answers[j].Selected)
             -
-            @Html.DisplayFor(model => answer.AnswerText)
+            @Html.DisplayFor(model => Model.Questions[i].Answers[j].AnswerText)
         </div>
     }
     </div>

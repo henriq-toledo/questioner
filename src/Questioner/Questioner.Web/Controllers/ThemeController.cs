@@ -55,47 +55,41 @@ namespace Questioner.Web.Controllers
             return View(new ThemeViewModel()
             {
                 Name = "Exam AZ-900",
-                Topics = new List<TopicViewModel>()
-                {                    
-                    new TopicViewModel()
+                Questions = new List<QuestionViewModel>()
+                {
+                    new QuestionViewModel()
                     {
-                        Questions = new List<QuestionViewModel>()
+                        Id = 1,                        
+                        QuestionText = "Azure Web App is a PAAS service?",
+                        Answers = new List<AnswerViewModel>()
                         {
-                            new QuestionViewModel()
+                            new AnswerViewModel()
                             {
-                                OrderId = 1,
-                                QuestionText = "Azure Web App is a PAAS service?",
-                                Answers = new List<AnswerViewModel>()
-                                {
-                                    new AnswerViewModel()
-                                    {
-                                        OrderId = 1,
-                                        AnswerText = "True"
-                                    },
-                                    new AnswerViewModel()
-                                    {
-                                        OrderId = 2,
-                                        AnswerText = "False"
-                                    }
-                                }
+                                Id = 1,                                
+                                AnswerText = "True"
                             },
-                            new QuestionViewModel()
+                            new AnswerViewModel()
                             {
-                                OrderId = 2,
-                                QuestionText = "Azure Function is a PAAS service?",
-                                Answers = new List<AnswerViewModel>()
-                                {
-                                    new AnswerViewModel()
-                                    {
-                                        OrderId = 1,
-                                        AnswerText = "True"
-                                    },
-                                    new AnswerViewModel()
-                                    {
-                                        OrderId = 2,
-                                        AnswerText = "False"
-                                    }
-                                }
+                                Id = 1,                                
+                                AnswerText = "False"
+                            }
+                        }
+                    },
+                    new QuestionViewModel()
+                    {
+                        Id = 2,
+                        QuestionText = "Azure Function is a PAAS service?",
+                        Answers = new List<AnswerViewModel>()
+                        {
+                            new AnswerViewModel()
+                            {
+                                Id = 3,
+                                AnswerText = "True"
+                            },
+                            new AnswerViewModel()
+                            {
+                                Id = 4,
+                                AnswerText = "False"
                             }
                         }
                     }
@@ -104,7 +98,7 @@ namespace Questioner.Web.Controllers
         }
         
         [HttpPost]
-        public ActionResult Result([FromForm]ThemeDetailViewModel theme)
+        public ActionResult Result(ThemeViewModel theme)
         {
             return View();
         }

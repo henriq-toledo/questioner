@@ -10,6 +10,6 @@ namespace Questioner.Web.Models
         [DisplayName("Theme:")]
         public string Name { get; set; }
 
-        public List<TopicViewModel> Topics { get; set; }
+        public List<QuestionViewModel> Questions { get; set; }
     }
 }
