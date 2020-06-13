@@ -1,0 +1,95 @@
+@model Questioner.Web.Models.ResultViewModel
+
+@using(Html.BeginForm("Export", "Result", FormMethod.Post))
+{
+<div>
+    @Html.HiddenFor(model => model.ThemeId)
+    
+    <div>
+        @Html.DisplayNameFor(model => model.ThemeName)
+        @Html.DisplayFor(model => model.ThemeName)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.Percentage)
+        @Html.DisplayFor(model => model.Percentage) %
+    </div>
+</div>
+<div>
+    <table class="table table-striped">
+        <caption style="caption-side: top;text-align: center;">@Html.DisplayNameFor(model => model.Topics)</caption>
+        <thead>
+            <tr>
+                <th scope="col">
+                    #
+                </th scope="col">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => new TopicResultViewModel().Name)
+                </th scope="col">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => new TopicResultViewModel().Percentage)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => new TopicResultViewModel().PercentageAnswered)
+                </th>            
+            </tr>
+        </thead>
+        <tbody>
+    @for (var i = 0; i < Model.Topics.Count; i++)
+    {
+            <tr>
+                <th scope="row">
+                    @(i + 1)
+                </th>        
+                <td>                
+                    @Html.DisplayFor(model => model.Topics[i].Name)
+                </td>
+                <td>                
+                    @Html.DisplayFor(model => model.Topics[i].Percentage)
+                </td>
+                <td>                
+                    @Html.DisplayFor(model => model.Topics[i].PercentageAnswered)
+                </td>    
+            </tr>    
+    }
+        </tbody>
+    </table>
+</div>
+<div>
+    <table class="table table-striped">
+        <caption style="caption-side: top;text-align: center;">@Html.DisplayNameFor(model => model.Questions)</caption>
+        <thead>
+            <tr>
+                <th scope="col">
+                    #
+                </th scope="col">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => new QuestionResultViewModel().QuestionText)
+                </th scope="col">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => new QuestionResultViewModel().IsCorrect)
+                </th>           
+            </tr>
+        </thead>
+        <tbody>
+    @for (var i = 0; i < Model.Questions.Count; i++)
+    {
+            <tr>
+                <th scope="row">
+                    @(i + 1)
+                </th>        
+                <td>                
+                    @Html.DisplayFor(model => model.Questions[i].QuestionText)
+                </td>
+                <td>                
+                    @Html.DisplayFor(model => model.Questions[i].IsCorrect)
+                </td>   
+            </tr>    
+    }
+        </tbody>
+    </table>
+</div>
+<div>
+    <input class="btn btn-primary" type="submit" value="Export to excel"/>
+</div>
+}
