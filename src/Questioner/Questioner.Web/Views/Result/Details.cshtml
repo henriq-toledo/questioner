@@ -6,11 +6,13 @@
     @Html.HiddenFor(model => model.ThemeId)
     
     <div>
+        @Html.HiddenFor(model => model.ThemeName)
         @Html.DisplayNameFor(model => model.ThemeName)
         @Html.DisplayFor(model => model.ThemeName)
     </div>
 
     <div>
+        @Html.HiddenFor(model => model.Percentage)
         @Html.DisplayNameFor(model => model.Percentage)
         @Html.DisplayFor(model => model.Percentage) %
     </div>
@@ -41,13 +43,16 @@
                 <th scope="row">
                     @(i + 1)
                 </th>        
-                <td>                
+                <td>
+                    @Html.HiddenFor(model => model.Topics[i].Name)
                     @Html.DisplayFor(model => model.Topics[i].Name)
                 </td>
-                <td>                
+                <td>
+                    @Html.HiddenFor(model => model.Topics[i].Percentage)
                     @Html.DisplayFor(model => model.Topics[i].Percentage)
                 </td>
-                <td>                
+                <td>
+                    @Html.HiddenFor(model => model.Topics[i].PercentageAnswered)
                     @Html.DisplayFor(model => model.Topics[i].PercentageAnswered)
                 </td>    
             </tr>    
@@ -78,10 +83,12 @@
                 <th scope="row">
                     @(i + 1)
                 </th>        
-                <td>                
+                <td>
+                    @Html.HiddenFor(model => model.Questions[i].QuestionText)
                     @Html.DisplayFor(model => model.Questions[i].QuestionText)
                 </td>
-                <td>                
+                <td>
+                    @Html.HiddenFor(model => model.Questions[i].IsCorrect)
                     @Html.DisplayFor(model => model.Questions[i].IsCorrect)
                 </td>   
             </tr>    
