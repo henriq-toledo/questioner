@@ -9,6 +9,7 @@ namespace Questioner.Web.Models
         [DisplayName("Question")]
         public string QuestionText { get; set; }
         
+        [DisplayName("Correct")]
         public bool IsCorrect { get; set; }
     }
 }

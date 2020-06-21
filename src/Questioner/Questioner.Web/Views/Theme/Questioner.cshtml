@@ -2,38 +2,41 @@
 
 @using(Html.BeginForm("Details", "Result", FormMethod.Post))
 {
-<div class="row">    
-    @Html.HiddenFor(model => model.Id)    
-    @Html.DisplayNameFor(model => model.Name)
-    @Html.DisplayFor(model => model.Name)
+<div class="row">
+    <h3 class="font-weight-bold">
+        @Html.HiddenFor(model => model.Id)    
+        @Html.DisplayNameFor(model => model.Name)
+        @Html.DisplayFor(model => model.Name)
+    </h3>
 </div>
 
-<div>
+
 @for (int i = 0; i < Model.Questions.Count; i ++)
 {
-    <div class="row">
-        @Html.HiddenFor(model => model.Questions[i].Id)
+    <div class="pt-2">
+        <div class="row">
+            @Html.HiddenFor(model => model.Questions[i].Id)
 
-        @i
-        -        
-        @Html.DisplayFor(model => model.Questions[i].QuestionText)
-    </div>
-    <div>
-    @for (var j = 0; j < Model.Questions[i].Answers.Count; j++)
-    {
-        <div>
-            @Html.HiddenFor(model => Model.Questions[i].Answers[j].Id)
-            @Html.HiddenFor(model => Model.Questions[i].Answers[j].Selected)
-
-            @Html.EditorFor(model => Model.Questions[i].Answers[j].Selected)
-            -
-            @Html.DisplayFor(model => Model.Questions[i].Answers[j].AnswerText)
+            @i
+            -        
+            @Html.DisplayFor(model => model.Questions[i].QuestionText)
         </div>
-    }
+        <div>
+        @for (var j = 0; j < Model.Questions[i].Answers.Count; j++)
+        {
+            <div class="pt-1">
+                @Html.HiddenFor(model => Model.Questions[i].Answers[j].Id)
+                @Html.HiddenFor(model => Model.Questions[i].Answers[j].Selected)
+
+                @Html.EditorFor(model => Model.Questions[i].Answers[j].Selected)
+                -
+                @Html.DisplayFor(model => Model.Questions[i].Answers[j].AnswerText)
+            </div>
+        }
+        </div>
     </div>
 }
-</div>
-<div>
+<div class="pt-2">
     <input class="btn btn-primary" type="submit" value="Finish"/>
 </div>
 }

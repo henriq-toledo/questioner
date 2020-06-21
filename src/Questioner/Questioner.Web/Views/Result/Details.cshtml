@@ -5,21 +5,25 @@
 <div>
     @Html.HiddenFor(model => model.ThemeId)
     
-    <div>
-        @Html.HiddenFor(model => model.ThemeName)
-        @Html.DisplayNameFor(model => model.ThemeName)
-        @Html.DisplayFor(model => model.ThemeName)
+    <div class="row">
+        <h3 class="font-weight-bold">
+            @Html.HiddenFor(model => model.ThemeName)
+            @Html.DisplayNameFor(model => model.ThemeName)
+            @Html.DisplayFor(model => model.ThemeName)
+        </h3>
     </div>
 
-    <div>
-        @Html.HiddenFor(model => model.Percentage)
-        @Html.DisplayNameFor(model => model.Percentage)
-        @Html.DisplayFor(model => model.Percentage) %
+    <div class="row">
+        <h5>
+            @Html.HiddenFor(model => model.Percentage)
+            @Html.DisplayNameFor(model => model.Percentage)
+            @Html.DisplayFor(model => model.Percentage) %
+        </h5>
     </div>
 </div>
 <div>
     <table class="table table-striped">
-        <caption style="caption-side: top;text-align: center;">@Html.DisplayNameFor(model => model.Topics)</caption>
+        <caption style="caption-side: top;text-align: center;font-size: 20px;">@Html.DisplayNameFor(model => model.Topics)</caption>
         <thead>
             <tr>
                 <th scope="col">
@@ -62,7 +66,7 @@
 </div>
 <div>
     <table class="table table-striped">
-        <caption style="caption-side: top;text-align: center;">@Html.DisplayNameFor(model => model.Questions)</caption>
+        <caption style="caption-side: top;text-align: center;font-size: 20px;">@Html.DisplayNameFor(model => model.Questions)</caption>
         <thead>
             <tr>
                 <th scope="col">
