@@ -2,7 +2,7 @@
 
 @using(Html.BeginForm("Details", "Result", FormMethod.Post))
 {
-<div class="row">
+<div class="row" style="padding-left: 2%;">
     <h3 class="font-weight-bold">
         @Html.HiddenFor(model => model.Id)    
         @Html.DisplayNameFor(model => model.Name)
@@ -13,7 +13,7 @@
 
 @for (int i = 0; i < Model.Questions.Count; i ++)
 {
-    <div class="pt-2">
+    <div class="pt-2" style="padding-left: 2%;">
         <div class="row">
             @Html.HiddenFor(model => model.Questions[i].Id)
 
