@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  azureSubscriptionSetting: $(azureSubscription)
 
 steps:
 - task: NuGetToolInstaller@1
@@ -35,7 +36,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '$(azureSubscription)'
+    azureSubscription: $(azureSubscriptionSetting)
     appType: 'webAppLinux'
     appName: 'questioner-beta'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
