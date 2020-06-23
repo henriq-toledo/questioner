@@ -33,11 +33,3 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: $(azureSubscriptionSetting)
-    appType: 'webAppLinux'
-    appName: 'questioner-beta'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'DOTNETCORE|3.1'
