@@ -47,5 +47,5 @@ steps:
     azureSubscription: 'Azure connection'
     appType: 'webAppLinux'
     appName: 'questioner-beta'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     runtimeStack: 'DOTNETCORE|3.1'
