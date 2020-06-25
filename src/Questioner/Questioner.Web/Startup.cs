@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Questioner.Repository.Classes.Entities;
+using Microsoft.EntityFrameworkCore;
+using Questioner.Repository.Interfaces;
 
 namespace Questioner.Web
 {
@@ -24,6 +22,12 @@ namespace Questioner.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // services.AddDbContext<Context>
+            //     (options => options.UseSqlServer("<connection string>"))
+            //     .AddScoped<IContext, Context>();
+
+            services.AddScoped<IContext, FakeContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

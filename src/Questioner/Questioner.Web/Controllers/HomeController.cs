@@ -1,39 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Questioner.Repository.Interfaces;
 using Questioner.Web.Models;
 
 namespace Questioner.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IContext context)
+         : base(logger, context)
         {
-            _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View(new List<ThemeListViewModel>()
-            {
-                new ThemeListViewModel()
-                {
-                    Id = 1,
-                    Name = "Theme 1",
-                    TopicsQuantity = 4,
-                    QuestionsQuantity = 60
-                },
-                new ThemeListViewModel()
-                {
-                    Id = 2,
-                    Name = "Theme 2",
-                    TopicsQuantity = 3,
-                    QuestionsQuantity = 45
-                }
-            });
+            return View(context.Themes.AsQueryable().Select(theme => new ThemeListViewModel(theme)).ToList());
         }
 
         public IActionResult Privacy()

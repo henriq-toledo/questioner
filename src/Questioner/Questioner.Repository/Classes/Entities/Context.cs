@@ -11,6 +11,12 @@ namespace Questioner.Repository.Classes.Entities
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Link> Links { get; set; }
 
+        public Context(DbContextOptions<Context> options)
+            : base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Configures the database connection string
