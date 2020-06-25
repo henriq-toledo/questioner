@@ -7,7 +7,5 @@ namespace Questioner.Web.Models
         public string AnswerText { get; set; }
 
         public bool Selected { get; set; }
-
-        public byte HowManyChoices { get; set; }
     }
 }

@@ -8,6 +8,8 @@ namespace Questioner.Web.Models
 
         public string QuestionText { get; set; }
 
+        public byte HowManyChoices { get; set; }
+
         public List<AnswerViewModel> Answers { get; set; }
     }
 }

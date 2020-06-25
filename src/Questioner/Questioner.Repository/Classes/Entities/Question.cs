@@ -12,6 +12,8 @@ namespace Questioner.Repository.Classes.Entities
 
         public long Topic_Id { get; set; }
 
+        public byte HowManyChoices { get; set; }
+
         public virtual Topic Topic { get; set; }
 
         public List<Link> Links { get; set; }
