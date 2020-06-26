@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.Web.Models
 {
@@ -14,5 +15,16 @@ namespace Questioner.Web.Models
 
         [DisplayName("Answered")]
         public byte PercentageAnswered { get; set; }
+
+        public TopicResultViewModel()
+        {
+        }
+
+        public TopicResultViewModel(Topic topic)
+        {
+            Id = topic.Id;
+            Name = topic.Name;
+            Percentage = topic.Percentage;            
+        }
     }
 }

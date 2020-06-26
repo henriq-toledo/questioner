@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.Web.Models
 {
@@ -11,5 +12,23 @@ namespace Questioner.Web.Models
         public byte HowManyChoices { get; set; }
 
         public List<AnswerViewModel> Answers { get; set; }
+
+        public QuestionViewModel()
+        {            
+        }
+
+        public QuestionViewModel(Question question)
+        {
+            Id = question.Id;
+            QuestionText = question.QuestionText;
+            HowManyChoices = question.HowManyChoices;
+
+            Answers = new List<AnswerViewModel>();
+
+            foreach (var answer in question.Answers)
+            {
+                Answers.Add(new AnswerViewModel(answer));
+            }
+        }
     }
 }

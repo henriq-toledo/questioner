@@ -76,7 +76,7 @@
                     @Html.DisplayNameFor(model => new QuestionResultViewModel().QuestionText)
                 </th scope="col">
                 <th scope="col">
-                    @Html.DisplayNameFor(model => new QuestionResultViewModel().IsCorrect)
+                    @Html.DisplayNameFor(model => new QuestionResultViewModel().QuestionResult)
                 </th>           
             </tr>
         </thead>
@@ -92,9 +92,10 @@
                     @Html.DisplayFor(model => model.Questions[i].QuestionText)
                 </td>
                 <td>
-                    @Html.HiddenFor(model => model.Questions[i].IsCorrect)
-                    @Html.DisplayFor(model => model.Questions[i].IsCorrect)
-                </td>   
+                    @Html.HiddenFor(model => model.Questions[i].QuestionResult)
+
+                    @Html.DisplayFor(model => model.Questions[i].QuestionResultDescription)
+                </td>
             </tr>    
     }
         </tbody>

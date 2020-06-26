@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using Questioner.Repository.Classes.Entities;
+using Questioner.Web.Enums;
 
 namespace Questioner.Web.Models
 {
@@ -10,6 +12,8 @@ namespace Questioner.Web.Models
         public string QuestionText { get; set; }
         
         [DisplayName("Correct")]
-        public bool IsCorrect { get; set; }
+        public QuestionResultEnum QuestionResult { get; set; }
+
+        public string QuestionResultDescription => QuestionResult.GetDescription();
     }
 }

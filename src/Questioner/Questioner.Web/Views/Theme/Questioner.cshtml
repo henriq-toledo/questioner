@@ -4,7 +4,9 @@
 {
 <div class="row" style="padding-left: 2%;">
     <h3 class="font-weight-bold">
-        @Html.HiddenFor(model => model.Id)    
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+
         @Html.DisplayNameFor(model => model.Name)
         @Html.DisplayFor(model => model.Name)
     </h3>
@@ -16,6 +18,8 @@
     <div class="pt-2" style="padding-left: 3%;">
         <div class="row">
             @Html.HiddenFor(model => model.Questions[i].Id)
+            @Html.HiddenFor(model => model.Questions[i].QuestionText)
+            @Html.HiddenFor(model => model.Questions[i].HowManyChoices)
 
             @i
             -        
@@ -25,8 +29,9 @@
         @for (var j = 0; j < Model.Questions[i].Answers.Count; j++)
         {
             <div class="pt-1">
-                @Html.HiddenFor(model => Model.Questions[i].Answers[j].Id)
+                @Html.HiddenFor(model => Model.Questions[i].Answers[j].Id)                
                 @Html.HiddenFor(model => Model.Questions[i].Answers[j].Selected)
+                @Html.HiddenFor(model => Model.Questions[i].Answers[j].AnswerText)
 
                 @Html.EditorFor(model => Model.Questions[i].Answers[j].Selected)
                 -

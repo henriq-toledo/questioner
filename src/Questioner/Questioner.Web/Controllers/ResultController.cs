@@ -1,75 +1,47 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Questioner.Repository.Interfaces;
 using Questioner.Web.Models;
 
 namespace Questioner.Web.Controllers
 {
-    public class ResultController : Controller
+    public class ResultController : BaseController
     {
-        private readonly ILogger<ResultController> _logger;
-
-        public ResultController(ILogger<ResultController> logger)
+        public ResultController(ILogger<ResultController> logger, IContext context)
+            : base(logger, context)
         {
-            _logger = logger;
         }
 
-        public ActionResult Details()
+        public ActionResult Details(ThemeViewModel theme)
         {
-            return View(new ResultViewModel()
+            var topics = context.Themes.AsQueryable().FirstOrDefault(t => t.Id == theme.Id).Topics;
+            var questions = topics.Where(topic => topic.Questions != null).SelectMany(t => t.Questions).ToList();
+            var model = new ResultViewModel();
+
+            model.ThemeId = theme.Id;
+            model.ThemeName = theme.Name;
+            model.Topics = new List<TopicResultViewModel>();
+            model.Questions = new List<QuestionResultViewModel>();
+
+            foreach (var topic in topics)
             {
-                ThemeId = 1,
-                ThemeName = "Exam AZ-900",
-                Percentage = 20,
-                Topics = new List<TopicResultViewModel>()
+                model.Topics.Add(new TopicResultViewModel(topic));
+            }
+
+            foreach (var question in questions)
+            {
+                model.Questions.Add(new QuestionResultViewModel()
                 {
-                    new TopicResultViewModel()
-                    {
-                        Id = 1,
-                        Name = "Topic 1",
-                        Percentage = 15,
-                        PercentageAnswered = 10
-                    },
-                    new TopicResultViewModel()
-                    {
-                        Id = 2,
-                        Name = "Topic 2",
-                        Percentage = 15,
-                        PercentageAnswered = 10
-                    },
-                    new TopicResultViewModel()
-                    {
-                        Id = 3,
-                        Name = "Topic 3",
-                        Percentage = 20,
-                        PercentageAnswered = 15
-                    },
-                    new TopicResultViewModel()
-                    {
-                        Id = 4,
-                        Name = "Topic 4",
-                        Percentage = 35,
-                        PercentageAnswered = 30
-                    }
-                },
-                Questions = new List<QuestionResultViewModel>()
-                {
-                    new QuestionResultViewModel()
-                    {
-                        Id = 1,
-                        QuestionText = "Quesion 1",
-                        IsCorrect = true
-                    },
-                    new QuestionResultViewModel()
-                    {
-                        Id = 2,
-                        QuestionText = "Question 2",
-                        IsCorrect = false
-                    }
-                }
-            });
+                    Id = question.Id,
+                    QuestionText = question.QuestionText
+                });
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -117,7 +89,7 @@ namespace Questioner.Web.Controllers
                     currentRow++;
                     worksheet.Cell(currentRow, 1).Value = result.Questions.IndexOf(question) + 1;
                     worksheet.Cell(currentRow, 2).Value = question.QuestionText;
-                    worksheet.Cell(currentRow, 3).Value = question.IsCorrect;
+                    worksheet.Cell(currentRow, 3).Value = question.QuestionResultDescription;
                 }
 
                 using (var stream = new MemoryStream())

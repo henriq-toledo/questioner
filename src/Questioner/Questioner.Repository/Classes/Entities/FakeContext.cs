@@ -25,7 +25,46 @@ namespace Questioner.Repository.Classes.Entities
                     {
                         Id = 1,
                         Name = "Describe cloud concepts",
-                        Percentage = 20
+                        Percentage = 20,
+                        Questions = new List<Question>()
+                        {
+                            new Question()
+                            {
+                                Id = 1,
+                                QuestionText = "Azure Web App is a PAAS service?",
+                                Answers = new List<Answer>()
+                                {
+                                    new Answer()
+                                    {
+                                        Id = 1,
+                                        AnswerText = "True"
+                                    },
+                                    new Answer()
+                                    {
+                                        Id = 2,
+                                        AnswerText = "False"
+                                    }
+                                }
+                            },
+                            new Question()
+                            {
+                                Id = 2,
+                                QuestionText = "Azure Function is a PAAS service?",
+                                Answers = new List<Answer>()
+                                {
+                                    new Answer()
+                                    {
+                                        Id = 3,
+                                        AnswerText = "True"
+                                    },
+                                    new Answer()
+                                    {
+                                        Id = 4,
+                                        AnswerText = "False"
+                                    }
+                                }
+                            }
+                        }
                     },
                     new Topic()
                     {
@@ -92,7 +131,7 @@ namespace Questioner.Repository.Classes.Entities
                 {
                     Topics.Add(topic);
                 }
-            }            
+            }
         }
     }
 }
