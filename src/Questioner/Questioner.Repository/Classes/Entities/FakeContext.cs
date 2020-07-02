@@ -37,7 +37,8 @@ namespace Questioner.Repository.Classes.Entities
                                     new Answer()
                                     {
                                         Id = 1,
-                                        AnswerText = "True"
+                                        AnswerText = "True",
+                                        IsCorrect = true
                                     },
                                     new Answer()
                                     {
@@ -49,17 +50,37 @@ namespace Questioner.Repository.Classes.Entities
                             new Question()
                             {
                                 Id = 2,
-                                QuestionText = "Azure Function is a PAAS service?",
+                                QuestionText = "Azure Function is a IAAS service?",
                                 Answers = new List<Answer>()
                                 {
                                     new Answer()
                                     {
                                         Id = 3,
-                                        AnswerText = "True"
+                                        AnswerText = "True",                                        
                                     },
                                     new Answer()
                                     {
                                         Id = 4,
+                                        AnswerText = "False",
+                                        IsCorrect = true
+                                    }
+                                }
+                            },
+                            new Question()
+                            {
+                                Id = 3,
+                                QuestionText = "Azure IoT Central is a SAAS service?",
+                                Answers = new List<Answer>()
+                                {
+                                    new Answer()
+                                    {
+                                        Id = 5,
+                                        AnswerText = "True",
+                                        IsCorrect = true
+                                    },
+                                    new Answer()
+                                    {
+                                        Id = 6,
                                         AnswerText = "False"
                                     }
                                 }
