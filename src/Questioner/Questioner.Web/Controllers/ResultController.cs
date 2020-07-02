@@ -28,11 +28,6 @@ namespace Questioner.Web.Controllers
             model.Topics = new List<TopicResultViewModel>();
             model.Questions = new List<QuestionResultViewModel>();
 
-            foreach (var topic in topics)
-            {
-                model.Topics.Add(new TopicResultViewModel(topic));
-            }
-
             foreach (var question in questions)
             {
                 var answeredQuestion = theme.Questions.FirstOrDefault(q => q.Id == question.Id);
@@ -53,10 +48,30 @@ namespace Questioner.Web.Controllers
                 model.Questions.Add(new QuestionResultViewModel()
                 {
                     Id = question.Id,
+                    TopicId = question.Topic_Id,
                     QuestionText = question.QuestionText,
                     QuestionResult = questionResult
                 });
             }
+
+            foreach (var topic in topics)
+            {
+                var topicResult = new TopicResultViewModel(topic);
+                var totalQuestionsPerTopic = model.Questions?.Count(q => q.TopicId == topic.Id);
+
+                if (totalQuestionsPerTopic > 0)
+                {
+                    var answeredCorrectly = model.Questions.Where(q => q.TopicId == topic.Id).Count(q => q.QuestionResult == QuestionResultEnum.Correct);
+                    var percentagePerTopic = (byte)(answeredCorrectly * 100 / totalQuestionsPerTopic);
+                    var totalPerTopic = percentagePerTopic * topic.Percentage / 100;
+
+                    topicResult.PercentageAnswered = (byte)totalPerTopic;
+                }
+
+                model.Topics.Add(topicResult);
+            }
+
+            model.Percentage = (byte)model.Topics.Sum(t => t.PercentageAnswered);
 
             return View(model);
         }
@@ -81,7 +96,7 @@ namespace Questioner.Web.Controllers
                 currentRow++;
 
                 worksheet.Cell(currentRow, 1).Value = "#";
-                worksheet.Cell(currentRow, 2).Value = "Name";
+                worksheet.Cell(currentRow, 2).Value = "Topic";
                 worksheet.Cell(currentRow, 3).Value = "%";
                 worksheet.Cell(currentRow, 4).Value = "Answered";
 
@@ -100,7 +115,7 @@ namespace Questioner.Web.Controllers
                 worksheet.Cell(currentRow, 1).Value = "#";
                 worksheet.Cell(currentRow, 2).Value = "Question";
                 worksheet.Cell(currentRow, 3).Value = "Correct";
-                
+
                 foreach (var question in result.Questions)
                 {
                     currentRow++;
