@@ -23,7 +23,7 @@ namespace Questioner.Repository.Classes.Entities
                 {
                     new Topic()
                     {
-                        Id = 1,
+                        Id = 1,                        
                         Name = "Describe cloud concepts",
                         Percentage = 20,
                         Questions = new List<Question>()
@@ -31,6 +31,7 @@ namespace Questioner.Repository.Classes.Entities
                             new Question()
                             {
                                 Id = 1,
+                                Topic_Id = 1,
                                 QuestionText = "Azure Web App is a PAAS service?",
                                 Answers = new List<Answer>()
                                 {
@@ -50,6 +51,7 @@ namespace Questioner.Repository.Classes.Entities
                             new Question()
                             {
                                 Id = 2,
+                                Topic_Id = 1,
                                 QuestionText = "Azure Function is a IAAS service?",
                                 Answers = new List<Answer>()
                                 {
@@ -69,6 +71,7 @@ namespace Questioner.Repository.Classes.Entities
                             new Question()
                             {
                                 Id = 3,
+                                Topic_Id = 1,
                                 QuestionText = "Azure IoT Central is a SAAS service?",
                                 Answers = new List<Answer>()
                                 {
