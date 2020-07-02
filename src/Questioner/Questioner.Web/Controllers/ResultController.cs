@@ -5,6 +5,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Questioner.Repository.Interfaces;
+using Questioner.Web.Enums;
 using Questioner.Web.Models;
 
 namespace Questioner.Web.Controllers
@@ -34,10 +35,26 @@ namespace Questioner.Web.Controllers
 
             foreach (var question in questions)
             {
+                var answeredQuestion = theme.Questions.FirstOrDefault(q => q.Id == question.Id);
+                QuestionResultEnum questionResult;
+
+                if (answeredQuestion.Answers.All(a => a.Selected == false))
+                {
+                    questionResult = QuestionResultEnum.NotAnswered;
+                }
+                else
+                {
+                    var correct = answeredQuestion.Answers
+                        .All(answer => question.Answers.Any(a => a.Id == answer.Id && a.IsCorrect == answer.Selected));
+
+                    questionResult = correct ? QuestionResultEnum.Correct : QuestionResultEnum.Incorrect;
+                }
+
                 model.Questions.Add(new QuestionResultViewModel()
                 {
                     Id = question.Id,
-                    QuestionText = question.QuestionText
+                    QuestionText = question.QuestionText,
+                    QuestionResult = questionResult
                 });
             }
 
