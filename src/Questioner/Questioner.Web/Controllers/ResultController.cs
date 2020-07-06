@@ -66,7 +66,7 @@ namespace Questioner.Web.Controllers
                 worksheet.Cell(currentRow, 1).Value = "#";
                 worksheet.Cell(currentRow, 2).Value = "Name";
                 worksheet.Cell(currentRow, 3).Value = "%";
-                worksheet.Cell(currentRow, 4).Value = "Answered";
+                worksheet.Cell(currentRow, 4).Value = "Result";
 
                 foreach (var topic in result.Topics)
                 {
