@@ -13,7 +13,7 @@ namespace Questioner.Web.Models
         [DisplayName("%")]
         public byte Percentage { get; set; }
 
-        [DisplayName("Answered")]
+        [DisplayName("Result")]
         public byte PercentageAnswered { get; set; }
 
         public TopicResultViewModel()
