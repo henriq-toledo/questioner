@@ -7,6 +7,7 @@ namespace Questioner.Repository.Classes.Entities
     [Table("Themes")]
     public class Theme : BaseEntity
     {
+        [Required]
         [StringLength(100)]
         public string Name { get; set; }
 

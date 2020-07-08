@@ -7,12 +7,11 @@ namespace Questioner.Repository.Classes.Entities
     [Table("Questions")]
     public class Question : BaseEntity
     {
+        [Required]
         [StringLength(1500)]
         public string QuestionText { get; set; }
 
-        public long Topic_Id { get; set; }
-
-        public byte HowManyChoices { get; set; }
+        public long TopicId { get; set; }
 
         public virtual Topic Topic { get; set; }
 
