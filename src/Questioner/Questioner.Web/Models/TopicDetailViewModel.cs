@@ -20,7 +20,7 @@ namespace Questioner.Web.Models
         public TopicDetailViewModel(Topic topic)
         {
             Name = topic.Name;
-            QuestionsQuantity = (topic.Questions?.Count).GetValueOrDefault();
+            QuestionsQuantity = topic.Questions.Count;
             Percentage = topic.Percentage;
         }
     }

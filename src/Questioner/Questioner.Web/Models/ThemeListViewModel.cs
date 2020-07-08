@@ -15,7 +15,7 @@ namespace Questioner.Web.Models
             this.Id = theme.Id;
             this.Name = theme.Name;
             this.TopicsQuantity = theme.Topics.Count;
-            this.QuestionsQuantity = theme.Topics.Sum(topic => topic.Questions?.Count).GetValueOrDefault();
+            this.QuestionsQuantity = theme.Topics.Sum(topic => topic.Questions.Count);
         }
 
         public long Id { get; set; }

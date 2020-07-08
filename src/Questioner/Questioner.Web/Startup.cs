@@ -27,7 +27,8 @@ namespace Questioner.Web
             //     (options => options.UseSqlServer("<connection string>"))
             //     .AddScoped<IContext, Context>();
 
-            services.AddScoped<IContext, FakeContext>();
+            services.AddScoped<IContext, Context>();
+            Context.SetupData();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

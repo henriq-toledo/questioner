@@ -25,7 +25,7 @@ namespace Questioner.Web.Models
 
             Questions = new List<QuestionViewModel>();
 
-            foreach (var question in theme.Topics.Where(topic => topic.Questions != null).SelectMany(topic => topic.Questions))
+            foreach (var question in theme.Topics.SelectMany(topic => topic.Questions))
             {
                 Questions.Add(new QuestionViewModel(question));
             }
