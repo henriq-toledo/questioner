@@ -7,10 +7,11 @@ namespace Questioner.Repository.Classes.Entities
     [Table("Topics")]
     public class Topic : BaseEntity
     {
+        [Required]
         [StringLength(100)]
         public string Name { get; set; }
 
-        public long Theme_Id { get; set; }
+        public long ThemeId { get; set; }
 
         public byte Percentage { get; set; }
 

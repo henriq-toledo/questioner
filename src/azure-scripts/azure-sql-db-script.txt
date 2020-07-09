@@ -1,0 +1,7 @@
+az sql server create --name questioner-sql-server --resource-group azwebapp --location eastus --admin-user <user name> --admin-password <password>
+
+az sql server firewall-rule create --resource-group azwebapp --server questioner-sql-server -n AllowYourIp --start-ip-address 0.0.0.0 --end-ip-address 203.0.0.0
+
+az sql db create --resource-group azwebapp --server questioner-sql-server --name QUESTIONER_DB --edition Basic --zone-redundant false --license-type BasePrice
+
+az sql db show-connection-string --server questioner-sql-server --name QUESTIONER_DB --client ado.net 

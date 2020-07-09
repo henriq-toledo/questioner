@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Questioner.Repository.Interfaces;
 using Questioner.Web.Models;
@@ -17,7 +18,11 @@ namespace Questioner.Web.Controllers
 
         public IActionResult Index()
         {
-            return View(context.Themes.AsQueryable().Select(theme => new ThemeListViewModel(theme)).ToList());
+            return View(context.Themes
+                .Include(theme => theme.Topics)
+                .ThenInclude(topic => topic.Questions)
+                .Select(theme => new ThemeListViewModel(theme))
+                .ToList());
         }
 
         public IActionResult Privacy()

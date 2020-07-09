@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Questioner.Repository.Interfaces;
 using Questioner.Web.Enums;
@@ -19,8 +20,12 @@ namespace Questioner.Web.Controllers
 
         public ActionResult Details(ThemeViewModel theme)
         {
-            var topics = context.Themes.AsQueryable().FirstOrDefault(t => t.Id == theme.Id).Topics;
-            var questions = topics.Where(topic => topic.Questions != null).SelectMany(t => t.Questions).ToList();
+            var topics = context.Topics                
+                .Include(topic => topic.Questions)
+                .ThenInclude(question => question.Answers)
+                .Where(t => t.Id == theme.Id)
+                .ToList();
+            var questions = topics.SelectMany(t => t.Questions).ToList();
             var model = new ResultViewModel();
 
             model.ThemeId = theme.Id;
@@ -48,7 +53,7 @@ namespace Questioner.Web.Controllers
                 model.Questions.Add(new QuestionResultViewModel()
                 {
                     Id = question.Id,
-                    TopicId = question.Topic_Id,
+                    TopicId = question.TopicId,
                     QuestionText = question.QuestionText,
                     QuestionResult = questionResult
                 });
@@ -57,7 +62,7 @@ namespace Questioner.Web.Controllers
             foreach (var topic in topics)
             {
                 var topicResult = new TopicResultViewModel(topic);
-                var totalQuestionsPerTopic = model.Questions?.Count(q => q.TopicId == topic.Id);
+                var totalQuestionsPerTopic = model.Questions.Count(q => q.TopicId == topic.Id);
 
                 if (totalQuestionsPerTopic > 0)
                 {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Questioner.Repository.Interfaces;
 using Questioner.Web.Models;
@@ -16,12 +17,20 @@ namespace Questioner.Web.Controllers
 
         public ActionResult Details(long id)
         {
-            return View(new ThemeDetailViewModel(context.Themes.AsQueryable().FirstOrDefault(t => t.Id == id)));
+            return View(new ThemeDetailViewModel(
+                context.Themes
+                .Include(theme => theme.Topics)
+                .ThenInclude(topic => topic.Questions)
+                .FirstOrDefault(t => t.Id == id)));
         }
 
         public ActionResult Questioner(int id)
         {
-            return View(new ThemeViewModel(context.Themes.AsQueryable().FirstOrDefault(t => t.Id == id)));
+            return View(new ThemeViewModel(context.Themes
+                .Include(theme => theme.Topics)
+                .ThenInclude(topic => topic.Questions)
+                .ThenInclude(question => question.Answers)
+                .FirstOrDefault(t => t.Id == id)));
         }
     }
 }
