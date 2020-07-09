@@ -7,6 +7,7 @@ namespace Questioner.Repository.Classes.Entities
     [Table("Answers")]
     public class Answer : BaseEntity
     {
+        [Required]
         [StringLength(1000)]
         public string AnswerText { get; set; }
 

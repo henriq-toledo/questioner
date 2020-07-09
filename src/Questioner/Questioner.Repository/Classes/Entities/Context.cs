@@ -14,13 +14,6 @@ namespace Questioner.Repository.Classes.Entities
         public Context(DbContextOptions<Context> options)
             : base(options)
         {
-
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Configures the database connection string
-            optionsBuilder.UseSqlServer("<connection string>");
-        }
+        }     
     }
 }

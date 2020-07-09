@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.Web.Models
@@ -14,14 +15,14 @@ namespace Questioner.Web.Models
         public List<AnswerViewModel> Answers { get; set; }
 
         public QuestionViewModel()
-        {            
+        {
         }
 
         public QuestionViewModel(Question question)
         {
             Id = question.Id;
             QuestionText = question.QuestionText;
-            HowManyChoices = question.HowManyChoices;
+            HowManyChoices = (byte)question.Answers.Count(a => a.IsCorrect);
 
             Answers = new List<AnswerViewModel>();
 
