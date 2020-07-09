@@ -20,10 +20,10 @@ namespace Questioner.Web.Controllers
 
         public ActionResult Details(ThemeViewModel theme)
         {
-            var topics = context.Topics                
+            var topics = context.Topics
                 .Include(topic => topic.Questions)
                 .ThenInclude(question => question.Answers)
-                .Where(t => t.Id == theme.Id)
+                .Where(topic => topic.ThemeId == theme.Id)
                 .ToList();
             var questions = topics.SelectMany(t => t.Questions).ToList();
             var model = new ResultViewModel();
@@ -68,15 +68,14 @@ namespace Questioner.Web.Controllers
                 {
                     var answeredCorrectly = model.Questions.Where(q => q.TopicId == topic.Id).Count(q => q.QuestionResult == QuestionResultEnum.Correct);
                     var percentagePerTopic = (byte)(answeredCorrectly * 100 / totalQuestionsPerTopic);
-                    var totalPerTopic = percentagePerTopic * topic.Percentage / 100;
 
-                    topicResult.PercentageAnswered = (byte)totalPerTopic;
+                    topicResult.PercentageAnswered = percentagePerTopic;
                 }
 
                 model.Topics.Add(topicResult);
             }
 
-            model.Percentage = (byte)model.Topics.Sum(t => t.PercentageAnswered);
+            model.Percentage = (byte)model.Topics.Sum(topic => topic.PercentageAnswered * topic.Percentage / 100);
 
             return View(model);
         }
@@ -95,7 +94,7 @@ namespace Questioner.Web.Controllers
                 currentRow++;
 
                 worksheet.Cell(currentRow, 1).Value = "Percentage:";
-                worksheet.Cell(currentRow, 2).Value = $"{result.Percentage}%";
+                worksheet.Cell(currentRow, 2).Value = $"{result.Percentage} %";
 
                 currentRow++;
                 currentRow++;
@@ -111,7 +110,7 @@ namespace Questioner.Web.Controllers
                     worksheet.Cell(currentRow, 1).Value = result.Topics.IndexOf(topic) + 1;
                     worksheet.Cell(currentRow, 2).Value = topic.Name;
                     worksheet.Cell(currentRow, 3).Value = topic.Percentage;
-                    worksheet.Cell(currentRow, 4).Value = topic.PercentageAnswered;
+                    worksheet.Cell(currentRow, 4).Value = $"{topic.PercentageAnswered} %";
                 }
 
                 currentRow++;
