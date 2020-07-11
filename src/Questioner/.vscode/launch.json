@@ -28,7 +28,7 @@
             "name": ".NET Core Launch (web api)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build_webapi",
             "program": "${workspaceFolder}/Questioner.WebApi/bin/Debug/netcoreapp3.1/Questioner.WebApi.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Questioner.WebApi",
