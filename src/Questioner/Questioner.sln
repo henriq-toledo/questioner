@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Helpers", "Quest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Web", "Questioner.Web\Questioner.Web.csproj", "{0373E33F-604D-49AB-AF91-D5373114BAC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApi", "Questioner.WebApi\Questioner.WebApi.csproj", "{E11B18C9-5B61-44DB-9811-0E181D4A6032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{0373E33F-604D-49AB-AF91-D5373114BAC0}.Release|x64.Build.0 = Release|Any CPU
 		{0373E33F-604D-49AB-AF91-D5373114BAC0}.Release|x86.ActiveCfg = Release|Any CPU
 		{0373E33F-604D-49AB-AF91-D5373114BAC0}.Release|x86.Build.0 = Release|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Debug|x64.Build.0 = Debug|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Debug|x86.Build.0 = Debug|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Release|x64.ActiveCfg = Release|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Release|x64.Build.0 = Release|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Release|x86.ActiveCfg = Release|Any CPU
+		{E11B18C9-5B61-44DB-9811-0E181D4A6032}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
