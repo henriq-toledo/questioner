@@ -13,27 +13,17 @@ Questioner is a web application that test using questions and answers about a th
 ### Questioner Home Page
 <img src="screenshots/pc/01-questioner-home-page.png" alt="Questioner Home Page">
 
-<br>
-
 ### Questioner Topics Page
 <img src="screenshots/pc/02-questioner-topics-page.png" alt="Questioner Topics Page">
-
-<br>
 
 ### Questioner Questions Page
 <img src="screenshots/pc/03-questioner-questions-page.png" alt="Questioner QUestions Page">
 
-<br>
-
 ### Questioner Result Page
 <img src="screenshots/pc/04-questioner-result-page.png" alt="Questioner Result Page">
 
-<br>
-
 ### Questioner Result Report Download
 <img src="screenshots/pc/05-questioner-result-report-download.png" alt="Questioner Result Report Download">
-
-<br>
 
 ### Questioner Result Report
 <img src="screenshots/pc/06-questioner-result-report.png" alt="Questioner Result Report">
