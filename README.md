@@ -6,16 +6,7 @@ Questioner is a web application that test using questions and answers about a th
 
 ## IOS ScreenShots
 
-<img src="screenshots/ios/01-questioner-home-page.png" alt="Questioner Home Page" width="200">
-<img src="screenshots/ios/02-questioner-topics-page-1.png" alt="Questioner Topics Page" width="200">
-<img src="screenshots/ios/03-questioner-topics-page-2.png" alt="Questioner Topics Page" width="200">
-<img src="screenshots/ios/04-questioner-questions-page-1.png" alt="Questioner Questions Page" width="200">
-<img src="screenshots/ios/05-questioner-questions-page-2.png" alt="Questioner Questions Page" width="200">
-<img src="screenshots/ios/06-questioner-result-page-1.png" alt="Questioner Result Page" width="200">
-<img src="screenshots/ios/07-questioner-result-page-2.png" alt="Questioner Result Page" width="200">
-<img src="screenshots/ios/08-questioner-result-report-download.png" alt="Questioner Result Report Download" width="200">
-<img src="screenshots/ios/09-questioner-result-report-1.png" alt="Questioner Result Report" width="200">
-<img src="screenshots/ios/10-questioner-result-report-2.png" alt="Questioner Result Report" width="355" height="200"  style="vertical-align:top">
+<img src="screenshots/ios/01-questioner-home-page.png" alt="Questioner Home Page" width="200"> <img src="screenshots/ios/02-questioner-topics-page-1.png" alt="Questioner Topics Page" width="200"> <img src="screenshots/ios/03-questioner-topics-page-2.png" alt="Questioner Topics Page" width="200"> <img src="screenshots/ios/04-questioner-questions-page-1.png" alt="Questioner Questions Page" width="200"> <img src="screenshots/ios/05-questioner-questions-page-2.png" alt="Questioner Questions Page" width="200"> <img src="screenshots/ios/06-questioner-result-page-1.png" alt="Questioner Result Page" width="200"> <img src="screenshots/ios/07-questioner-result-page-2.png" alt="Questioner Result Page" width="200"> <img src="screenshots/ios/08-questioner-result-report-download.png" alt="Questioner Result Report Download" width="200"> <img src="screenshots/ios/09-questioner-result-report-1.png" alt="Questioner Result Report" width="200"> <img src="screenshots/ios/10-questioner-result-report-2.png" alt="Questioner Result Report" width="355" height="200"  style="vertical-align:top">
 
 ## PC ScreenShots
 
