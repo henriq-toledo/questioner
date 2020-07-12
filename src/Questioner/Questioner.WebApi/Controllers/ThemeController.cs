@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
+using Questioner.WebApi.Validators;
 
 namespace Questioner.WebApi.Controllers
 {
@@ -20,14 +21,25 @@ namespace Questioner.WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] ThemeModel theme)
+        public ActionResult Create([FromBody] ThemeModel themeModel)
         {
-            var themeEntity = theme.ToEntity();
+            var themeValidator = new ThemeValidator(themeModel);
+            var errors = themeValidator.Validate();
+            var noErrors = string.IsNullOrEmpty(errors);
 
-            _context.Themes.Add(themeEntity);
-            _context.SaveChanges();
+            if (noErrors)
+            {
+                var themeEntity = themeModel.ToEntity();
 
-            return Ok();
+                _context.Themes.Add(themeEntity);
+                _context.SaveChanges();
+
+                return Ok();
+            }
+            else
+            {
+                return new BadRequestObjectResult(errors);
+            }
         }
     }
 }
