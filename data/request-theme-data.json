@@ -1,0 +1,152 @@
+{
+	"name": "Exam AZ-900: Microsoft Azure Fundamentals",
+	"topics": [
+		{
+			"name": "Describe cloud concepts",
+			"percentage": 20,
+			"questions": [
+				{
+					"questionText": "What is PAAS?",
+					"answers": [
+						{
+							"answerText": "Platform As A Service",
+							"isCorrect": true
+						},
+						{
+							"answerText": "Product As A Service"
+						},
+						{
+							"answerText": "Purchase As A Service"
+						}
+					]
+				},
+				{
+					"questionText": "What is SAAS?",
+					"answers": [
+						{
+							"answerText": "Service As A Service"
+						},
+						{
+							"answerText": "Software As A Service",
+							"isCorrect": true
+						},
+						{
+							"answerText": "Server As A Service"
+						}
+					]
+				},
+				{
+					"questionText": "What is IAAS?",
+					"answers": [
+						{
+							"answerText": "IIS As A Service"							
+						},
+						{
+							"answerText": "Information As A Service"
+						},
+						{
+							"answerText": "Infrastructure As A Service",
+							"isCorrect": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Describe core Azure services",
+			"percentage": 30,
+			"questions": [
+				{
+					"questionText": "Azure Web App is a PAAS service?",
+					"answers": [
+						{
+							"answerText": "True",
+							"isCorrect": true
+						},
+						{
+							"answerText": "False"
+						}
+					]
+				},
+				{
+					"questionText": "Azure Function is a IAAS service?",
+					"answers": [
+						{
+							"answerText": "True"
+						},
+						{
+							"answerText": "False",
+							"isCorrect": true
+						}
+					]
+				},
+				{
+					"questionText": "Azure IoT Central is a SAAS service?",
+					"answers": [
+						{
+							"answerText": "True",
+							"isCorrect": true
+						},
+						{
+							"answerText": "False"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Describe security, privacy, compliance, and trust",
+			"percentage": 25,
+			"questions": [
+				{
+					"questionText": "What are the four foundational principles of trust?",
+					"answers": [
+						{
+							"answerText": "Security",
+							"isCorrect": true
+						},
+						{
+							"answerText": "Privacy",
+							"isCorrect": true
+						},
+						{
+							"answerText": "Compliance",
+							"isCorrect": true
+						},
+						{
+							"answerText": "Storage"
+						},
+						{
+							"answerText": "Transparency",
+							"isCorrect": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Describe Azure pricing Service Level Agreements, and Lifecycles",
+			"percentage": 25,
+			"questions": [
+				{
+					"questionText": "What is the Azure lifecycle flow sequence?",
+					"answers": [
+						{
+							"answerText": "Private preview, public preview and general availability",
+							"isCorrect": true
+						},
+						{
+							"answerText": "Public preview, private preview and general availability"
+						},
+						{
+							"answerText": "General availability, public preview and private preview"
+						},
+						{
+							"answerText": "General availability, private preview and public preview"
+						}
+					]
+				}
+			]
+		}
+	]
+}
