@@ -13,7 +13,7 @@ namespace Questioner.Repository.Classes.Entities
 
         public bool IsCorrect { get; set; }
 
-        public long Question_Id { get; set; }
+        public long QuestionId { get; set; }
 
         public virtual Question Question { get; set; }
 
