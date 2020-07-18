@@ -57,40 +57,13 @@
 			"percentage": 30,
 			"questions": [
 				{
-					"questionText": "Azure Web App is a PAAS service?",
-					"answers": [
-						{
-							"answerText": "True",
-							"isCorrect": true
-						},
-						{
-							"answerText": "False"
-						}
-					]
+					"questionText": "Azure Web App is a PAAS service?"
 				},
 				{
-					"questionText": "Azure Function is a IAAS service?",
-					"answers": [
-						{
-							"answerText": "True"
-						},
-						{
-							"answerText": "False",
-							"isCorrect": true
-						}
-					]
+					"questionText": "Azure Function is a IAAS service?"
 				},
 				{
-					"questionText": "Azure IoT Central is a SAAS service?",
-					"answers": [
-						{
-							"answerText": "True",
-							"isCorrect": true
-						},
-						{
-							"answerText": "False"
-						}
-					]
+					"questionText": "Azure IoT Central is a SAAS service?"
 				}
 			]
 		},
