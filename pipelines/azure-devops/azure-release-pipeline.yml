@@ -1,0 +1,20 @@
+# Azure DevOps Release Pipeline
+variables:
+  azureSubscription: 'Azure Questioner connection'
+  appName: 'questioner-beta'
+
+steps:
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Deploy Azure Web App Service'
+  inputs:
+    azureSubscription: $(azureSubscription)
+    appType: webAppLinux
+    WebAppName: $(appName)
+    package: $(System.ArtifactsDirectory)/**/*.zip
+
+- task: AzureAppServiceManage@0
+  displayName: 'Restart Azure App Service: questioner-beta'
+  inputs:
+    azureSubscription: $(azureSubscription)
+    Action: 'Restart Azure App Service'
+    WebAppName: $(appName)
