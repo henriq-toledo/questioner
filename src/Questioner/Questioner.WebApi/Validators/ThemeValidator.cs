@@ -41,7 +41,7 @@ namespace Questioner.WebApi.Validators
                     .SelectMany(topic => topic.Questions)
                     .ToList();
 
-                foreach (var questionWithoutAnswers in questions.Where(q => q.Answers == null || q.Answers.Count < 2))
+                foreach (var questionWithoutAnswers in questions.Where(q => q.Answers != null && q.Answers.Count < 2))
                 {
                     errors.AppendLine($"The '{questionWithoutAnswers.QuestionText}' must have at least 2 answers.");
                 }
