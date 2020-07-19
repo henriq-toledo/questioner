@@ -15,6 +15,6 @@ namespace Questioner.WebApi.Defaults
             IsCorrect = true
         };
 
-        public static Answer[] NoYes => new Answer[] { Yes, No };
+        public static Answer[] NoYes => new Answer[] { No, Yes };
     }
 }
