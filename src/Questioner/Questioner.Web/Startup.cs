@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Questioner.Repository.Classes.Entities;
 using Microsoft.EntityFrameworkCore;
 using Questioner.Repository.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Questioner.Web
 {
@@ -31,6 +32,8 @@ namespace Questioner.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Context context)
         {
+            Logger.log.Info($"Environment: {env.EnvironmentName}");            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
