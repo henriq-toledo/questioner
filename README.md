@@ -1,8 +1,22 @@
 # Questioner
 Questioner is a web application that test using questions and answers about a theme to help studying. Developed to be responsive to run in the PC web browser or mobile web browser.
 
-## Azure DevOps Status Badge
+## Badge Status
 [![Build Status](https://dev.azure.com/htapps/GitHub/_apis/build/status/henriq-toledo.questioner?branchName=master)](https://dev.azure.com/htapps/GitHub/_build/latest?definitionId=1&branchName=master)
+
+## Setup
+
+### Development environment
+
+- [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [SQL Server Express (optional)](https://go.microsoft.com/fwlink/?linkid=866658)
+
+### IIS
+
+- [Host ASP.NET Core on Windows with IIS](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-3.1)
+- [Install the .NET Core Hosting Bundle](https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-3.1.6-windows-hosting-bundle-installer)
+- [ASP.NET Core Runtime 3.1.6](https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-3.1.6-windows-x64-installer)
 
 ## IOS Screenshots
 
