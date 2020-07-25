@@ -48,6 +48,7 @@ namespace Questioner.WebApi
                 endpoints.MapControllers();
             });
 
+            context.Database.EnsureCreated();
             context.Database.Migrate();
         }
     }
