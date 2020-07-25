@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
-    <ProjectReference Include="..\Questioner.Helpers\Questioner.Helpers.csproj" />
     <ProjectReference Include="..\Questioner.Repository\Questioner.Repository.csproj" />
-    <ProjectReference Include="..\Questioner.Business\Questioner.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
