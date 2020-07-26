@@ -36,9 +36,9 @@
         @Html.HiddenFor(model => theme.Id)
 
         <tr>
-            <th scope="row">
+            <td scope="row">
                 @(Array.IndexOf(Model.ToArray(), theme) + 1)
-            </th>        
+            </td>        
             <td>
                 @Html.ActionLink(theme.Name, "Details", "Theme", new {id = theme.Id})                
             </td>

@@ -32,9 +32,9 @@
 @foreach (var topic in Model.Topics)
 {
         <tr>
-            <th scope="row">
+            <td scope="row">
                 @(Array.IndexOf(Model.Topics.ToArray(), topic) + 1)
-            </th>        
+            </td>        
             <td>                
                 @Html.DisplayFor(model => topic.Name)
             </td>
