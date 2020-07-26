@@ -14,6 +14,29 @@ namespace Questioner.Repository.Classes.Entities
         public Context(DbContextOptions<Context> options)
             : base(options)
         {
-        }     
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Theme>()
+                .HasIndex(theme => theme.Name)
+                .HasName("UX_Theme_Name")
+                .IsUnique();
+
+            modelBuilder.Entity<Topic>()
+                .HasIndex(topic => new { topic.ThemeId, topic.Name })
+                .HasName("UX_Topic_Name")
+                .IsUnique();
+
+            modelBuilder.Entity<Question>()
+                .HasIndex(question => new { question.TopicId, question.QuestionText })
+                .HasName("UX_Question_QuestionText")
+                .IsUnique();
+
+            modelBuilder.Entity<Answer>()
+                .HasIndex(answer => new { answer.QuestionId, answer.AnswerText })
+                .HasName("UX_Answer_AnswerText")
+                .IsUnique();
+        }
     }
 }
