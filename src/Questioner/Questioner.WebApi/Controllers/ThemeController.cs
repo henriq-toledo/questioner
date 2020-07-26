@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Questioner.Repository.Classes.Entities;
@@ -47,10 +48,22 @@ namespace Questioner.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Array> Get()
+        public ActionResult<Array> Get(bool includeChildren = false)
         {
-            var themes = _context.Themes.Select(theme => new { Id = theme.Id, Name = theme.Name}).ToList();
-            var context = JsonConvert.SerializeObject(themes);
+            List<Theme> themes;
+
+            if (includeChildren)
+            {
+                themes = _context.Themes
+                    .Include(theme => theme.Topics)
+                    .ThenInclude(topic => topic.Questions)
+                    .ThenInclude(question => question.Answers)
+                    .ToList();
+            }
+            else
+            {
+                themes = _context.Themes.ToList();
+            }
 
             return themes.ToArray();
         }

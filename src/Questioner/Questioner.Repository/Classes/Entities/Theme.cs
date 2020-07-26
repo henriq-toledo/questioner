@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Questioner.Repository.Classes.Entities
 {
@@ -9,8 +10,10 @@ namespace Questioner.Repository.Classes.Entities
     {
         [Required]
         [StringLength(100)]
+        [JsonProperty(Order = 2)]
         public string Name { get; set; }
 
+        [JsonProperty(Order = 3)]
         public virtual List<Topic> Topics {get;set;}
     }
 }

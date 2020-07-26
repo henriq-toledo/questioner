@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.WebApi
@@ -22,7 +23,11 @@ namespace Questioner.WebApi
         {
             services.AddControllers();
 
-            services.AddMvc().AddNewtonsoftJson();
+            services.AddMvc().AddNewtonsoftJson(setup => 
+            {
+                setup.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                setup.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
             services.AddDbContext<Context>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")))
