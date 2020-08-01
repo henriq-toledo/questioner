@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Questioner.Repository.Classes.Entities;
 
@@ -35,8 +36,14 @@ namespace Questioner.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Context context)
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            Context context, 
+            ILogger<Startup> logger)
         {
+            logger.LogInformation($"Environment: {env.EnvironmentName}");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
