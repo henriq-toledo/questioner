@@ -30,9 +30,13 @@ namespace Questioner.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Context context)
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            Context context, 
+            ILogger<Startup> logger)
         {
-            Logger.log.Info($"Environment: {env.EnvironmentName}");            
+            logger.LogInformation($"Environment: {env.EnvironmentName}");
 
             if (env.IsDevelopment())
             {
