@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,20 +16,33 @@ namespace Questioner.Web.Controllers
 
         public ActionResult Details(long id)
         {
-            return View(new ThemeDetailViewModel(
-                context.Themes
+            var theme = context.Themes
                 .Include(theme => theme.Topics)
                 .ThenInclude(topic => topic.Questions)
-                .FirstOrDefault(t => t.Id == id)));
+                .FirstOrDefault(t => t.Id == id);
+
+            if (theme == null)
+            {
+                return NotFound();
+            }
+
+            return View(new ThemeDetailViewModel(theme));
         }
 
         public ActionResult Questioner(int id)
         {
-            return View(new ThemeViewModel(context.Themes
+            var theme = context.Themes
                 .Include(theme => theme.Topics)
                 .ThenInclude(topic => topic.Questions)
                 .ThenInclude(question => question.Answers)
-                .FirstOrDefault(t => t.Id == id)));
+                .FirstOrDefault(t => t.Id == id);
+
+            if (theme == null)
+            {
+                return NotFound();
+            }
+
+            return View(new ThemeViewModel());
         }
     }
 }

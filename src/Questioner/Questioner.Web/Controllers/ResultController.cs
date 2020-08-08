@@ -25,6 +25,12 @@ namespace Questioner.Web.Controllers
                 .ThenInclude(question => question.Answers)
                 .Where(topic => topic.ThemeId == theme.Id)
                 .ToList();
+
+            if (topics.Count == 0)
+            {
+                return NotFound();
+            }
+
             var questions = topics.SelectMany(t => t.Questions).ToList();
             var model = new ResultViewModel();
 
