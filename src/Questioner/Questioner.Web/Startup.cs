@@ -36,7 +36,8 @@ namespace Questioner.Web
             Context context, 
             ILogger<Startup> logger)
         {
-            logger.LogInformation($"Environment: {env.EnvironmentName}");
+            logger.LogInformation($"Environment: '{env.EnvironmentName}'.");
+            logger.LogInformation($"Context database: '{context.Database.GetDbConnection().Database}'.");
 
             if (env.IsDevelopment())
             {
