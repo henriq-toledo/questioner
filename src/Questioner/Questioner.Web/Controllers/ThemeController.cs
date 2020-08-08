@@ -42,7 +42,7 @@ namespace Questioner.Web.Controllers
                 return NotFound();
             }
 
-            return View(new ThemeViewModel());
+            return View(new ThemeViewModel(theme));
         }
     }
 }
