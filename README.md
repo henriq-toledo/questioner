@@ -43,3 +43,18 @@ Questioner is a web application that test using questions and answers about a th
 
 #### Questioner Result Report
 <img src="screenshots/pc/06-questioner-result-report.png" alt="Questioner Result Report">
+
+## Pipelines
+
+### Azure DevOps
+
+- [Build](https://github.com/henriq-toledo/questioner/blob/master/pipelines/azure-devops/azure-pipelines.yml)
+- [Release](https://github.com/henriq-toledo/questioner/blob/master/pipelines/azure-devops/azure-release-pipeline.yml)
+
+### Jenkins
+
+#### [Web App Jenkins Pipeline](https://github.com/henriq-toledo/questioner/tree/master/pipelines/jenkins/web-app/Jenkinsfile)
+<img src="screenshots/jenkins/web-app-pipeline.png" alt="Web App Jenkins Pipeline">
+
+#### [Web Api Jenkins Pipeline](https://github.com/henriq-toledo/questioner/tree/master/pipelines/jenkins/web-api/Jenkinsfile)
+<img src="screenshots/jenkins/web-api-pipeline.png" alt="Web Api Jenkins Pipeline">
