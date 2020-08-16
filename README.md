@@ -53,8 +53,8 @@ Questioner is a web application that test using questions and answers about a th
 
 ### Jenkins
 
-#### [Web App Jenkins Pipeline](https://github.com/henriq-toledo/questioner/tree/master/pipelines/jenkins/web-app/Jenkinsfile)
+- [Web App Jenkins Pipeline](https://github.com/henriq-toledo/questioner/tree/master/pipelines/jenkins/web-app/Jenkinsfile)
 <img src="screenshots/jenkins/web-app-pipeline.png" alt="Web App Jenkins Pipeline">
 
-#### [Web Api Jenkins Pipeline](https://github.com/henriq-toledo/questioner/tree/master/pipelines/jenkins/web-api/Jenkinsfile)
+- [Web Api Jenkins Pipeline](https://github.com/henriq-toledo/questioner/tree/master/pipelines/jenkins/web-api/Jenkinsfile)
 <img src="screenshots/jenkins/web-api-pipeline.png" alt="Web Api Jenkins Pipeline">
