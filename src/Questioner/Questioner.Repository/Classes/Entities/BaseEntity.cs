@@ -7,7 +7,7 @@ namespace Questioner.Repository.Classes.Entities
     {
         [Key]
         [JsonProperty(Order = 1)]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Timestamp]
         [JsonIgnore]

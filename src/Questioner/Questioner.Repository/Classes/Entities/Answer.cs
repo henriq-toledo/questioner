@@ -17,7 +17,7 @@ namespace Questioner.Repository.Classes.Entities
         public bool IsCorrect { get; set; }
 
         [JsonIgnore]
-        public long QuestionId { get; set; }
+        public int QuestionId { get; set; }
 
         [JsonIgnore]
         public virtual Question Question { get; set; }

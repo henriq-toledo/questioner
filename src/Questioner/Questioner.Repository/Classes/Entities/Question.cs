@@ -14,7 +14,7 @@ namespace Questioner.Repository.Classes.Entities
         public string QuestionText { get; set; }
 
         [JsonIgnore]
-        public long TopicId { get; set; }
+        public int TopicId { get; set; }
 
         [JsonIgnore]
         public virtual Topic Topic { get; set; }

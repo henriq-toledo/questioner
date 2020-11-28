@@ -11,10 +11,10 @@ namespace Questioner.Repository.Migrations
                 name: "Themes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Name = table.Column<string>(maxLength: 100, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,12 +25,12 @@ namespace Questioner.Repository.Migrations
                 name: "Topics",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    ThemeId = table.Column<long>(nullable: false),
-                    Percentage = table.Column<byte>(nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    ThemeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Percentage = table.Column<byte>(type: "INTEGER", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,11 +47,11 @@ namespace Questioner.Repository.Migrations
                 name: "Questions",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    QuestionText = table.Column<string>(maxLength: 1500, nullable: false),
-                    TopicId = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    QuestionText = table.Column<string>(type: "TEXT", maxLength: 1500, nullable: false),
+                    TopicId = table.Column<int>(type: "INTEGER", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,13 +68,12 @@ namespace Questioner.Repository.Migrations
                 name: "Answers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    AnswerText = table.Column<string>(maxLength: 1000, nullable: false),
-                    IsCorrect = table.Column<bool>(nullable: false),
-                    Question_Id = table.Column<long>(nullable: false),
-                    QuestionId = table.Column<long>(nullable: true)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AnswerText = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false),
+                    IsCorrect = table.Column<bool>(type: "INTEGER", nullable: false),
+                    QuestionId = table.Column<int>(type: "INTEGER", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,20 +83,20 @@ namespace Questioner.Repository.Migrations
                         column: x => x.QuestionId,
                         principalTable: "Questions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Links",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    PageLink = table.Column<string>(maxLength: 300, nullable: false),
-                    AnswerId = table.Column<long>(nullable: true),
-                    QuestionId = table.Column<long>(nullable: true)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    PageLink = table.Column<string>(type: "TEXT", maxLength: 300, nullable: false),
+                    AnswerId = table.Column<int>(type: "INTEGER", nullable: true),
+                    QuestionId = table.Column<int>(type: "INTEGER", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,9 +116,10 @@ namespace Questioner.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Answers_QuestionId",
+                name: "UX_Answer_AnswerText",
                 table: "Answers",
-                column: "QuestionId");
+                columns: new[] { "QuestionId", "AnswerText" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Links_AnswerId",
@@ -132,14 +132,22 @@ namespace Questioner.Repository.Migrations
                 column: "QuestionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_TopicId",
+                name: "UX_Question_QuestionText",
                 table: "Questions",
-                column: "TopicId");
+                columns: new[] { "TopicId", "QuestionText" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Topics_ThemeId",
+                name: "UX_Theme_Name",
+                table: "Themes",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "UX_Topic_Name",
                 table: "Topics",
-                column: "ThemeId");
+                columns: new[] { "ThemeId", "Name" },
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -14,7 +14,7 @@ namespace Questioner.Repository.Classes.Entities
         public string Name { get; set; }
 
         [JsonIgnore]
-        public long ThemeId { get; set; }
+        public int ThemeId { get; set; }
 
         [JsonProperty(Order = 3)]
         public byte Percentage { get; set; }
