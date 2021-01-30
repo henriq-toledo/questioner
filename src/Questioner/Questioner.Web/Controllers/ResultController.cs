@@ -1,37 +1,33 @@
+using ClosedXML.Excel;
+using Microsoft.AspNetCore.Mvc;
+using Questioner.Web.Enums;
+using Questioner.Web.Models;
+using Questioner.Web.Services;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ClosedXML.Excel;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Questioner.Repository.Interfaces;
-using Questioner.Web.Enums;
-using Questioner.Web.Models;
+using System.Threading.Tasks;
 
 namespace Questioner.Web.Controllers
 {
-    public class ResultController : BaseController
+    public class ResultController : Controller
     {
-        public ResultController(ILogger<ResultController> logger, IContext context)
-            : base(logger, context)
+        private readonly IThemeService themeService;
+
+        public ResultController(IThemeService themeService)
         {
+            this.themeService = themeService;
         }
 
-        public ActionResult Details(ThemeViewModel theme)
+        public async Task<ActionResult> Details(ThemeViewModel theme)
         {
-            var topics = context.Topics
-                .Include(topic => topic.Questions)
-                .ThenInclude(question => question.Answers)
-                .Where(topic => topic.ThemeId == theme.Id)
-                .ToList();
+            var topics = (await themeService.GetAllThemes()).SelectMany(theme => theme.Topics).ToArray();
 
-            if (topics.Count == 0)
+            if (topics.Length == 0)
             {
                 return NotFound();
             }
 
-            var questions = topics.SelectMany(t => t.Questions).ToList();
             var model = new ResultViewModel();
 
             model.ThemeId = theme.Id;
@@ -39,30 +35,33 @@ namespace Questioner.Web.Controllers
             model.Topics = new List<TopicResultViewModel>();
             model.Questions = new List<QuestionResultViewModel>();
 
-            foreach (var question in questions)
+            foreach (var topic in topics)
             {
-                var answeredQuestion = theme.Questions.FirstOrDefault(q => q.Id == question.Id);
-                QuestionResultEnum questionResult;
-
-                if (answeredQuestion.Answers.All(a => a.Selected == false))
+                foreach (var question in topic.Questions)
                 {
-                    questionResult = QuestionResultEnum.NotAnswered;
+                    var answeredQuestion = theme.Questions.FirstOrDefault(q => q.Id == question.Id);
+                    QuestionResultEnum questionResult;
+
+                    if (answeredQuestion.Answers.All(a => a.Selected == false))
+                    {
+                        questionResult = QuestionResultEnum.NotAnswered;
+                    }
+                    else
+                    {
+                        var correct = answeredQuestion.Answers
+                            .All(answer => question.Answers.Any(a => a.Id == answer.Id && a.IsCorrect == answer.Selected));
+
+                        questionResult = correct ? QuestionResultEnum.Correct : QuestionResultEnum.Incorrect;
+                    }
+
+                    model.Questions.Add(new QuestionResultViewModel()
+                    {
+                        Id = question.Id,
+                        TopicId = topic.Id,
+                        QuestionText = question.QuestionText,
+                        QuestionResult = questionResult
+                    });
                 }
-                else
-                {
-                    var correct = answeredQuestion.Answers
-                        .All(answer => question.Answers.Any(a => a.Id == answer.Id && a.IsCorrect == answer.Selected));
-
-                    questionResult = correct ? QuestionResultEnum.Correct : QuestionResultEnum.Incorrect;
-                }
-
-                model.Questions.Add(new QuestionResultViewModel()
-                {
-                    Id = question.Id,
-                    TopicId = question.TopicId,
-                    QuestionText = question.QuestionText,
-                    QuestionResult = questionResult
-                });
             }
 
             foreach (var topic in topics)

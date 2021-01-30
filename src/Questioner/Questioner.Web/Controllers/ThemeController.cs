@@ -1,25 +1,23 @@
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Questioner.Repository.Interfaces;
 using Questioner.Web.Models;
+using Questioner.Web.Services;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Questioner.Web.Controllers
 {
-    public class ThemeController : BaseController
+    public class ThemeController : Controller
     {
-        public ThemeController(ILogger<ThemeController> logger, IContext context)
-            : base(logger, context)
+        private readonly IThemeService themeService;
+
+        public ThemeController(IThemeService themeService)
         {
+            this.themeService = themeService;
         }
 
-        public ActionResult Details(long id)
+        public async Task<ActionResult> Details(long id)
         {
-            var theme = context.Themes
-                .Include(theme => theme.Topics)
-                .ThenInclude(topic => topic.Questions)
-                .FirstOrDefault(t => t.Id == id);
+            var theme = (await themeService.GetAllThemes()).FirstOrDefault(t => t.Id == id);
 
             if (theme == null)
             {
@@ -29,13 +27,9 @@ namespace Questioner.Web.Controllers
             return View(new ThemeDetailViewModel(theme));
         }
 
-        public ActionResult Questioner(int id)
+        public async Task<ActionResult> Questioner(int id)
         {
-            var theme = context.Themes
-                .Include(theme => theme.Topics)
-                .ThenInclude(topic => topic.Questions)
-                .ThenInclude(question => question.Answers)
-                .FirstOrDefault(t => t.Id == id);
+            var theme = (await themeService.GetAllThemes()).FirstOrDefault(t => t.Id == id);
 
             if (theme == null)
             {

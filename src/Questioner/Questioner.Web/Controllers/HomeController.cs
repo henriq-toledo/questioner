@@ -1,38 +1,28 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Questioner.Repository.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using Questioner.Web.Models;
+using Questioner.Web.Services;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Questioner.Web.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        public HomeController(ILogger<HomeController> logger, IContext context)
-         : base(logger, context)
+        private readonly IThemeService themeService;
+
+        public HomeController(IThemeService themeService)
         {
+            this.themeService = themeService;
         }
 
-        public IActionResult Index()
-        {
-            return View(context.Themes
-                .Include(theme => theme.Topics)
-                .ThenInclude(topic => topic.Questions)
-                .Select(theme => new ThemeListViewModel(theme))
-                .ToList());
-        }
+        public async Task<IActionResult> Index() 
+            => View((await themeService.GetAllThemes()).Select(theme => new ThemeListViewModel(theme)).ToList());
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        public IActionResult Privacy() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

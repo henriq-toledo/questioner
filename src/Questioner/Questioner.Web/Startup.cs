@@ -7,6 +7,9 @@ using Questioner.Repository.Classes.Entities;
 using Microsoft.EntityFrameworkCore;
 using Questioner.Repository.Interfaces;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Questioner.Web.Repositories;
+using Questioner.Web.Services;
 
 namespace Questioner.Web
 {
@@ -24,20 +27,21 @@ namespace Questioner.Web
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<Context>
-                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")))
-                .AddScoped<IContext, Context>();
+            services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
+
+            services.AddScoped<IQuestionerRepository, QuestionerRepository>();
+            services.AddScoped<IThemeService, ThemeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app, 
-            IWebHostEnvironment env, 
-            Context context, 
-            ILogger<Startup> logger)
+            IWebHostEnvironment env,
+            ILogger<Startup> logger,
+            IOptions<AppSettings> options)
         {
             logger.LogInformation($"Environment: '{env.EnvironmentName}'.");
-            logger.LogInformation($"Context database: '{context.Database.GetDbConnection().Database}'.");
+            logger.LogInformation($"Questioner API url: '{options.Value.QuestionerWebApiUrl}'.");
 
             if (env.IsDevelopment())
             {
@@ -61,9 +65,7 @@ namespace Questioner.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            context.Database.Migrate();            
+            });         
         }
     }
 }
