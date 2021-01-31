@@ -7,7 +7,7 @@ namespace Questioner.Web.Models
 {
     public class ThemeViewModel
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Theme:")]
         public string Name { get; set; }

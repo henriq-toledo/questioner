@@ -19,19 +19,21 @@ namespace Questioner.Web.Controllers
             this.themeService = themeService;
         }
 
-        public async Task<ActionResult> Details(ThemeViewModel theme)
+        public async Task<ActionResult> Details(ThemeViewModel themeViewModel)
         {
-            var topics = (await themeService.GetAllThemes()).SelectMany(theme => theme.Topics).ToArray();
+            var theme = await themeService.GetThemeById(themeViewModel.Id);
 
-            if (topics.Length == 0)
+            if (theme == null)
             {
                 return NotFound();
             }
 
+            var topics = theme.Topics.ToArray();
+
             var model = new ResultViewModel();
 
-            model.ThemeId = theme.Id;
-            model.ThemeName = theme.Name;
+            model.ThemeId = themeViewModel.Id;
+            model.ThemeName = themeViewModel.Name;
             model.Topics = new List<TopicResultViewModel>();
             model.Questions = new List<QuestionResultViewModel>();
 
@@ -39,7 +41,7 @@ namespace Questioner.Web.Controllers
             {
                 foreach (var question in topic.Questions)
                 {
-                    var answeredQuestion = theme.Questions.FirstOrDefault(q => q.Id == question.Id);
+                    var answeredQuestion = themeViewModel.Questions.FirstOrDefault(q => q.Id == question.Id);
                     QuestionResultEnum questionResult;
 
                     if (answeredQuestion.Answers.All(a => a.Selected == false))

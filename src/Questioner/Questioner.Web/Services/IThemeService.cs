@@ -6,5 +6,6 @@ namespace Questioner.Web.Services
     public interface IThemeService
     {
         Task<Theme[]> GetAllThemes();
+        Task<Theme> GetThemeById(int themeId);
     }
 }

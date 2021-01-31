@@ -14,5 +14,7 @@ namespace Questioner.Web.Services
         }
 
         public async Task<Theme[]> GetAllThemes() => await questionerRepository.GetAllThemes();
+
+        public async Task<Theme> GetThemeById(int themeId) => await questionerRepository.GetThemeById(themeId);
     }
 }

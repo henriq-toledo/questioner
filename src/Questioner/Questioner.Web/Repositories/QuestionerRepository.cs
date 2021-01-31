@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.Repository.Classes.Entities;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -39,5 +40,8 @@ namespace Questioner.Web.Repositories
 
             return themes;
         }
+
+        public async Task<Theme> GetThemeById(int themeId)
+            => (await GetAllThemes()).FirstOrDefault(Theme => Theme.Id == themeId);
     }
 }
