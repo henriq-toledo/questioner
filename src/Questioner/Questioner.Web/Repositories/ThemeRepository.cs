@@ -9,18 +9,21 @@ using System.Threading.Tasks;
 
 namespace Questioner.Web.Repositories
 {
-    public class QuestionerRepository : IQuestionerRepository
+    public class ThemeRepository : IThemeRepository
     {
         private readonly AppSettings appSettings;
         private readonly ILogger logger;
         private Theme[] themes;
 
-        public QuestionerRepository(IOptions<AppSettings> options, ILogger<QuestionerRepository> logger)
+        public ThemeRepository(IOptions<AppSettings> options, ILogger<ThemeRepository> logger)
         {
             appSettings = options.Value;
             this.logger = logger;
             themes = new Theme[] { };
         }
+
+        public async Task<bool> ExistsThemeById(int themeId) 
+            => (await GetAllThemes()).Any(theme => theme.Id == themeId);
 
         public async Task<Theme[]> GetAllThemes()
         {

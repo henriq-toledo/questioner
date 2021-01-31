@@ -29,8 +29,9 @@ namespace Questioner.Web
 
             services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
 
-            services.AddScoped<IQuestionerRepository, QuestionerRepository>();
+            services.AddScoped<IThemeRepository, ThemeRepository>();
             services.AddScoped<IThemeService, ThemeService>();
+            services.AddScoped<IResultService, ResultService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

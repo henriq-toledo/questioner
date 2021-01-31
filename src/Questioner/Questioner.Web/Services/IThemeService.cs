@@ -7,5 +7,6 @@ namespace Questioner.Web.Services
     {
         Task<Theme[]> GetAllThemes();
         Task<Theme> GetThemeById(int themeId);
+        Task<bool> ExistsThemeById(int themeId);
     }
 }
