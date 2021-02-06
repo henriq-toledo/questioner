@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.Repository.Classes.Entities;
+using Questioner.WebApi.Repositories;
+using Questioner.WebApi.Services;
 using System;
 
 namespace Questioner.WebApi
@@ -56,6 +58,9 @@ namespace Questioner.WebApi
 
                 default: throw new Exception($"The Database Connection '{options.Value.DatabaseConnector}' is not supported.");
             }
+
+            services.AddScoped<IThemeRepository, ThemeRepository>();
+            services.AddScoped<IThemeService, ThemeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

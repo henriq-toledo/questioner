@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
+using Questioner.WebApi.Services;
 using Questioner.WebApi.Validators;
+using System;
+using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Controllers
 {
@@ -16,17 +11,15 @@ namespace Questioner.WebApi.Controllers
     [Route("[controller]")]
     public class ThemeController : ControllerBase
     {
-        private readonly ILogger<ThemeController> _logger;
-        private readonly Context _context;
+        private readonly IThemeService themeService;
 
-        public ThemeController(ILogger<ThemeController> logger, Context context)
+        public ThemeController(IThemeService themeService)
         {
-            _logger = logger;
-            _context = context;
+            this.themeService = themeService;
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] ThemeModel themeModel)
+        public async Task<ActionResult> Create([FromBody] ThemeModel themeModel)
         {
             var themeValidator = new ThemeValidator(themeModel);
             var errors = themeValidator.Validate();
@@ -36,8 +29,7 @@ namespace Questioner.WebApi.Controllers
             {
                 var themeEntity = themeModel.ToEntity();
 
-                _context.Themes.Add(themeEntity);
-                _context.SaveChanges();
+                await themeService.Create(themeEntity);
 
                 return Ok();
             }
@@ -48,40 +40,17 @@ namespace Questioner.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Array> Get(bool includeChildren = false)
-        {
-            List<Theme> themes;
-
-            if (includeChildren)
-            {
-                themes = _context.Themes
-                    .Include(theme => theme.Topics)
-                    .ThenInclude(topic => topic.Questions)
-                    .ThenInclude(question => question.Answers)
-                    .ToList();
-            }
-            else
-            {
-                themes = _context.Themes.ToList();
-            }
-
-            return themes.ToArray();
-        }
+        public async Task<ActionResult<Array>> Get(bool includeChildren = false)
+            => await themeService.GetAll(includeChildren);
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(long id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var theme = _context.Themes.Find(id);
-
-            if (theme == null)
-            {
-                return NotFound();
-            }
+            if ((await themeService.ExistsTheme(id)) == false) return NotFound();
 
             try
             {
-                _context.Themes.Remove(theme);
-                _context.SaveChanges();
+                await themeService.Delete(id);
 
                 return Ok();
             }
