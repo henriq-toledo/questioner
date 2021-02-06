@@ -33,12 +33,12 @@ namespace Questioner.WebApi
                 setup.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 setup.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-
+     
             services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
 
-            var options = services.BuildServiceProvider().GetService<IOptions<AppSettings>>();
+            var appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
 
-            switch (options.Value.DatabaseConnector.ToLower())
+            switch (appSettings.DatabaseConnector.ToLower())
             {
                 case "sqlite":
 
@@ -56,7 +56,7 @@ namespace Questioner.WebApi
 
                     break;
 
-                default: throw new Exception($"The Database Connection '{options.Value.DatabaseConnector}' is not supported.");
+                default: throw new Exception($"The Database Connection '{appSettings.Value.DatabaseConnector}' is not supported.");
             }
 
             services.AddScoped<IThemeRepository, ThemeRepository>();
