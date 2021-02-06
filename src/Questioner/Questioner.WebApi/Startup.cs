@@ -56,7 +56,7 @@ namespace Questioner.WebApi
 
                     break;
 
-                default: throw new Exception($"The Database Connection '{appSettings.Value.DatabaseConnector}' is not supported.");
+                default: throw new Exception($"The Database Connection '{appSettings.DatabaseConnector}' is not supported.");
             }
 
             services.AddScoped<IThemeRepository, ThemeRepository>();
