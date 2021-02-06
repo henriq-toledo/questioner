@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.Repository.Classes.Entities;
+using Questioner.WebApi.Extensions;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
-using System;
 
 namespace Questioner.WebApi
 {
@@ -36,28 +36,7 @@ namespace Questioner.WebApi
      
             services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
 
-            var appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
-
-            switch (appSettings.DatabaseConnector.ToLower())
-            {
-                case "sqlite":
-
-                    services.AddDbContext<Context>
-                        (options => options.UseSqlite(Configuration.GetConnectionString("ConnectionStringForSqlite")))
-                        .AddScoped<Context>();
-
-                    break;
-
-                case "sqlserver":
-
-                    services.AddDbContext<Context>
-                    (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")))
-                    .AddScoped<Context>();
-
-                    break;
-
-                default: throw new Exception($"The Database Connection '{appSettings.DatabaseConnector}' is not supported.");
-            }
+            services.AddDbContext(Configuration);
 
             services.AddScoped<IThemeRepository, ThemeRepository>();
             services.AddScoped<IThemeService, ThemeService>();
