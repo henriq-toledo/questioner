@@ -23,6 +23,6 @@ namespace Questioner.Repository.Classes.Entities
         public virtual Question Question { get; set; }
 
         [JsonIgnore]
-        public List<Link> Links { get; set; }
+        public virtual List<Link> Links { get; set; }
     }
 }

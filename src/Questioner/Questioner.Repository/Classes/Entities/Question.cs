@@ -20,7 +20,7 @@ namespace Questioner.Repository.Classes.Entities
         public virtual Topic Topic { get; set; }
 
         [JsonIgnore]
-        public List<Link> Links { get; set; }
+        public virtual List<Link> Links { get; set; }
 
         [JsonProperty(Order = 3)]
         public virtual List<Answer> Answers { get; set; }
