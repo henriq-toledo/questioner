@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.Services;
 using Questioner.WebApi.Validators;
@@ -40,7 +41,7 @@ namespace Questioner.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Array>> Get(bool includeChildren = false)
+        public async Task<ActionResult<Theme[]>> Get(bool includeChildren = false)
             => await themeService.GetAll(includeChildren);
 
         [HttpDelete("{id}")]
