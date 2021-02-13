@@ -6,7 +6,7 @@ namespace Questioner.WebApi.UnitTest.Framework.Factories
 {
     public static class ContextFactory
     {
-        public static Context CreateContext()
+        public static Context Create()
             => new Context(new DbContextOptionsBuilder<Context>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
     }
 }

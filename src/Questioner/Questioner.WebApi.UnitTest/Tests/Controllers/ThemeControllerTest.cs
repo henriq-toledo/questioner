@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using Questioner.WebApi.Controllers;
-using Questioner.WebApi.Repositories;
-using Questioner.WebApi.Services;
 using Questioner.WebApi.UnitTest.Framework.Asserts;
 using Questioner.WebApi.UnitTest.Framework.Defaults;
+using Questioner.WebApi.UnitTest.Framework.Extensions;
 using Questioner.WebApi.UnitTest.Framework.Factories;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,14 +16,11 @@ namespace Questioner.WebApi.UnitTest.Tests.Controllers
         public async Task ShouldGetThemes()
         {
             // Arrange
-            using var context = ContextFactory.CreateContext();
-            var themeRepository = new ThemeRepository(context);
-            var themeService = new ThemeService(themeRepository);
-            var themeController = new ThemeController(themeService);
+            using var context = ContextFactory.Create();
+            var themeController = ThemeControllerFactory.Create(context);
             var expectedThemes = new [] { ThemeDefault.ThemeWithChildren };
 
-            context.Themes.AddRange(expectedThemes);
-            await context.SaveChangesAsync();
+            await context.InsertTheme(expectedThemes);
 
             // Act
             var result = await themeController.Get(includeChildren: true);
@@ -40,10 +35,8 @@ namespace Questioner.WebApi.UnitTest.Tests.Controllers
         public async Task ShouldCreateTheme()
         {
             // Arrange
-            using var context = ContextFactory.CreateContext();
-            var themeRepository = new ThemeRepository(context);
-            var themeService = new ThemeService(themeRepository);
-            var themeController = new ThemeController(themeService);
+            using var context = ContextFactory.Create();
+            var themeController = ThemeControllerFactory.Create(context);
 
             // Act
             await themeController.Create(ThemeModelDefault.ThemeWithChildren);
@@ -58,13 +51,10 @@ namespace Questioner.WebApi.UnitTest.Tests.Controllers
         public async Task ShouldDeleteTheme()
         {
             // Arrange
-            using var context = ContextFactory.CreateContext();
-            var themeRepository = new ThemeRepository(context);
-            var themeService = new ThemeService(themeRepository);
-            var themeController = new ThemeController(themeService);
+            using var context = ContextFactory.Create();
+            var themeController = ThemeControllerFactory.Create(context);
 
-            context.Themes.Add(ThemeDefault.ThemeWithChildren);
-            await context.SaveChangesAsync();
+            await context.InsertTheme(ThemeDefault.ThemeWithChildren);
 
             var themeId = (await context.Themes.FirstOrDefaultAsync()).Id;
 
@@ -72,7 +62,8 @@ namespace Questioner.WebApi.UnitTest.Tests.Controllers
             await themeController.Delete(themeId);
 
             // Assert
-            Assert.False(context.Themes.Any(t => t.Id == themeId), $"The theme id {themeId} should be deleted.");
+            Assert.False(context.Themes.Any(t => t.Id == themeId), 
+                message: $"The theme id {themeId} should be deleted.");
         }
     }
 }
