@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Questioner.WebApi.Controllers;
-using Questioner.WebApi.Models;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
 using Questioner.WebApi.UnitTest.Framework.Asserts;
