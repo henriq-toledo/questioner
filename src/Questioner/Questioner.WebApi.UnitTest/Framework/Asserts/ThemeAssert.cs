@@ -5,6 +5,9 @@ namespace Questioner.WebApi.UnitTest.Framework.Asserts
 {
     public static class ThemeAssert
     {
+        public static void Assert(Theme expectedTheme, Theme actualTheme)
+            => Assert(new[] { expectedTheme }, new[] { actualTheme });
+
         public static void Assert(Theme[] expectedThemes, Theme[] actualThemes)
         {
             NUnit.Framework.Assert.AreEqual(expectedThemes.Length, actualThemes.Length);

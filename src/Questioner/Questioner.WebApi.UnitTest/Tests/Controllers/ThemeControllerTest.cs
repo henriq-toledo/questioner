@@ -1,10 +1,12 @@
 ﻿using NUnit.Framework;
 using Questioner.WebApi.Controllers;
+using Questioner.WebApi.Models;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
 using Questioner.WebApi.UnitTest.Framework.Asserts;
 using Questioner.WebApi.UnitTest.Framework.Defaults;
 using Questioner.WebApi.UnitTest.Framework.Factories;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Questioner.WebApi.UnitTest.Tests.Controllers
@@ -32,6 +34,24 @@ namespace Questioner.WebApi.UnitTest.Tests.Controllers
             var actualThemes = result.Value;
 
             ThemeAssert.Assert(expectedThemes, actualThemes);
+        }
+
+        [Test]
+        public async Task ShouldCreateTheme()
+        {
+            // Arrange
+            using var context = ContextFactory.CreateContext();
+            var themeRepository = new ThemeRepository(context);
+            var themeService = new ThemeService(themeRepository);
+            var themeController = new ThemeController(themeService);
+
+            // Act
+            await themeController.Create(ThemeModelDefault.ThemeWithChildren);
+
+            // Assert
+            var actualTheme = context.Themes.FirstOrDefault();
+
+            ThemeAssert.Assert(expectedTheme: ThemeDefault.ThemeWithChildren, actualTheme);
         }
     }
 }
