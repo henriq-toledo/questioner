@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,8 +33,9 @@ namespace Questioner.WebApi
             {
                 setup.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 setup.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            });
-     
+            })
+            .AddFluentValidation(setup => setup.RegisterValidatorsFromAssemblyContaining<Startup>(lifetime: ServiceLifetime.Scoped));
+
             services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
 
             services.AddDbContext(Configuration);

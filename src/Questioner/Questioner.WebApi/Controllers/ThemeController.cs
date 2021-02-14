@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.Services;
-using Questioner.WebApi.Validators;
 using System;
 using System.Threading.Tasks;
 
@@ -22,22 +21,11 @@ namespace Questioner.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] ThemeModel themeModel)
         {
-            var themeValidator = new ThemeValidator(themeModel);
-            var errors = themeValidator.Validate();
-            var noErrors = string.IsNullOrEmpty(errors);
+            var themeEntity = themeModel.ToEntity();
 
-            if (noErrors)
-            {
-                var themeEntity = themeModel.ToEntity();
+            await themeService.Create(themeEntity);
 
-                await themeService.Create(themeEntity);
-
-                return Ok();
-            }
-            else
-            {
-                return new BadRequestObjectResult(errors);
-            }
+            return Ok();
         }
 
         [HttpGet]
