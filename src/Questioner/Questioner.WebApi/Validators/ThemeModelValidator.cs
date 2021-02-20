@@ -17,7 +17,7 @@ namespace Questioner.WebApi.Validators
                 .NotEmpty()
                 .Custom((themeName, customContext) => 
                 {
-                    if (context.Themes.Any(t => t.Name == themeName))
+                    if (this.context.Themes.Any(t => t.Name == themeName))
                     {
                         customContext.AddFailure($"The '{themeName}' theme already exists.");
                     }
@@ -40,6 +40,8 @@ namespace Questioner.WebApi.Validators
             RuleFor(theme => theme.Topics)
                 .Custom((topics, customContext) =>
                 {
+                    if (topics == null) return;
+
                     var questions = topics
                         .Where(topic => topic.Questions != null)
                         .SelectMany(topic => topic.Questions)
