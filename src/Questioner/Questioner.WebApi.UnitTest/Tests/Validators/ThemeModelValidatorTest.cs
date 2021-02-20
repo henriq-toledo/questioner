@@ -24,7 +24,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Assert
             result
-                .ShouldHaveValidationErrorFor(theme => theme.Name)
+                .ShouldHaveAnyValidationError()
                 .WithErrorCode(FluentValidationErrorCodeConstant.NotEmptyValidator);
         }
 
@@ -39,7 +39,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Assert
             result
-                .ShouldHaveValidationErrorFor(theme => theme.Name)
+                .ShouldHaveAnyValidationError()
                 .WithErrorCode(FluentValidationErrorCodeConstant.NotEmptyValidator);
         }
 
@@ -61,7 +61,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Assert
             result
-                .ShouldHaveValidationErrorFor(theme => theme.Name)
+                .ShouldHaveAnyValidationError()
                 .WithErrorMessage(expectedErrorMessage);
         }
 
@@ -78,7 +78,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Assert
             result
-                .ShouldHaveValidationErrorFor(theme => theme.Topics)
+                .ShouldHaveAnyValidationError()
                 .WithErrorMessage(expectedErroMessage);
         }
 
@@ -95,7 +95,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Assert
             result
-                .ShouldHaveValidationErrorFor(theme => theme.Topics)
+                .ShouldHaveAnyValidationError()
                 .WithErrorMessage(expectedErroMessage);
         }
 
