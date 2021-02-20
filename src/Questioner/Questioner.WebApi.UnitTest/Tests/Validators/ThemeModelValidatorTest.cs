@@ -5,6 +5,7 @@ using Questioner.WebApi.UnitTest.Framework.Constants;
 using Questioner.WebApi.UnitTest.Framework.Extensions;
 using Questioner.WebApi.UnitTest.Framework.Factories;
 using Questioner.WebApi.Validators;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Questioner.WebApi.UnitTest.Tests.Validators
@@ -62,6 +63,40 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             result
                 .ShouldHaveValidationErrorFor(theme => theme.Name)
                 .WithErrorMessage(expectedErrorMessage);
+        }
+
+        [Test]
+        public async Task EmptyTopicsShouldBeInvalid()
+        {
+            // Arrange
+            var expectedErroMessage = "The theme must have at least one topic.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithEmptyTopics = new ThemeModel { Topics = new List<TopicModel>() };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithEmptyTopics);
+
+            // Assert
+            result
+                .ShouldHaveValidationErrorFor(theme => theme.Topics)
+                .WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
+        public async Task NullTopicsShouldBeInvalid()
+        {
+            // Arrange
+            var expectedErroMessage = "The theme must have at least one topic.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithNullTopics = new ThemeModel { Topics = null };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithNullTopics);
+
+            // Assert
+            result
+                .ShouldHaveValidationErrorFor(theme => theme.Topics)
+                .WithErrorMessage(expectedErroMessage);
         }
     }
 }
