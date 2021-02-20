@@ -164,5 +164,43 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             // Assert
             result.ShouldHaveAnyValidationError().WithoutErrorMessage(expectedErroMessage);
         }
+
+        [Test]
+        public async Task TopicWithNullQuestionsShouldBeInvalid()
+        {
+            // Arrange
+            var topicName = "Topic";
+            var expectedErroMessage = $"The '{topicName}' topic must have at least one question.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithTopicWithNullQuestions = new ThemeModel
+            {
+                Topics = new List<TopicModel> { new TopicModel { Name = topicName, Questions = null } }
+            };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithTopicWithNullQuestions);
+
+            // Assert
+            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
+        public async Task TopicWithEmptyQuestionsShouldBeInvalid()
+        {
+            // Arrange
+            var topicName = "Topic";
+            var expectedErroMessage = $"The '{topicName}' topic must have at least one question.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithTopicWithEmptyQuestions = new ThemeModel
+            {
+                Topics = new List<TopicModel> { new TopicModel { Name = topicName, Questions = new List<QuestionModel>() } }
+            };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithTopicWithEmptyQuestions);
+
+            // Assert
+            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
     }
 }
