@@ -18,13 +18,13 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
     {
         [Test]
         [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.ThemeWithoutNameShouldBeInvalidTestCase))]
-        public async Task ThemeWithoutNameShouldBeInvalid()
+        public async Task ThemeWithoutNameShouldBeInvalid(ThemeModel themeModel)
         {
             // Arrange            
             var themeModelValidator = ThemeModelValidatorFactory.Create();
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(new ThemeModel { Name = null });
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result
