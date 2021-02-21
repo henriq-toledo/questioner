@@ -162,6 +162,10 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
 
         public static ThemeModel ThemeWithNullTopics => new ThemeModel { Topics = null };
 
-        public static ThemeModel ThemeWithEmptyTopics = new ThemeModel { Topics = new List<TopicModel>() };
+        public static ThemeModel ThemeWithEmptyTopics => new ThemeModel { Topics = new List<TopicModel>() };
+
+        public static ThemeModel ThemeWithEmptyName => new ThemeModel { Name = string.Empty };
+
+        public static ThemeModel ThemeWithNullName => new ThemeModel { Name = null };
     }
 }

@@ -12,10 +12,10 @@ namespace Questioner.WebApi.UnitTest.TestCases
             ThemeModelDefault.ThemeWithQuestionWithOnlyOneAnswer
         };
 
-        public static ThemeModel[] TopicWithoutQuestionsShouldBeInvalidTestCase => new [] 
+        public static ThemeModel[] TopicWithoutQuestionsShouldBeInvalidTestCase => new[]
         {
             ThemeModelDefault.ThemeWithTopicWithNullQuestions,
-            ThemeModelDefault.ThemeWithTopicWithEmptyQuestions            
+            ThemeModelDefault.ThemeWithTopicWithEmptyQuestions
         };
 
         public static ThemeModel[] SumFromTopicsPercentageDifferentFromOneHundredShouldBeInvalidTestCase => new[]
@@ -33,6 +33,12 @@ namespace Questioner.WebApi.UnitTest.TestCases
         {
             ThemeModelDefault.ThemeWithNullTopics,
             ThemeModelDefault.ThemeWithEmptyTopics
+        };
+
+        public static ThemeModel[] ThemeWithoutNameShouldBeInvalidTestCase => new[]
+        {
+            ThemeModelDefault.ThemeWithNullName,
+            ThemeModelDefault.ThemeWithEmptyName,
         };
     }
 }

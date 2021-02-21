@@ -7,7 +7,6 @@ using Questioner.WebApi.UnitTest.Framework.Extensions;
 using Questioner.WebApi.UnitTest.Framework.Factories;
 using Questioner.WebApi.UnitTest.TestCases;
 using Questioner.WebApi.Validators;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Questioner.WebApi.UnitTest.Tests.Validators
@@ -16,28 +15,14 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
     public class ThemeModelValidatorTest
     {
         [Test]
-        public async Task NullThemeNameShouldBeInvalid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.ThemeWithoutNameShouldBeInvalidTestCase))]
+        public async Task ThemeWithoutNameShouldBeInvalid()
         {
             // Arrange            
             var themeModelValidator = ThemeModelValidatorFactory.Create();
 
             // Act
             var result = await themeModelValidator.TestValidateAsync(new ThemeModel { Name = null });
-
-            // Assert
-            result
-                .ShouldHaveAnyValidationError()
-                .WithErrorCode(FluentValidationErrorCodeConstant.NotEmptyValidator);
-        }
-
-        [Test]
-        public async Task EmptyThemeNameShouldBeInvalid()
-        {
-            // Arrange
-            var themeModelValidator = ThemeModelValidatorFactory.Create();
-
-            // Act
-            var result = await themeModelValidator.TestValidateAsync(new ThemeModel { Name = string.Empty });
 
             // Assert
             result
