@@ -117,14 +117,15 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task SumFromTopicsPercentageEqualOneHundredShouldBeValid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.SumFromTopicsPercentageEqualOneHundredShouldBeValidTestCase))]
+        public async Task SumFromTopicsPercentageEqualOneHundredShouldBeValid(ThemeModel themeModel)
         {
             // Arrange
             var expectedErroMessage = "The sum of the all topics percentage must be 100.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(ThemeModelDefault.ThemeWithTopicsPercentageOneHundred);
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithoutErrorMessage(expectedErroMessage);
