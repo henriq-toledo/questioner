@@ -2,8 +2,10 @@
 using NUnit.Framework;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.UnitTest.Framework.Constants;
+using Questioner.WebApi.UnitTest.Framework.Defaults;
 using Questioner.WebApi.UnitTest.Framework.Extensions;
 using Questioner.WebApi.UnitTest.Framework.Factories;
+using Questioner.WebApi.UnitTest.TestCases;
 using Questioner.WebApi.Validators;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -204,99 +206,15 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task NullAnswersShouldBeInvalid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.QuestionShouldHaveAtLeastTwoAnswersTestCase))]
+        public async Task QuestionShouldHaveAtLeastTwoAnswers(ThemeModel themeModel)
         {
-            // Arrange
-            var questionText = "Question 1";
-            var expectedErroMessage = $"The '{questionText}' question must have at least 2 answers.";
+            // Arrange            
+            var expectedErroMessage = $"The '{QuestionTextDefault.Default}' question must have at least 2 answers.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithNullAnswers = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel
-                    {                        
-                        Questions = new List<QuestionModel>
-                        {
-                            new QuestionModel
-                            {
-                                QuestionText = questionText,
-                                Answers = null
-                            }
-                        }
-                    }
-                }
-            };
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithNullAnswers);
-
-            // Assert
-            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
-        }
-
-        [Test]
-        public async Task EmptyAnswersShouldBeInvalid()
-        {
-            // Arrange
-            var questionText = "Question 1";
-            var expectedErroMessage = $"The '{questionText}' question must have at least 2 answers.";
-            var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithNullAnswers = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel
-                    {
-                        Questions = new List<QuestionModel>
-                        {
-                            new QuestionModel
-                            {
-                                QuestionText = questionText,
-                                Answers = new List<AnswerModel>()
-                            }
-                        }
-                    }
-                }
-            };
-
-            // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithNullAnswers);
-
-            // Assert
-            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
-        }
-
-        [Test]
-        public async Task QuestionWithOnlyOneAnswerShouldBeInvalid()
-        {
-            // Arrange
-            var questionText = "Question 1";
-            var expectedErroMessage = $"The '{questionText}' question must have at least 2 answers.";
-            var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithQuestionWithOnlyOneAnswer = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel
-                    {
-                        Questions = new List<QuestionModel>
-                        {
-                            new QuestionModel
-                            {
-                                QuestionText = questionText,
-                                Answers = new List<AnswerModel>
-                                {
-                                    new AnswerModel()
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithQuestionWithOnlyOneAnswer);
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);

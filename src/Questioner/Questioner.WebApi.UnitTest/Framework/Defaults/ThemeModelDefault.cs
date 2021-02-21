@@ -37,5 +37,62 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
                     }
                 }
             };
+
+        public static ThemeModel ThemeWithQuestionWithOnlyOneAnswer => new ThemeModel
+        {
+            Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = QuestionTextDefault.Default,
+                                Answers = new List<AnswerModel>
+                                {
+                                    new AnswerModel()
+                                }
+                            }
+                        }
+                    }
+                }
+        };
+
+        public static ThemeModel ThemeWithQuestionWithEmptyAnswers => new ThemeModel
+        {
+            Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = QuestionTextDefault.Default,
+                                Answers = new List<AnswerModel>()
+                            }
+                        }
+                    }
+                }
+        };
+
+        public static ThemeModel ThemeWithQuestionWithNullAnswers = new ThemeModel
+        {
+            Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = QuestionTextDefault.Default,
+                                Answers = null
+                            }
+                        }
+                    }
+                }
+        };
     }
 }
