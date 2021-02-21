@@ -130,14 +130,15 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task QuestionWithoutCorrectAnswerShouldBeInvalid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.QuestionWithoutCorrectAnswerShouldBeInvalidTestCase))]
+        public async Task QuestionWithoutCorrectAnswerShouldBeInvalid(ThemeModel themeModel)
         {
             // Arrange            
             var expectedErroMessage = $"The '{QuestionTextDefault.Default}' question must have at least 1 correct answer.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(ThemeModelDefault.ThemeWithQuestionWithoutCorrectAnswer);
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);

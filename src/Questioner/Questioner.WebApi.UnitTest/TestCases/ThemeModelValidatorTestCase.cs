@@ -46,5 +46,10 @@ namespace Questioner.WebApi.UnitTest.TestCases
         {
             (ThemeDefault.ThemeWithDefaultName, ThemeModelDefault.ThemeWithDefaultName)
         };
+
+        public static ThemeModel[] QuestionWithoutCorrectAnswerShouldBeInvalidTestCase => new[]
+        {
+            ThemeModelDefault.ThemeWithQuestionWithoutCorrectAnswer
+        };
     }
 }
