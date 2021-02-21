@@ -268,6 +268,41 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
+        public async Task QuestionWithOnlyOneAnswerShouldBeInvalid()
+        {
+            // Arrange
+            var questionText = "Question 1";
+            var expectedErroMessage = $"The '{questionText}' question must have at least 2 answers.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithQuestionWithOnlyOneAnswer = new ThemeModel
+            {
+                Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = questionText,
+                                Answers = new List<AnswerModel>
+                                {
+                                    new AnswerModel()
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithQuestionWithOnlyOneAnswer);
+
+            // Assert
+            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
         public async Task QuestionWithoutCorrectAnswerShouldBeInvalid()
         {
             // Arrange
