@@ -122,17 +122,9 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             // Arrange
             var expectedErroMessage = "The sum of the all topics percentage must be 100.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithTopicsPercentageMoreThanOneHundred = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel { Percentage = 50 },
-                    new TopicModel { Percentage = 50 }
-                }
-            };
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithTopicsPercentageMoreThanOneHundred);
+            var result = await themeModelValidator.TestValidateAsync(ThemeModelDefault.ThemeWithTopicsPercentageOneHundred);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithoutErrorMessage(expectedErroMessage);
