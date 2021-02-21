@@ -43,5 +43,7 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
             {
                 Name = "Test theme 1"
             };
+
+        public static Theme ThemeWithDefaultName => new Theme { Name = ThemeNameDefault.Default };
     }
 }

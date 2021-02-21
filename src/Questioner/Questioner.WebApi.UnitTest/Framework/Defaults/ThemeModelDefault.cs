@@ -167,5 +167,7 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
         public static ThemeModel ThemeWithEmptyName => new ThemeModel { Name = string.Empty };
 
         public static ThemeModel ThemeWithNullName => new ThemeModel { Name = null };
+
+        public static ThemeModel ThemeWithDefaultName => new ThemeModel { Name = ThemeNameDefault.Default };
     }
 }

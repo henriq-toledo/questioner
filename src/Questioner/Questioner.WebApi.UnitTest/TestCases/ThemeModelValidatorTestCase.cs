@@ -1,4 +1,5 @@
-﻿using Questioner.WebApi.Models;
+﻿using Questioner.Repository.Classes.Entities;
+using Questioner.WebApi.Models;
 using Questioner.WebApi.UnitTest.Framework.Defaults;
 
 namespace Questioner.WebApi.UnitTest.TestCases
@@ -39,6 +40,11 @@ namespace Questioner.WebApi.UnitTest.TestCases
         {
             ThemeModelDefault.ThemeWithNullName,
             ThemeModelDefault.ThemeWithEmptyName,
+        };
+
+        public static (Theme, ThemeModel)[] DuplicatedThemeNameShouldBeInvalidTestCase => new[]
+        {
+            (ThemeDefault.ThemeWithDefaultName, ThemeModelDefault.ThemeWithDefaultName)
         };
     }
 }

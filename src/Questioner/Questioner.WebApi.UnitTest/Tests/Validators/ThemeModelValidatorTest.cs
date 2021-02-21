@@ -1,5 +1,6 @@
 ﻿using FluentValidation.TestHelper;
 using NUnit.Framework;
+using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.UnitTest.Framework.Constants;
 using Questioner.WebApi.UnitTest.Framework.Defaults;
@@ -8,6 +9,7 @@ using Questioner.WebApi.UnitTest.Framework.Factories;
 using Questioner.WebApi.UnitTest.TestCases;
 using Questioner.WebApi.Validators;
 using System.Threading.Tasks;
+using ContextFactory = Questioner.WebApi.UnitTest.Framework.Factories.ContextFactory;
 
 namespace Questioner.WebApi.UnitTest.Tests.Validators
 {
@@ -31,20 +33,18 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task DuplicatedThemeNameShouldBeInvalid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.DuplicatedThemeNameShouldBeInvalidTestCase))]
+        public async Task DuplicatedThemeNameShouldBeInvalid((Theme, ThemeModel) themePair)
         {
-            // Arrange
-            var themeName = "Test";
-            var expectedErrorMessage = $"The '{themeName}' theme already exists.";
-            var theme = new Repository.Classes.Entities.Theme { Name = themeName };
-            var themeModel = new ThemeModel { Name = themeName };
+            // Arrange            
+            var expectedErrorMessage = $"The '{ThemeNameDefault.Default}' theme already exists.";            
             var context = ContextFactory.Create();
             var themeModelValidator = new ThemeModelValidator(context);
 
-            await context.InsertTheme(theme);
+            await context.InsertTheme(themePair.Item1);
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeModel);
+            var result = await themeModelValidator.TestValidateAsync(themePair.Item2);
 
             // Assert
             result
