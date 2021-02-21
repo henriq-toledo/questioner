@@ -51,7 +51,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             var expectedErrorMessage = $"The '{themeName}' theme already exists.";
             var theme = new Repository.Classes.Entities.Theme { Name = themeName };
             var themeModel = new ThemeModel { Name = themeName };
-            var context = ContextFactory.Create();            
+            var context = ContextFactory.Create();
             var themeModelValidator = new ThemeModelValidator(context);
 
             await context.InsertTheme(theme);
@@ -105,8 +105,8 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             // Arrange
             var expectedErroMessage = "The sum of the all topics percentage must be 100.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithTopicsPercentageLessThanOneHundred = new ThemeModel 
-            { 
+            var themeWithTopicsPercentageLessThanOneHundred = new ThemeModel
+            {
                 Topics = new List<TopicModel>
                 {
                     new TopicModel { Percentage = 25 },
@@ -198,6 +198,70 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Act
             var result = await themeModelValidator.TestValidateAsync(themeWithTopicWithEmptyQuestions);
+
+            // Assert
+            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
+        public async Task NullAnswersShouldBeInvalid()
+        {
+            // Arrange
+            var questionText = "Question 1";
+            var expectedErroMessage = $"The '{questionText}' question must have at least 2 answers.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithNullAnswers = new ThemeModel
+            {
+                Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {                        
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = questionText,
+                                Answers = null
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithNullAnswers);
+
+            // Assert
+            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
+        public async Task EmptyAnswersShouldBeInvalid()
+        {
+            // Arrange
+            var questionText = "Question 1";
+            var expectedErroMessage = $"The '{questionText}' question must have at least 2 answers.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithNullAnswers = new ThemeModel
+            {
+                Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = questionText,
+                                Answers = new List<AnswerModel>()
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithNullAnswers);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
