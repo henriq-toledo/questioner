@@ -1,10 +1,6 @@
 name: .NET
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -18,8 +14,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore .\src\Questioner\Questioner.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore .\src\Questioner\Questioner.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal .\src\Questioner\Questioner.sln
