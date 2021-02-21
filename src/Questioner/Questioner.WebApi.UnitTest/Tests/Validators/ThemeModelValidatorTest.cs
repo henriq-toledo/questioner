@@ -223,40 +223,12 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         [Test]
         public async Task QuestionWithoutCorrectAnswerShouldBeInvalid()
         {
-            // Arrange
-            var questionText = "Question 1";
-            var expectedErroMessage = $"The '{questionText}' question must have at least 1 correct answer.";
+            // Arrange            
+            var expectedErroMessage = $"The '{QuestionTextDefault.Default}' question must have at least 1 correct answer.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithQuestionWithoutCorrectAnswer = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel
-                    {
-                        Questions = new List<QuestionModel>
-                        {
-                            new QuestionModel
-                            {
-                                QuestionText = questionText,
-                                Answers = new List<AnswerModel>
-                                {
-                                    new AnswerModel
-                                    {
-                                        IsCorrect = false
-                                    },
-                                    new AnswerModel
-                                    {
-                                        IsCorrect = false
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithQuestionWithoutCorrectAnswer);
+            var result = await themeModelValidator.TestValidateAsync(ThemeModelDefault.ThemeWithQuestionWithoutCorrectAnswer);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);

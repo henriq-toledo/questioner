@@ -77,7 +77,7 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
                 }
         };
 
-        public static ThemeModel ThemeWithQuestionWithNullAnswers = new ThemeModel
+        public static ThemeModel ThemeWithQuestionWithNullAnswers => new ThemeModel
         {
             Topics = new List<TopicModel>
                 {
@@ -89,6 +89,34 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
                             {
                                 QuestionText = QuestionTextDefault.Default,
                                 Answers = null
+                            }
+                        }
+                    }
+                }
+        };
+
+        public static ThemeModel ThemeWithQuestionWithoutCorrectAnswer => new ThemeModel
+        {
+            Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = QuestionTextDefault.Default,
+                                Answers = new List<AnswerModel>
+                                {
+                                    new AnswerModel
+                                    {
+                                        IsCorrect = false
+                                    },
+                                    new AnswerModel
+                                    {
+                                        IsCorrect = false
+                                    }
+                                }
                             }
                         }
                     }
