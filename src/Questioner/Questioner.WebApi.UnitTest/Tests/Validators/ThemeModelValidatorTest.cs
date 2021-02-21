@@ -68,32 +68,15 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task EmptyTopicsShouldBeInvalid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.ThemeWithoutTopicsShouldBeInvalidTestCase))]
+        public async Task ThemeWithoutTopicsShouldBeInvalid(ThemeModel themeModel)
         {
             // Arrange
             var expectedErroMessage = "The theme must have at least one topic.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithEmptyTopics = new ThemeModel { Topics = new List<TopicModel>() };
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithEmptyTopics);
-
-            // Assert
-            result
-                .ShouldHaveAnyValidationError()
-                .WithErrorMessage(expectedErroMessage);
-        }
-
-        [Test]
-        public async Task NullTopicsShouldBeInvalid()
-        {
-            // Arrange
-            var expectedErroMessage = "The theme must have at least one topic.";
-            var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithNullTopics = new ThemeModel { Topics = null };
-
-            // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithNullTopics);
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result

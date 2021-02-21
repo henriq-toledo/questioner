@@ -159,5 +159,9 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
                 new TopicModel { Percentage = 50 }
             }
         };
+
+        public static ThemeModel ThemeWithNullTopics => new ThemeModel { Topics = null };
+
+        public static ThemeModel ThemeWithEmptyTopics = new ThemeModel { Topics = new List<TopicModel>() };
     }
 }
