@@ -17,5 +17,11 @@ namespace Questioner.WebApi.UnitTest.TestCases
             ThemeModelDefault.ThemeWithTopicWithNullQuestions,
             ThemeModelDefault.ThemeWithTopicWithEmptyQuestions            
         };
+
+        public static ThemeModel[] SumFromTopicsPercentageDifferentFromOneHundredShouldBeInvalidTestCase => new[]
+        {
+            ThemeModelDefault.ThemeWithTopicsPercentageMoreThanOneHundred,
+            ThemeModelDefault.ThemeWithTopicsPercentageLessThanOneHundred
+        };
     }
 }

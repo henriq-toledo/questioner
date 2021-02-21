@@ -132,5 +132,23 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
         {
             Topics = new List<TopicModel> { new TopicModel { Name = TopicNameDefault.Default, Questions = null } }
         };
+
+        public static ThemeModel ThemeWithTopicsPercentageMoreThanOneHundred => new ThemeModel
+        {
+            Topics = new List<TopicModel>
+            {
+                new TopicModel { Percentage = 75 },
+                new TopicModel { Percentage = 50 }
+            }
+        };
+
+        public static ThemeModel ThemeWithTopicsPercentageLessThanOneHundred = new ThemeModel
+        {
+            Topics = new List<TopicModel>
+            {
+                new TopicModel { Percentage = 25 },
+                new TopicModel { Percentage = 50 }
+            }
+        };
     }
 }

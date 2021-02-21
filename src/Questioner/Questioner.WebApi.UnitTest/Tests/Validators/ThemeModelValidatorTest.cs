@@ -102,44 +102,15 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task SumFromTopicsPercentageShouldNotBeLessThanOneHundred()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.SumFromTopicsPercentageDifferentFromOneHundredShouldBeInvalidTestCase))]
+        public async Task SumFromTopicsPercentageDifferentFromOneHundredShouldBeInvalid(ThemeModel themeModel)
         {
             // Arrange
             var expectedErroMessage = "The sum of the all topics percentage must be 100.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithTopicsPercentageLessThanOneHundred = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel { Percentage = 25 },
-                    new TopicModel { Percentage = 50 }
-                }
-            };
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithTopicsPercentageLessThanOneHundred);
-
-            // Assert
-            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
-        }
-
-        [Test]
-        public async Task SumFromTopicsPercentageShouldNotBeMoreThanOneHundred()
-        {
-            // Arrange
-            var expectedErroMessage = "The sum of the all topics percentage must be 100.";
-            var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithTopicsPercentageMoreThanOneHundred = new ThemeModel
-            {
-                Topics = new List<TopicModel>
-                {
-                    new TopicModel { Percentage = 75 },
-                    new TopicModel { Percentage = 50 }
-                }
-            };
-
-            // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithTopicsPercentageMoreThanOneHundred);
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
