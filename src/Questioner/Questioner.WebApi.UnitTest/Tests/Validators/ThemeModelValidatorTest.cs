@@ -266,5 +266,47 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
         }
+
+        [Test]
+        public async Task QuestionWithoutCorrectAnswerShouldBeInvalid()
+        {
+            // Arrange
+            var questionText = "Question 1";
+            var expectedErroMessage = $"The '{questionText}' question must have at least 1 correct answer.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+            var themeWithQuestionWithoutCorrectAnswer = new ThemeModel
+            {
+                Topics = new List<TopicModel>
+                {
+                    new TopicModel
+                    {
+                        Questions = new List<QuestionModel>
+                        {
+                            new QuestionModel
+                            {
+                                QuestionText = questionText,
+                                Answers = new List<AnswerModel>
+                                {
+                                    new AnswerModel
+                                    {
+                                        IsCorrect = false
+                                    },
+                                    new AnswerModel
+                                    {
+                                        IsCorrect = false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeWithQuestionWithoutCorrectAnswer);
+
+            // Assert
+            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
     }
 }
