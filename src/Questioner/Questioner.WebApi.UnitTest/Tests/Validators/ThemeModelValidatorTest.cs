@@ -168,38 +168,15 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
         }
 
         [Test]
-        public async Task TopicWithNullQuestionsShouldBeInvalid()
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.TopicWithoutQuestionsShouldBeInvalidTestCase))]
+        public async Task TopicWithoutQuestionsShouldBeInvalid(ThemeModel themeModel)
         {
-            // Arrange
-            var topicName = "Topic";
-            var expectedErroMessage = $"The '{topicName}' topic must have at least one question.";
+            // Arrange            
+            var expectedErroMessage = $"The '{TopicNameDefault.Default}' topic must have at least one question.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithTopicWithNullQuestions = new ThemeModel
-            {
-                Topics = new List<TopicModel> { new TopicModel { Name = topicName, Questions = null } }
-            };
 
             // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithTopicWithNullQuestions);
-
-            // Assert
-            result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
-        }
-
-        [Test]
-        public async Task TopicWithEmptyQuestionsShouldBeInvalid()
-        {
-            // Arrange
-            var topicName = "Topic";
-            var expectedErroMessage = $"The '{topicName}' topic must have at least one question.";
-            var themeModelValidator = ThemeModelValidatorFactory.Create();
-            var themeWithTopicWithEmptyQuestions = new ThemeModel
-            {
-                Topics = new List<TopicModel> { new TopicModel { Name = topicName, Questions = new List<QuestionModel>() } }
-            };
-
-            // Act
-            var result = await themeModelValidator.TestValidateAsync(themeWithTopicWithEmptyQuestions);
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);

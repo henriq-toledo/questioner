@@ -11,5 +11,11 @@ namespace Questioner.WebApi.UnitTest.TestCases
             ThemeModelDefault.ThemeWithQuestionWithEmptyAnswers,
             ThemeModelDefault.ThemeWithQuestionWithOnlyOneAnswer
         };
+
+        public static ThemeModel[] TopicWithoutQuestionsShouldBeInvalidTestCase => new [] 
+        {
+            ThemeModelDefault.ThemeWithTopicWithNullQuestions,
+            ThemeModelDefault.ThemeWithTopicWithEmptyQuestions            
+        };
     }
 }

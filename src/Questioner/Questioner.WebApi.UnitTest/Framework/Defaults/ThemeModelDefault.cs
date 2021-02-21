@@ -122,5 +122,15 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
                     }
                 }
         };
+
+        public static ThemeModel ThemeWithTopicWithEmptyQuestions => new ThemeModel
+        {
+            Topics = new List<TopicModel> { new TopicModel { Name = TopicNameDefault.Default, Questions = new List<QuestionModel>() } }
+        };
+
+        public static ThemeModel ThemeWithTopicWithNullQuestions => new ThemeModel
+        {
+            Topics = new List<TopicModel> { new TopicModel { Name = TopicNameDefault.Default, Questions = null } }
+        };
     }
 }
