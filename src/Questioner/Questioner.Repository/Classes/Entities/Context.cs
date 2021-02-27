@@ -37,6 +37,10 @@ namespace Questioner.Repository.Classes.Entities
                 .HasIndex(answer => new { answer.QuestionId, answer.AnswerText })
                 .HasDatabaseName("UX_Answer_AnswerText")
                 .IsUnique();
+
+            modelBuilder.Entity<Theme>()
+                .Property(t => t.PassRate)
+                .HasDefaultValue(80);
         }
     }
 }

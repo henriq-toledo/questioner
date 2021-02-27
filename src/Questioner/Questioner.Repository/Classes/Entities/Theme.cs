@@ -14,6 +14,9 @@ namespace Questioner.Repository.Classes.Entities
         public string Name { get; set; }
 
         [JsonProperty(Order = 3)]
-        public virtual List<Topic> Topics {get;set;}
+        public byte PassRate { get; set; }
+
+        [JsonProperty(Order = 4)]
+        public virtual List<Topic> Topics { get; set; }
     }
 }
