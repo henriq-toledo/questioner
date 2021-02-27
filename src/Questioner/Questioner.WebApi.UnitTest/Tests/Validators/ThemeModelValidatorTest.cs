@@ -96,7 +96,7 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
             var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
-            result.ShouldHaveAnyValidationError().WithoutErrorMessage(expectedErroMessage);
+            result.Errors.WithoutErrorMessage(expectedErroMessage);
         }
 
         [Test]
@@ -142,6 +142,42 @@ namespace Questioner.WebApi.UnitTest.Tests.Validators
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.ThemeWithPassRateOutsideRangeShouldBeInvalidTestCase))]
+        public async Task ThemeWithPassRateOutsideRangeShouldBeInvalid(ThemeModel themeModel)
+        {
+            // Arrange
+            var expectedErrorMessage = $"'Pass Rate' must be between 60 and 100. You entered {themeModel.PassRate}.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
+
+            // Assert
+            result
+                .ShouldHaveAnyValidationError()
+                .WithErrorCode(FluentValidationErrorCodeConstant.InclusiveBetweenValidator)
+                .WithErrorMessage(expectedErrorMessage);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.ThemeWithPassRateInsideRangeShouldBeValidTestCase))]
+        public async Task ThemeWithPassRateInsideRangeShouldBeValid(ThemeModel themeModel)
+        {
+            // Arrange
+            var expectedErrorMessage = $"'Pass Rate' must be between 60 and 100. You entered {themeModel.PassRate}.";
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
+
+            // Assert
+            result
+                .Errors
+                .WithoutErrorCode(FluentValidationErrorCodeConstant.InclusiveBetweenValidator)
+                .WithoutErrorMessage(expectedErrorMessage);
         }
     }
 }

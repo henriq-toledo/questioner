@@ -11,6 +11,9 @@ namespace Questioner.WebApi.Models
         [StringLength(100)]
         public string Name { get; set; }
 
+        [Required]
+        public byte PassRate { get; set; }
+
         public virtual List<TopicModel> Topics {get;set;}
 
         internal Theme ToEntity()
@@ -18,6 +21,7 @@ namespace Questioner.WebApi.Models
             return new Theme()
             {
                 Name = Name,
+                PassRate = PassRate,
                 Topics = Topics.Select(topic => topic.ToEntity()).ToList()
             };
         }

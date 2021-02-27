@@ -51,5 +51,18 @@ namespace Questioner.WebApi.UnitTest.TestCases
         {
             ThemeModelDefault.ThemeWithQuestionWithoutCorrectAnswer
         };
+
+        public static ThemeModel[] ThemeWithPassRateOutsideRangeShouldBeInvalidTestCase => new[]
+        {
+            ThemeModelDefault.ThemeWithPassRateLessThanMin,
+            ThemeModelDefault.ThemeWithPassRateMoreThanMax
+        };
+
+        public static ThemeModel[] ThemeWithPassRateInsideRangeShouldBeValidTestCase => new[]
+        {
+            ThemeModelDefault.ThemeWithMinValidPassRate,
+            ThemeModelDefault.ThemeWithMaxValidPassRate,
+            ThemeModelDefault.ThemeWithChildren
+        };
     }
 }

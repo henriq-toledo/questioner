@@ -9,6 +9,7 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
             new Theme()
             {
                 Name = "Test theme 1",
+                PassRate = ThemePassRateDefault.Default,
                 Topics = new List<Topic>()
                 {
                     new Topic()

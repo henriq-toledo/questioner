@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Questioner.Repository.Classes.Entities;
+using Questioner.WebApi.Constants;
 using Questioner.WebApi.Models;
 using System.Linq;
 
@@ -22,6 +23,9 @@ namespace Questioner.WebApi.Validators
                         customContext.AddFailure($"The '{themeName}' theme already exists.");
                     }
                 });
+
+            RuleFor(theme => theme.PassRate)
+                .InclusiveBetween(ThemeConstant.MinPassRate, ThemeConstant.MaxPassRate);
 
             RuleFor(theme => theme.Topics)
                 .NotEmpty()

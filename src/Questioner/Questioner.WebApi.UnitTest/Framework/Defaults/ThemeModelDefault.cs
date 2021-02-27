@@ -9,6 +9,7 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
             new ThemeModel()
             {
                 Name = "Test theme 1",
+                PassRate = ThemePassRateDefault.Default,
                 Topics = new List<TopicModel>()
                 {
                     new TopicModel()
@@ -169,5 +170,13 @@ namespace Questioner.WebApi.UnitTest.Framework.Defaults
         public static ThemeModel ThemeWithNullName => new ThemeModel { Name = null };
 
         public static ThemeModel ThemeWithDefaultName => new ThemeModel { Name = ThemeNameDefault.Default };
+
+        public static ThemeModel ThemeWithPassRateLessThanMin => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.LessThanMin };
+
+        public static ThemeModel ThemeWithPassRateMoreThanMax => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MoreThanMax };
+
+        public static ThemeModel ThemeWithMinValidPassRate => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MinValid };
+
+        public static ThemeModel ThemeWithMaxValidPassRate => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MaxValid };
     }
 }

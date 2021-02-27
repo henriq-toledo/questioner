@@ -20,6 +20,9 @@ namespace Questioner.WebApi.UnitTest.Framework.Asserts
 
                 NotNull(actualTheme, message: $"The theme '{expectedTheme.Name}' should exist.");
 
+                AreEqual(expectedTheme.PassRate, actualTheme.PassRate,
+                    message: $"For the theme '{expectedTheme.Name}', the {nameof(expectedTheme.PassRate)} should be {expectedTheme.PassRate} and not {actualTheme.PassRate}.");
+
                 TopicAssert.Assert(expectedTopics: expectedTheme?.Topics, actualTopics: actualTheme?.Topics);
             }
         }
