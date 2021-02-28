@@ -26,7 +26,7 @@ namespace Questioner.Web.Controllers
             return View(new ThemeDetailViewModel(theme));
         }
 
-        public async Task<ActionResult> Questioner(int id)
+        public async Task<ActionResult> Exam(int id)
         {
             var theme = await themeService.GetThemeById(id);
 
