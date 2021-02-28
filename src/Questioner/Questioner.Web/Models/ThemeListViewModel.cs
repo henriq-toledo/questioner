@@ -14,12 +14,17 @@ namespace Questioner.Web.Models
         {
             this.Id = theme.Id;
             this.Name = theme.Name;
+            this.PassRate = theme.PassRate;
             this.TopicsQuantity = theme.Topics.Count;
             this.QuestionsQuantity = theme.Topics.Sum(topic => topic.Questions.Count);
         }
 
         public long Id { get; set; }
+
         public string Name { get; set; }
+
+        [DisplayName("Pass Rate")]
+        public byte PassRate { get; set; }
 
         [DisplayName("Topics")]
         public int TopicsQuantity { get; set; }

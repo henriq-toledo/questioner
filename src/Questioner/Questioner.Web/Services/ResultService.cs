@@ -28,6 +28,11 @@ namespace Questioner.Web.Services
 
             currentRow++;
 
+            worksheet.Cell(currentRow, 1).Value = "Result:";
+            worksheet.Cell(currentRow, 2).Value = $"{resultViewModel.ExamResult}";
+
+            currentRow++;
+
             worksheet.Cell(currentRow, 1).Value = "Percentage:";
             worksheet.Cell(currentRow, 2).Value = $"{resultViewModel.Percentage} %";
 
@@ -128,6 +133,7 @@ namespace Questioner.Web.Services
             }
 
             model.Percentage = (byte)model.Topics.Sum(topic => topic.PercentageAnswered * topic.Percentage / 100);
+            model.ExamResult = model.Percentage >= theme.PassRate ? ExamResultEnum.Pass : ExamResultEnum.Fail;
 
             return model;
         }

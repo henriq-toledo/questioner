@@ -29,9 +29,9 @@ namespace Questioner.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Export(ResultViewModel result)
+        public ActionResult Export(ResultViewModel resultViewModel)
         {
-            using var stream = resultService.Export(result);
+            using var stream = resultService.Export(resultViewModel);
             var content = stream.ToArray();
 
             return File(

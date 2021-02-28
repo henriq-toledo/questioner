@@ -4,7 +4,7 @@
 {
 <div style="padding-left: 3%;">
     @Html.HiddenFor(model => model.ThemeId)
-    
+
     <div class="row">
         <h3 class="font-weight-bold">
             @Html.HiddenFor(model => model.ThemeName)
@@ -14,9 +14,16 @@
 
     <div class="row">
         <h5>
+            @Html.HiddenFor(model => model.ExamResult)
+            @Html.DisplayNameFor(model => model.ExamResult)
+            @Html.DisplayFor(model => model.ExamResult)
+        </h5>
+    </div>
+    <div class="row">
+        <h5>
             @Html.HiddenFor(model => model.Percentage)
             @Html.DisplayNameFor(model => model.Percentage)
-            @Html.DisplayFor(model => model.Percentage) %
+            @Html.DisplayFor(model => model.Percentage)%
         </h5>
     </div>
 </div>

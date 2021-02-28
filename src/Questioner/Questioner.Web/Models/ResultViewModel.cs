@@ -1,3 +1,4 @@
+using Questioner.Web.Enums;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -12,6 +13,9 @@ namespace Questioner.Web.Models
 
         [DisplayName("Percentage:")]
         public byte Percentage { get; set; }
+
+        [DisplayName("Result:")]
+        public ExamResultEnum ExamResult { get; set; }
 
         public List<TopicResultViewModel> Topics { get; set; }
 

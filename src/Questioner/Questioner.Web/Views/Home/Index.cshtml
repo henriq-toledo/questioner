@@ -18,13 +18,16 @@
         <tr>
             <th scope="col">
                 #
-            </th scope="col">
+            </th>
             <th scope="col">
                 @Html.DisplayNameFor(model => new ThemeListViewModel().Name)
-            </th scope="col">
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => new ThemeListViewModel().PassRate)
+            </th>
             <th scope="col">
                 @Html.DisplayNameFor(model => new ThemeListViewModel().TopicsQuantity)
-            </th scope="col">
+            </th>
             <th scope="col">
                 @Html.DisplayNameFor(model => new ThemeListViewModel().QuestionsQuantity)
             </th>
@@ -38,16 +41,19 @@
         <tr>
             <td scope="row">
                 @(Array.IndexOf(Model.ToArray(), theme) + 1)
-            </td>        
-            <td>
-                @Html.ActionLink(theme.Name, "Details", "Theme", new {id = theme.Id})                
             </td>
-            <td>                
+            <td>
+                @Html.ActionLink(theme.Name, "Details", "Theme", new { id = theme.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(model => theme.PassRate)%
+            </td>
+            <td>
                 @Html.DisplayFor(model => theme.TopicsQuantity)
             </td>
-            <td>                
+            <td>
                 @Html.DisplayFor(model => theme.QuestionsQuantity)
-            </td>    
+            </td>
         </tr>
 }
     </tbody>
