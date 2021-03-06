@@ -5,6 +5,8 @@ Questioner is a web application that test using questions and answers about a th
 
 [![.NET](https://github.com/henriq-toledo/questioner/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/henriq-toledo/questioner/actions/workflows/dotnet.yml)
 
+[![Build Status](https://dev.azure.com/htapps/GitHub/_apis/build/status/henriq-toledo.questioner?branchName=master)](https://dev.azure.com/htapps/GitHub/_build/latest?definitionId=1&branchName=master)
+
 ## Setup
 
 ### Development environment
