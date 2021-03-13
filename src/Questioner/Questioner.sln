@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Repository", "Questioner.Repository\Questioner.Repository.csproj", "{2B277E69-9332-47A6-A842-8C7CFFBEAE67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.Repository", "Questioner.Repository\Questioner.Repository.csproj", "{2B277E69-9332-47A6-A842-8C7CFFBEAE67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Web", "Questioner.Web\Questioner.Web.csproj", "{0373E33F-604D-49AB-AF91-D5373114BAC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.Web", "Questioner.Web\Questioner.Web.csproj", "{0373E33F-604D-49AB-AF91-D5373114BAC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApi", "Questioner.WebApi\Questioner.WebApi.csproj", "{E11B18C9-5B61-44DB-9811-0E181D4A6032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi", "Questioner.WebApi\Questioner.WebApi.csproj", "{E11B18C9-5B61-44DB-9811-0E181D4A6032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApi.UnitTest", "Questioner.WebApi.UnitTest\Questioner.WebApi.UnitTest.csproj", "{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi.UnitTest", "Questioner.WebApi.UnitTest\Questioner.WebApi.UnitTest.csproj", "{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Web.UnitTest", "Questioner.Web.UnitTest\Questioner.Web.UnitTest.csproj", "{033FD767-7AC1-455F-B77C-E6617157DC9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2B277E69-9332-47A6-A842-8C7CFFBEAE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -72,5 +71,23 @@ Global
 		{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}.Release|x64.Build.0 = Release|Any CPU
 		{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}.Release|x86.ActiveCfg = Release|Any CPU
 		{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}.Release|x86.Build.0 = Release|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Debug|x64.Build.0 = Debug|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Debug|x86.Build.0 = Debug|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Release|x64.ActiveCfg = Release|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Release|x64.Build.0 = Release|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Release|x86.ActiveCfg = Release|Any CPU
+		{033FD767-7AC1-455F-B77C-E6617157DC9C}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72C426AD-6657-4CCA-8F29-9B43F65DE5BA}
 	EndGlobalSection
 EndGlobal
