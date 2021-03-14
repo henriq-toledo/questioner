@@ -31,6 +31,22 @@ steps:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
+    
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud connection'
+    organization: 'ht-sonar'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'ht_questioner'
+    cliProjectName: 'questioner'
+    cliSources: './src/Questioner'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 
 - task: DotNetCoreCLI@2
   displayName: Publish
