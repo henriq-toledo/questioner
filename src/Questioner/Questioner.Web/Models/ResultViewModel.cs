@@ -15,7 +15,7 @@ namespace Questioner.Web.Models
         public byte Percentage { get; set; }
 
         [DisplayName("Result:")]
-        public ExamResultEnum ExamResult { get; set; }
+        public ExamResult ExamResult { get; set; }
 
         public List<TopicResultViewModel> Topics { get; set; }
 

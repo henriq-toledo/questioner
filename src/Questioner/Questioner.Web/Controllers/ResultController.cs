@@ -18,7 +18,7 @@ namespace Questioner.Web.Controllers
 
         public async Task<ActionResult> Details(ThemeViewModel themeViewModel)
         {
-            if (await themeService.ExistsThemeById(themeViewModel.Id) == false)
+            if (!await themeService.ExistsThemeById(themeViewModel.Id))
             {
                 return NotFound();
             }

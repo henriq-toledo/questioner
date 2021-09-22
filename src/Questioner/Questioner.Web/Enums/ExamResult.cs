@@ -1,6 +1,6 @@
 ﻿namespace Questioner.Web.Enums
 {
-    public enum ExamResultEnum
+    public enum ExamResult
     {
         Fail,
         Pass

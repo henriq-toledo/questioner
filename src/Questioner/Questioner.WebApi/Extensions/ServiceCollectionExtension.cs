@@ -30,7 +30,7 @@ namespace Questioner.WebApi.Extensions
 
                     break;
 
-                default: throw new Exception($"The Database Connection '{appSettings.DatabaseConnector}' is not supported.");
+                default: throw new NotSupportedException($"The Database Connection '{appSettings.DatabaseConnector}' is not supported.");
             }
         }
     }

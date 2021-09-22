@@ -68,9 +68,8 @@ namespace Questioner.Web.Services
                 worksheet.Cell(currentRow, 3).Value = question.QuestionResultDescription;
             }
 
-            using var stream = new MemoryStream();
+            var stream = new MemoryStream();
             workbook.SaveAs(stream);
-            var content = stream.ToArray();
 
             return stream;
         }
@@ -92,18 +91,18 @@ namespace Questioner.Web.Services
                 foreach (var question in topic.Questions)
                 {
                     var answeredQuestion = themeViewModel.Questions.FirstOrDefault(q => q.Id == question.Id);
-                    QuestionResultEnum questionResult;
+                    QuestionResult questionResult;
 
-                    if (answeredQuestion.Answers.All(a => a.Selected == false))
+                    if (answeredQuestion.Answers.All(a => !a.Selected))
                     {
-                        questionResult = QuestionResultEnum.NotAnswered;
+                        questionResult = QuestionResult.NotAnswered;
                     }
                     else
                     {
                         var correct = answeredQuestion.Answers
                             .All(answer => question.Answers.Any(a => a.Id == answer.Id && a.IsCorrect == answer.Selected));
 
-                        questionResult = correct ? QuestionResultEnum.Correct : QuestionResultEnum.Incorrect;
+                        questionResult = correct ? QuestionResult.Correct : QuestionResult.Incorrect;
                     }
 
                     model.Questions.Add(new QuestionResultViewModel()
@@ -123,7 +122,7 @@ namespace Questioner.Web.Services
 
                 if (totalQuestionsPerTopic > 0)
                 {
-                    var answeredCorrectly = model.Questions.Where(q => q.TopicId == topic.Id).Count(q => q.QuestionResult == QuestionResultEnum.Correct);
+                    var answeredCorrectly = model.Questions.Where(q => q.TopicId == topic.Id).Count(q => q.QuestionResult == QuestionResult.Correct);
                     var percentagePerTopic = (byte)(answeredCorrectly * 100 / totalQuestionsPerTopic);
 
                     topicResult.PercentageAnswered = percentagePerTopic;
@@ -133,7 +132,7 @@ namespace Questioner.Web.Services
             }
 
             model.Percentage = (byte)model.Topics.Sum(topic => topic.PercentageAnswered * topic.Percentage / 100);
-            model.ExamResult = model.Percentage >= theme.PassRate ? ExamResultEnum.Pass : ExamResultEnum.Fail;
+            model.ExamResult = model.Percentage >= theme.PassRate ? ExamResult.Pass : ExamResult.Fail;
 
             return model;
         }

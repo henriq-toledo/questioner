@@ -56,7 +56,7 @@ namespace Questioner.WebApi.Validators
                         customContext.AddFailure($"The '{questionWithoutAnswers.QuestionText}' question must have at least 2 answers.");
                     }
 
-                    foreach (var questionWithoutCorrectAnswer in questions.Where(q => q.Answers?.Count >= 2 && q.Answers.Count(a => a.IsCorrect) == 0))
+                    foreach (var questionWithoutCorrectAnswer in questions.Where(q => q.Answers?.Count >= 2 && !q.Answers.Any(a => a.IsCorrect)))
                     {
                         customContext.AddFailure($"The '{questionWithoutCorrectAnswer.QuestionText}' question must have at least 1 correct answer.");
                     }

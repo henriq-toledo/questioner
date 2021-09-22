@@ -20,11 +20,11 @@ namespace Questioner.WebApi.Models
             return new Question()
             {
                 QuestionText = QuestionText,
-                Answers = AnswersSetDefaultIfThereIsNo
+                Answers = AnswersSetDefaultIfThereIsNo()
             };
         }
 
-        private List<Answer> AnswersSetDefaultIfThereIsNo
+        private List<Answer> AnswersSetDefaultIfThereIsNo()
             => (Answers?.Count).GetValueOrDefault() > 0
                 ? Answers.Select(answer => answer.ToEntity()).ToList()
                 : AnswerDefault.NoYes.ToList();

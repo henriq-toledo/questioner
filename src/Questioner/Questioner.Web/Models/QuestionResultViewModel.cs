@@ -14,7 +14,7 @@ namespace Questioner.Web.Models
         public string QuestionText { get; set; }
 
         [DisplayName("Correct")]
-        public QuestionResultEnum QuestionResult { get; set; }
+        public QuestionResult QuestionResult { get; set; }
 
         public string QuestionResultDescription => QuestionResult.GetDescription();
     }

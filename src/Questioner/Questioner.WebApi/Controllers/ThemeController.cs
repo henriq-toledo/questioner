@@ -35,7 +35,7 @@ namespace Questioner.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            if ((await themeService.ExistsTheme(id)) == false) return NotFound();
+            if (!await themeService.ExistsTheme(id)) return NotFound();
 
             try
             {
