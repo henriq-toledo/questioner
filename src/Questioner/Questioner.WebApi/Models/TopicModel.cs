@@ -1,8 +1,7 @@
-using System;
+using Questioner.Repository.Classes.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.WebApi.Models
 {

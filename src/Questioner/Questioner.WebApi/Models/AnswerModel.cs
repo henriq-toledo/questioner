@@ -1,6 +1,5 @@
-using System;
-using System.ComponentModel.DataAnnotations;
 using Questioner.Repository.Classes.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Questioner.WebApi.Models
 {

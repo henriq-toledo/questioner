@@ -1,6 +1,5 @@
-using System.ComponentModel;
-using Questioner.Repository.Classes.Entities;
 using Questioner.Web.Enums;
+using System.ComponentModel;
 
 namespace Questioner.Web.Models
 {

@@ -1,6 +1,6 @@
+using Questioner.Repository.Classes.Entities;
 using System.ComponentModel;
 using System.Linq;
-using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.Web.Models
 {

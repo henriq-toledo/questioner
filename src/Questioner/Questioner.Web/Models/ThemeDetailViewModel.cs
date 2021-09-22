@@ -1,7 +1,6 @@
+using Questioner.Repository.Classes.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Questioner.Repository.Classes.Entities;
 
 namespace Questioner.Web.Models
 {

@@ -1,5 +1,3 @@
-using System;
-
 namespace Questioner.Web.Models
 {
     public class ErrorViewModel
