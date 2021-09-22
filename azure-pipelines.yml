@@ -23,9 +23,9 @@ steps:
   inputs:
     SonarCloud: 'SonarCloud connection'
     organization: 'ht-sonar'    
-    cliProjectKey: 'ht_questioner'
-    cliProjectName: 'questioner'
-    cliSources: './src/Questioner'
+    projectKey: 'ht_questioner'
+    projectName: 'questioner'
+    sources: './src/Questioner'
     extraProperties: 'sonar.exclusions=src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css,src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.css,src/Questioner/Questioner.Web/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'
 
 - task: DotNetCoreCLI@2
