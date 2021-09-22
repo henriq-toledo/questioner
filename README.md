@@ -7,6 +7,8 @@ Questioner is a web application that test using questions and answers about a th
 
 [![Build Status](https://dev.azure.com/htapps/GitHub/_apis/build/status/henriq-toledo.questioner?branchName=master)](https://dev.azure.com/htapps/GitHub/_build/latest?definitionId=1&branchName=master)
 
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=ht_questioner)
+
 ## Setup
 
 ### Development environment
