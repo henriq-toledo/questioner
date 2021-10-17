@@ -357,3 +357,6 @@ MigrationBackup/
 
 # Questioner backup log file
 questioner.log.*
+
+# SQLite database
+*.db
