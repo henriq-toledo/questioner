@@ -1,8 +1,8 @@
 ﻿using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
-using Questioner.WebApi.UnitTest.Framework.Defaults;
+using Questioner.WebApi.UnitTests.Framework.Defaults;
 
-namespace Questioner.WebApi.UnitTest.TestCases
+namespace Questioner.WebApi.UnitTests.TestCases
 {
     public class ThemeModelValidatorTestCase
     {

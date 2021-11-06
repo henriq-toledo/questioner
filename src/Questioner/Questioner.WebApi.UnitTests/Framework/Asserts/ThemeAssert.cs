@@ -2,7 +2,7 @@
 using System.Linq;
 using static NUnit.Framework.Assert;
 
-namespace Questioner.WebApi.UnitTest.Framework.Asserts
+namespace Questioner.WebApi.UnitTests.Framework.Asserts
 {
     public static class ThemeAssert
     {

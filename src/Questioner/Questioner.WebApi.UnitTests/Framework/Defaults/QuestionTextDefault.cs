@@ -1,4 +1,4 @@
-﻿namespace Questioner.WebApi.UnitTest.Framework.Defaults
+﻿namespace Questioner.WebApi.UnitTests.Framework.Defaults
 {
     public static class QuestionTextDefault
     {

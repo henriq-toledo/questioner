@@ -2,16 +2,16 @@
 using NUnit.Framework;
 using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Models;
-using Questioner.WebApi.UnitTest.Framework.Constants;
-using Questioner.WebApi.UnitTest.Framework.Defaults;
-using Questioner.WebApi.UnitTest.Framework.Extensions;
-using Questioner.WebApi.UnitTest.Framework.Factories;
-using Questioner.WebApi.UnitTest.TestCases;
+using Questioner.WebApi.UnitTests.Framework.Constants;
+using Questioner.WebApi.UnitTests.Framework.Defaults;
+using Questioner.WebApi.UnitTests.Framework.Extensions;
+using Questioner.WebApi.UnitTests.Framework.Factories;
+using Questioner.WebApi.UnitTests.TestCases;
 using Questioner.WebApi.Validators;
 using System.Threading.Tasks;
-using ContextFactory = Questioner.WebApi.UnitTest.Framework.Factories.ContextFactory;
+using ContextFactory = Questioner.WebApi.UnitTests.Framework.Factories.ContextFactory;
 
-namespace Questioner.WebApi.UnitTest.Tests.Validators
+namespace Questioner.WebApi.UnitTests.Tests.Validators
 {
     [TestFixture]
     public class ThemeModelValidatorTest
