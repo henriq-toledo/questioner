@@ -39,7 +39,7 @@ steps:
   inputs:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) --logger trx --results-directory $(Agent.TempDirectory)'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: SonarCloudAnalyze@1
 
