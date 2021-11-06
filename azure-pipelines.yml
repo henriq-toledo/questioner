@@ -28,6 +28,7 @@ steps:
     sources: './src/Questioner'
     extraProperties: |
       sonar.exclusions=src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css,src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.css,src/Questioner/Questioner.Web/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
+      sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
       sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
 
 - task: DotNetCoreCLI@2
@@ -41,7 +42,7 @@ steps:
   inputs:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
 
 - task: SonarCloudAnalyze@1
 
