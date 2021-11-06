@@ -29,7 +29,7 @@ steps:
     extraProperties: |
       sonar.exclusions=src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css,src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.css,src/Questioner/Questioner.Web/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
       sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
-      sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
+      sonar.cobertura.reportsPaths=$(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml      
 
 - task: DotNetCoreCLI@2
   displayName: Build
@@ -42,7 +42,24 @@ steps:
   inputs:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
+    arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect "XPlat Code Coverage"'
+    publishTestResults: true
+
+- task: CmdLine@2
+  displayName: 'Install ReportGenerator Tool'
+  inputs:
+    script: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+- task: CmdLine@2
+  displayName: 'Create Report'
+  inputs:
+    script: 'reportgenerator -reports:$(Agent.TempDirectory)\**\coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)\coverlet\reports -reporttypes:"Cobertura"'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage from $(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml'
 
 - task: SonarCloudAnalyze@1
 
