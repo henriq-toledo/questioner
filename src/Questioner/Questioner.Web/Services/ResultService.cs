@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Questioner.Repository.Classes.Entities;
 using Questioner.Web.Enums;
 using Questioner.Web.Models;
 using System.Collections.Generic;
@@ -78,19 +79,30 @@ namespace Questioner.Web.Services
         {
             var theme = await themeService.GetThemeById(themeViewModel.Id);
             var topics = theme.Topics.ToArray();
+            var questionsResult = ProcessQuestions(topics, answeredQuestions: themeViewModel.Questions);
             var model = new ResultViewModel
             {
                 ThemeId = themeViewModel.Id,
                 ThemeName = themeViewModel.Name,
-                Topics = new List<TopicResultViewModel>(),
-                Questions = new List<QuestionResultViewModel>()
+                Topics = ProcessTopics(topics, questionsResult),
+                Questions = questionsResult
             };
+
+            model.Percentage = (byte)model.Topics.Sum(topic => topic.PercentageAnswered * topic.Percentage / 100);
+            model.ExamResult = model.Percentage >= theme.PassRate ? ExamResult.Pass : ExamResult.Fail;
+
+            return model;
+        }
+
+        private List<QuestionResultViewModel> ProcessQuestions(Topic[] topics, List<QuestionViewModel> answeredQuestions)
+        {
+            var questionsResult = new List<QuestionResultViewModel>();
 
             foreach (var topic in topics)
             {
                 foreach (var question in topic.Questions)
                 {
-                    var answeredQuestion = themeViewModel.Questions.FirstOrDefault(q => q.Id == question.Id);
+                    var answeredQuestion = answeredQuestions.FirstOrDefault(q => q.Id == question.Id);
                     QuestionResult questionResult;
 
                     if (answeredQuestion.Answers.All(a => !a.Selected))
@@ -105,7 +117,7 @@ namespace Questioner.Web.Services
                         questionResult = correct ? QuestionResult.Correct : QuestionResult.Incorrect;
                     }
 
-                    model.Questions.Add(new QuestionResultViewModel()
+                    questionsResult.Add(new QuestionResultViewModel()
                     {
                         Id = question.Id,
                         TopicId = topic.Id,
@@ -115,26 +127,30 @@ namespace Questioner.Web.Services
                 }
             }
 
+            return questionsResult;
+        }
+
+        private List<TopicResultViewModel> ProcessTopics(Topic[] topics, List<QuestionResultViewModel> questionsResult)
+        {
+            var topicsResult = new List<TopicResultViewModel>();
+
             foreach (var topic in topics)
             {
                 var topicResult = new TopicResultViewModel(topic);
-                var totalQuestionsPerTopic = model.Questions.Count(q => q.TopicId == topic.Id);
+                var totalQuestionsPerTopic = questionsResult.Count(q => q.TopicId == topic.Id);
 
                 if (totalQuestionsPerTopic > 0)
                 {
-                    var answeredCorrectly = model.Questions.Where(q => q.TopicId == topic.Id).Count(q => q.QuestionResult == QuestionResult.Correct);
+                    var answeredCorrectly = questionsResult.Where(q => q.TopicId == topic.Id).Count(q => q.QuestionResult == QuestionResult.Correct);
                     var percentagePerTopic = (byte)(answeredCorrectly * 100 / totalQuestionsPerTopic);
 
                     topicResult.PercentageAnswered = percentagePerTopic;
                 }
 
-                model.Topics.Add(topicResult);
+                topicsResult.Add(topicResult);
             }
 
-            model.Percentage = (byte)model.Topics.Sum(topic => topic.PercentageAnswered * topic.Percentage / 100);
-            model.ExamResult = model.Percentage >= theme.PassRate ? ExamResult.Pass : ExamResult.Fail;
-
-            return model;
+            return topicsResult;
         }
     }
 }
