@@ -9,11 +9,13 @@ namespace Questioner.Web.Controllers
     {
         private readonly IThemeService themeService;
         private readonly IResultService resultService;
+        private readonly IReportExportService reportExportService;
 
-        public ResultController(IThemeService themeService, IResultService resultService)
+        public ResultController(IThemeService themeService, IResultService resultService, IReportExportService reportExportService)
         {
             this.themeService = themeService;
             this.resultService = resultService;
+            this.reportExportService = reportExportService;
         }
 
         public async Task<ActionResult> Details(ThemeViewModel themeViewModel)
@@ -31,7 +33,7 @@ namespace Questioner.Web.Controllers
         [HttpPost]
         public ActionResult Export(ResultViewModel resultViewModel)
         {
-            using var stream = resultService.Export(resultViewModel);
+            using var stream = reportExportService.Export(resultViewModel);
             var content = stream.ToArray();
 
             return File(
