@@ -360,3 +360,6 @@ questioner.log.*
 
 # SQLite database
 *.db
+
+# dotnet config
+.config
