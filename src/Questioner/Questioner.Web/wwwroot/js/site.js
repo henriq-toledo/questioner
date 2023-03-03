@@ -67,7 +67,7 @@ function enableAnswers(answers) {
 
 function uncheckAnswers(answers, currentAnswer) {
 
-    for (answer of answers) {
+    for (let answer of answers) {
         if (answer.id != currentAnswer.id) {
             answer.checked = false;
         }
