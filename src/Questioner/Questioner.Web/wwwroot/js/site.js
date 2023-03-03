@@ -8,33 +8,50 @@ $(document).ready(function () {
         $(this).unbind("click").bind("click", function (event) {          
 
             let answers = event.target.parentNode.parentNode.getElementsByClassName("check-box");
-            let answersChecked = 0;
-            let answer;
 
-            for (answer of answers) {
-                if (answer.checked) {
-                    answersChecked++;
-                }
-            };
+            let answersChecked = getAnsweredNumbers(answers);            
 
             let howManyChoices = event.target.parentNode.parentNode.parentNode.children[0].children[2].getAttribute("value");
 
             let disableAnswer = howManyChoices == answersChecked;
 
             if (disableAnswer) {
-                for (answer of answers) {
-                    if (!answer.checked) {
-                        answer.disabled = true;
-                    }
-                };
+                disableAnswers(answers);
             }
             else {
-                for (answer of answers) {
-                    if (answer.disabled) {
-                        answer.disabled = false;
-                    }
-                };
+                enableAnswers(answers);
             }
         });
     });
 });
+
+function getAnsweredNumbers(answers) {
+
+    let answersChecked = 0;    
+
+    for (let answer of answers) {
+        if (answer.checked) {
+            answersChecked++;
+        }
+    };
+
+    return answersChecked;
+};
+
+function disableAnswers(answers) {
+
+    for(let answer of answers) {
+        if (!answer.checked) {
+            answer.disabled = true;
+        }
+    };
+}
+
+function enableAnswers(answers) {
+
+    for (let answer of answers) {
+        if (answer.disabled) {
+            answer.disabled = false;
+        }
+    };
+}
