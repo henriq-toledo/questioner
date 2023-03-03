@@ -7,35 +7,30 @@ $(document).ready(function () {
     $(".check-box").each(function () {
         $(this).unbind("click").bind("click", function (event) {          
 
-            var answers = event.target.parentNode.parentNode.getElementsByClassName("check-box");
-            var answersChecked = 0;            
+            let answers = event.target.parentNode.parentNode.getElementsByClassName("check-box");
+            let answersChecked = 0;
+            let answer;
 
-            for (var i = 0; i < answers.length; i++) {
-                var answer = answers[i];
-
+            for (answer of answers) {
                 if (answer.checked) {
                     answersChecked++;
                 }
             };
 
-            var howManyChoices = event.target.parentNode.parentNode.parentNode.children[0].children[2].getAttribute("value");
+            let howManyChoices = event.target.parentNode.parentNode.parentNode.children[0].children[2].getAttribute("value");
 
-            var disableAnswer = howManyChoices == answersChecked;
+            let disableAnswer = howManyChoices == answersChecked;
 
             if (disableAnswer) {
-                for (var i = 0; i < answers.length; i++) {
-                    var answer = answers[i];
-
-                    if (answer.checked == false) {
+                for (answer of answers) {
+                    if (!answer.checked) {
                         answer.disabled = true;
                     }
                 };
             }
             else {
-                for (var i = 0; i < answers.length; i++) {
-                    var answer = answers[i];
-
-                    if (answer.disabled == true) {
+                for (answer of answers) {
+                    if (answer.disabled) {
                         answer.disabled = false;
                     }
                 };
