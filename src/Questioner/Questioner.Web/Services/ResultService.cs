@@ -46,7 +46,7 @@ namespace Questioner.Web.Services
                     var answeredQuestion = answeredQuestions.FirstOrDefault(q => q.Id == question.Id);
                     QuestionResult questionResult;
 
-                    if (answeredQuestion.Answers.All(a => !a.Selected))
+                    if (answeredQuestion is null || !answeredQuestion.Answers.Any(a => a.Selected))
                     {
                         questionResult = QuestionResult.NotAnswered;
                     }
