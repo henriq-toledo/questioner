@@ -15,11 +15,20 @@ $(document).ready(function () {
 
             let disableAnswer = howManyChoices == answersChecked;
 
-            if (disableAnswer) {
-                disableAnswers(answers);
+            if (howManyChoices > 1) {
+
+                if (disableAnswer) {
+                    disableAnswers(answers);
+                }
+                else {
+                    enableAnswers(answers);
+                }
             }
             else {
-                enableAnswers(answers);
+
+                let currentAnswer = event.currentTarget;
+
+                uncheckAnswers(answers, currentAnswer);
             }
         });
     });
@@ -52,6 +61,15 @@ function enableAnswers(answers) {
     for (let answer of answers) {
         if (answer.disabled) {
             answer.disabled = false;
+        }
+    };
+}
+
+function uncheckAnswers(answers, currentAnswer) {
+
+    for (answer of answers) {
+        if (answer.id != currentAnswer.id) {
+            answer.checked = false;
         }
     };
 }
