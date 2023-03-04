@@ -1,7 +1,7 @@
 ﻿using Questioner.Repository.Classes.Entities;
 using System.Threading.Tasks;
 
-namespace Questioner.WebApi.UnitTests.Framework.Extensions
+namespace Questioner.WebApi.Test.Framework.Extensions
 {
     public static class ContextExtension
     {

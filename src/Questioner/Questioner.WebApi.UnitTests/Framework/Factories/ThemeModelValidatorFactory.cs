@@ -1,6 +1,6 @@
 ﻿using Questioner.WebApi.Validators;
 
-namespace Questioner.WebApi.UnitTests.Framework.Factories
+namespace Questioner.WebApi.Test.Framework.Factories
 {
     public static class ThemeModelValidatorFactory
     {

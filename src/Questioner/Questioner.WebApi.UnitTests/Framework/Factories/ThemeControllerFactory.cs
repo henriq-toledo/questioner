@@ -3,7 +3,7 @@ using Questioner.WebApi.Controllers;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
 
-namespace Questioner.WebApi.UnitTests.Framework.Factories
+namespace Questioner.WebApi.Test.Framework.Factories
 {
     public static class ThemeControllerFactory
     {

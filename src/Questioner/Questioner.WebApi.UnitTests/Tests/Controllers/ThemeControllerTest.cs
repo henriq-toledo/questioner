@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using Questioner.WebApi.UnitTests.Framework.Asserts;
-using Questioner.WebApi.UnitTests.Framework.Defaults;
-using Questioner.WebApi.UnitTests.Framework.Extensions;
-using Questioner.WebApi.UnitTests.Framework.Factories;
+using Questioner.WebApi.Test.Framework.Asserts;
+using Questioner.WebApi.Test.Framework.Defaults;
+using Questioner.WebApi.Test.Framework.Extensions;
+using Questioner.WebApi.Test.Framework.Factories;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Questioner.WebApi.UnitTests.Tests.Controllers
+namespace Questioner.WebApi.Test.Tests.Controllers
 {
     [TestFixture]
     public class ThemeControllerTest

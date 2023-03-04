@@ -2,7 +2,7 @@
 using Questioner.Repository.Classes.Entities;
 using System;
 
-namespace Questioner.WebApi.UnitTests.Framework.Factories
+namespace Questioner.WebApi.Test.Framework.Factories
 {
     public static class ContextFactory
     {

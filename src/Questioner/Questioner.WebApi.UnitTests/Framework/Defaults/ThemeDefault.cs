@@ -1,7 +1,7 @@
 ﻿using Questioner.Repository.Classes.Entities;
 using System.Collections.Generic;
 
-namespace Questioner.WebApi.UnitTests.Framework.Defaults
+namespace Questioner.WebApi.Test.Framework.Defaults
 {
     public static class ThemeDefault
     {

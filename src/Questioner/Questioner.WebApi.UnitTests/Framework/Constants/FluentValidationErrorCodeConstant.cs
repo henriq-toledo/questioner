@@ -1,4 +1,4 @@
-﻿namespace Questioner.WebApi.UnitTests.Framework.Constants
+﻿namespace Questioner.WebApi.Test.Framework.Constants
 {
     public static class FluentValidationErrorCodeConstant
     {
