@@ -11,7 +11,7 @@ using Questioner.WebApi.Validators;
 using System.Threading.Tasks;
 using ContextFactory = Questioner.WebApi.Test.Framework.Factories.ContextFactory;
 
-namespace Questioner.WebApi.Test.Tests.Validators
+namespace Questioner.WebApi.Test.Tests
 {
     [TestFixture]
     public class ThemeModelValidatorTest
@@ -37,7 +37,7 @@ namespace Questioner.WebApi.Test.Tests.Validators
         public async Task DuplicatedThemeNameShouldBeInvalid((Theme, ThemeModel) themePair)
         {
             // Arrange            
-            var expectedErrorMessage = $"The '{ThemeNameDefault.Default}' theme already exists.";            
+            var expectedErrorMessage = $"The '{ThemeNameDefault.Default}' theme already exists.";
             var context = ContextFactory.Create();
             var themeModelValidator = new ThemeModelValidator(context);
 

@@ -7,7 +7,7 @@ using Questioner.WebApi.Test.Framework.Factories;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Questioner.WebApi.Test.Tests.Controllers
+namespace Questioner.WebApi.Test.Tests
 {
     [TestFixture]
     public class ThemeControllerTest
@@ -18,7 +18,7 @@ namespace Questioner.WebApi.Test.Tests.Controllers
             // Arrange
             using var context = ContextFactory.Create();
             var themeController = ThemeControllerFactory.Create(context);
-            var expectedThemes = new [] { ThemeDefault.ThemeWithChildren };
+            var expectedThemes = new[] { ThemeDefault.ThemeWithChildren };
 
             await context.InsertTheme(expectedThemes);
 
@@ -62,7 +62,7 @@ namespace Questioner.WebApi.Test.Tests.Controllers
             await themeController.Delete(themeId);
 
             // Assert
-            Assert.False(context.Themes.Any(t => t.Id == themeId), 
+            Assert.False(context.Themes.Any(t => t.Id == themeId),
                 message: $"The theme id {themeId} should be deleted.");
         }
     }
