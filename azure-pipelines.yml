@@ -41,7 +41,7 @@ steps:
   displayName: Test
   inputs:
     command: test
-    projects: '**/*[Tt]ests/*.csproj'
+    projects: '**/*[Tt]est/*.csproj'
     arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect "XPlat Code Coverage"'
     publishTestResults: true
 
