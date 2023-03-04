@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.Web", "Questione
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi", "Questioner.WebApi\Questioner.WebApi.csproj", "{E11B18C9-5B61-44DB-9811-0E181D4A6032}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi.Test", "Questioner.WebApi.UnitTests\Questioner.WebApi.Test.csproj", "{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi.Test", "Questioner.WebApi.Test\Questioner.WebApi.Test.csproj", "{E7AE7DCF-4CDF-4F93-B3D6-D521E24ABC76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Web.Test", "Questioner.Web.Test\Questioner.Web.Test.csproj", "{D5F9BC94-A67A-440D-9CE8-4BAF4C929AB5}"
 EndProject
