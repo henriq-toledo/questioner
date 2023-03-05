@@ -68,6 +68,7 @@ namespace Questioner.Web.Test.Tests
             var actionResult = (ViewResult)await homeController.Index();
 
             // Assert
+            themeServiceMock.Verify(m => m.GetAllThemes(), Times.Once);
             Assert.IsInstanceOf<List<ThemeListViewModel>>(actionResult.Model);
             ThemeListViewModelAssert.AreEqual(expectedThemeListViewModels, (List<ThemeListViewModel>)actionResult.Model);
         }
