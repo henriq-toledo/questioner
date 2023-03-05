@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Interfaces;
+using Questioner.WebApi.Services;
 using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Repositories
 {
     public class ThemeRepository : IThemeRepository
     {
-        private readonly Context context;
+        private readonly IContext context;
 
-        public ThemeRepository(Context context)
+        public ThemeRepository(IContextService contextService)
         {
-            this.context = context;
+            this.context = contextService.GetContext();
         }
 
         public async Task Create(Theme theme)

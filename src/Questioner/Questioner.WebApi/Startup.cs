@@ -41,6 +41,7 @@ namespace Questioner.WebApi
             services.AddDbContext(Configuration);
 
             services.AddScoped<IThemeRepository, ThemeRepository>();
+            services.AddScoped<IContextService, ContextService>();
             services.AddScoped<IThemeService, ThemeService>();
         }
 

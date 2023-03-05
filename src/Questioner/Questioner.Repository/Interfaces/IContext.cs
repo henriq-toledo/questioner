@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Questioner.Repository.Classes.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Questioner.Repository.Interfaces
 {
@@ -10,5 +12,7 @@ namespace Questioner.Repository.Interfaces
         DbSet<Question> Questions { get; set; }
         DbSet<Answer> Answers { get; set; }
         DbSet<Link> Links { get; set; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
