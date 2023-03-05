@@ -33,5 +33,19 @@ namespace Questioner.Web.Test.Tests
             Assert.IsInstanceOf<NotFoundResult>(actionResult);
             themeServiceMock.Verify(m => m.GetThemeById(themeId), Times.Once);
         }
+
+        [Test]
+        public async Task Exam_WithInexistentThemeId_ReturnsNotFound()
+        {
+            // Arrange
+            const int themeId = 1;
+
+            // Act
+            var actionResult = await themeController.Exam(themeId);
+
+            // Assert
+            Assert.IsInstanceOf<NotFoundResult>(actionResult);
+            themeServiceMock.Verify(m => m.GetThemeById(themeId), Times.Once);
+        }
     }
 }
