@@ -37,6 +37,7 @@ namespace Questioner.Web.Test.Tests
 
             // Arrange
             Assert.IsInstanceOf<NotFoundResult>(actionResult);
+            themeServiceMock.Verify(m => m.ExistsThemeById(themeViewModel.Id), Times.Once);
         }
     }
 }
