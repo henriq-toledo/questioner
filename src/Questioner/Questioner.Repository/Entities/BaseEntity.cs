@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Questioner.Repository.Classes.Entities
+namespace Questioner.Repository.Entities
 {
     public abstract class BaseEntity
     {

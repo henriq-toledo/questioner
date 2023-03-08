@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Extensions;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
@@ -40,8 +39,7 @@ namespace Questioner.WebApi
 
             services.AddDbContext(Configuration);
 
-            services.AddScoped<IThemeRepository, ThemeRepository>();
-            services.AddScoped<IContextService, ContextService>();
+            services.AddScoped<IThemeRepository, ThemeRepository>();            
             services.AddScoped<IThemeService, ThemeService>();
         }
 
@@ -49,12 +47,14 @@ namespace Questioner.WebApi
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,
-            Context context,
+            IContextService contextService,
             ILogger<Startup> logger,
             IOptions<AppSettings> options)
         {
             logger.LogInformation($"Environment: '{env.EnvironmentName}'.");
             logger.LogInformation($"Database connector: '{options.Value.DatabaseConnector}'.");
+
+            var context = contextService.GetContext();
             logger.LogInformation($"Context database: '{context.Database.GetDbConnection().Database}'.");
 
             if (env.IsDevelopment())

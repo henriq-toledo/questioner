@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Entities;
 using System;
 using System.Linq;
 using System.Net.Http;

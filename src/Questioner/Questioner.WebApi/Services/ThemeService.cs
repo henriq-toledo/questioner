@@ -1,4 +1,4 @@
-﻿using Questioner.Repository.Classes.Entities;
+﻿using Questioner.Repository.Entities;
 using Questioner.WebApi.Repositories;
 using System.Threading.Tasks;
 

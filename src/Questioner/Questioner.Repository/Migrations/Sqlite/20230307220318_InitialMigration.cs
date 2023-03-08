@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Questioner.Repository.Migrations
+namespace Questioner.Repository.Migrations.Sqlite
 {
     public partial class InitialMigration : Migration
     {
@@ -13,6 +14,7 @@ namespace Questioner.Repository.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    PassRate = table.Column<byte>(type: "INTEGER", nullable: false, defaultValue: (byte)80),
                     RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>

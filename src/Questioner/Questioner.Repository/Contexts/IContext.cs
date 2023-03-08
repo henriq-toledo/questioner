@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Questioner.Repository.Interfaces
+namespace Questioner.Repository.Contexts
 {
     public interface IContext
     {

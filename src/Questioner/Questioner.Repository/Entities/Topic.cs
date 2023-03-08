@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Questioner.Repository.Classes.Entities
+namespace Questioner.Repository.Entities
 {
     [Table("Topics")]
     public class Topic : BaseEntity

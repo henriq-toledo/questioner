@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Contexts;
 using Questioner.WebApi.Controllers;
 using Questioner.WebApi.Services;
 using Questioner.WebApi.Test.Framework.Asserts;
@@ -23,7 +23,7 @@ namespace Questioner.WebApi.Test.Tests
         [SetUp]
         public void SetUp()
         {
-            context = Framework.Factories.ContextFactory.Create();
+            context = ContextFactory.Create();
             contextServiceMock = new Mock<IContextService>();
             contextServiceMock.Setup(m => m.GetContext()).Returns(context);
 

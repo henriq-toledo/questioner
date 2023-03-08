@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Entities;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.Services;
 using System;

@@ -1,4 +1,4 @@
-﻿using Questioner.Repository.Classes.Entities;
+﻿using Questioner.Repository.Entities;
 using System.Linq;
 using static NUnit.Framework.Assert;
 

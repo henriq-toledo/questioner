@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Questioner.Repository.Interfaces;
+using Questioner.Repository.Entities;
 
-namespace Questioner.Repository.Classes.Entities
+namespace Questioner.Repository.Contexts
 {
-    public class Context : DbContext, IContext
+    public abstract class Context : DbContext, IContext
     {
         public virtual DbSet<Theme> Themes { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
@@ -11,7 +11,7 @@ namespace Questioner.Repository.Classes.Entities
         public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<Link> Links { get; set; }
 
-        public Context(DbContextOptions<Context> options)
+        public Context(DbContextOptions options)
             : base(options)
         {
         }

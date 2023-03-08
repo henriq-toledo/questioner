@@ -1,4 +1,4 @@
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Entities;
 
 namespace Questioner.WebApi.Defaults
 {

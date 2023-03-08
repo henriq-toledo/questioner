@@ -1,24 +1,22 @@
 ﻿using FluentValidation;
-using Questioner.Repository.Classes.Entities;
 using Questioner.WebApi.Constants;
 using Questioner.WebApi.Models;
+using Questioner.WebApi.Services;
 using System.Linq;
 
 namespace Questioner.WebApi.Validators
 {
     public class ThemeModelValidator : AbstractValidator<ThemeModel>
     {
-        private readonly Context context;
-
-        public ThemeModelValidator(Context context)
+        public ThemeModelValidator(IContextService contextService)
         {
-            this.context = context;
+            var context = contextService.GetContext();
 
             RuleFor(theme => theme.Name)
                 .NotEmpty()
                 .Custom((themeName, customContext) => 
                 {
-                    if (this.context.Themes.Any(t => t.Name == themeName))
+                    if (context.Themes.Any(t => t.Name == themeName))
                     {
                         customContext.AddFailure($"The '{themeName}' theme already exists.");
                     }

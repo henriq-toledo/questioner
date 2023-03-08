@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Entities;
 using Questioner.Web.Controllers;
 using Questioner.Web.Models;
 using Questioner.Web.Services;

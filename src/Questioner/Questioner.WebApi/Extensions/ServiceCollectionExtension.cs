@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Contexts;
+using Questioner.WebApi.Services;
 using System;
 
 namespace Questioner.WebApi.Extensions
@@ -16,17 +17,19 @@ namespace Questioner.WebApi.Extensions
             {
                 case "sqlite":
 
-                    serviceCollection.AddDbContext<Context>
-                        (options => options.UseSqlite(configuration.GetConnectionString("ConnectionStringForSqlite")))
-                        .AddScoped<Context>();
+                    serviceCollection.AddDbContext<ContextForSqlite>
+                        (options => options.UseSqlite(configuration.GetConnectionString("ConnectionStringForSqlite")));
+
+                    serviceCollection.AddScoped<IContextService, ContextForSqliteService>();
 
                     break;
 
                 case "sqlserver":
 
-                    serviceCollection.AddDbContext<Context>
-                    (options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")))
-                    .AddScoped<Context>();
+                    serviceCollection.AddDbContext<ContextForSqlServer>
+                    (options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+
+                    serviceCollection.AddScoped<IContextService, ContextForSqlServerService>();
 
                     break;
 

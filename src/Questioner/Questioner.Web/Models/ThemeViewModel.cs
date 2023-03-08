@@ -1,4 +1,4 @@
-using Questioner.Repository.Classes.Entities;
+using Questioner.Repository.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;

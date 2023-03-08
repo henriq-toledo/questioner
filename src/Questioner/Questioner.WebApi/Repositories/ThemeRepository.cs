@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Questioner.Repository.Classes.Entities;
-using Questioner.Repository.Interfaces;
+using Questioner.Repository.Contexts;
+using Questioner.Repository.Entities;
 using Questioner.WebApi.Services;
 using System.Threading.Tasks;
 

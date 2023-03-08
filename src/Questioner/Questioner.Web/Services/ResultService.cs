@@ -1,4 +1,4 @@
-﻿using Questioner.Repository.Classes.Entities;
+﻿using Questioner.Repository.Entities;
 using Questioner.Web.Enums;
 using Questioner.Web.Models;
 using System.Collections.Generic;
