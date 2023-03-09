@@ -4,6 +4,6 @@ namespace Questioner.WebApi.Services
 {
     public interface IContextService
     {
-        Context GetContext();
+        IContext GetContext();
     }
 }

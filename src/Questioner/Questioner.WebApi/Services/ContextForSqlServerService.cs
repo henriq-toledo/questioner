@@ -2,15 +2,10 @@
 
 namespace Questioner.WebApi.Services
 {
-    public class ContextForSqlServerService : IContextService
+    public class ContextForSqlServerService : ContextService
     {
-        private readonly Context context;
-
-        public ContextForSqlServerService(ContextForSqlServer context)
+        public ContextForSqlServerService(ContextForSqlServer context) : base(context)
         {
-            this.context = context;
         }
-
-        public Context GetContext() => context;
     }
 }

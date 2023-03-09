@@ -2,15 +2,10 @@
 
 namespace Questioner.WebApi.Services
 {
-    public class ContextForSqliteService : IContextService
+    public class ContextForSqliteService : ContextService
     {
-        private readonly Context context;
-
-        public ContextForSqliteService(ContextForSqlite context)
+        public ContextForSqliteService(ContextForSqlite context) : base(context)
         {
-            this.context = context;
         }
-
-        public Context GetContext() => context;
     }
 }
