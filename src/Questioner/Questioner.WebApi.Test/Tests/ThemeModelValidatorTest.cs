@@ -37,7 +37,7 @@ namespace Questioner.WebApi.Test.Tests
         {
             // Arrange            
             var expectedErrorMessage = $"The '{ThemeNameDefault.Default}' theme already exists.";
-            var context = ContextFactory.Create();            
+            using var context = ContextFactory.CreateContextForSqlServer();            
             var themeModelValidator = ThemeModelValidatorFactory.Create(context);
 
             await context.InsertTheme(themePair.Item1);

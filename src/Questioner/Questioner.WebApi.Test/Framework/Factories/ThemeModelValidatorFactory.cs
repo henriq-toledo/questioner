@@ -9,7 +9,7 @@ namespace Questioner.WebApi.Test.Framework.Factories
     {
         public static ThemeModelValidator Create()
         {            
-            var context = ContextFactory.Create();
+            var context = ContextFactory.CreateContextForSqlServer();
             var contextServiceMock = new Mock<IContextService>();
             contextServiceMock.Setup(m => m.GetContext()).Returns(context);
 

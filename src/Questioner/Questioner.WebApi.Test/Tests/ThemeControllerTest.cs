@@ -23,7 +23,7 @@ namespace Questioner.WebApi.Test.Tests
         [SetUp]
         public void SetUp()
         {
-            context = ContextFactory.Create();
+            context = ContextFactory.CreateContextForSqlServer();
             contextServiceMock = new Mock<IContextService>();
             contextServiceMock.Setup(m => m.GetContext()).Returns(context);
 
