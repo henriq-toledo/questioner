@@ -11,7 +11,7 @@ namespace Questioner.Repository.Contexts
         public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<Link> Links { get; set; }
 
-        public Context(DbContextOptions options)
+        protected Context(DbContextOptions options)
             : base(options)
         {
         }

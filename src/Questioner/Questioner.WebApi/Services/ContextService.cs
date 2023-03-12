@@ -6,7 +6,7 @@ namespace Questioner.WebApi.Services
     {
         private readonly IContext context;
 
-        public ContextService(IContext context)
+        protected ContextService(IContext context)
         {
             this.context = context;
         }
