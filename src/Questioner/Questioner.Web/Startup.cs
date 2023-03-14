@@ -29,6 +29,7 @@ namespace Questioner.Web
             services.AddScoped<IThemeService, ThemeService>();
             services.AddScoped<IResultService, ResultService>();
             services.AddScoped<IThemeRepository, ThemeRepository>();
+            services.AddScoped<IHttpClientService, HttpClientService>();
             services.AddScoped<IReportExportService, ReportExportService>();
         }
 

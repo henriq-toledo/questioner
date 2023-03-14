@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.Repository.Entities;
+using Questioner.Web.Services;
 using System;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Questioner.Web.Repositories
@@ -13,12 +13,16 @@ namespace Questioner.Web.Repositories
     {
         private readonly AppSettings appSettings;
         private readonly ILogger logger;
+        private readonly IHttpClientService httpClientService;
         private Theme[] themes;
 
-        public ThemeRepository(IOptions<AppSettings> options, ILogger<ThemeRepository> logger)
+        public ThemeRepository(IOptions<AppSettings> options, ILogger<ThemeRepository> logger, IHttpClientService httpClientService)
         {
             appSettings = options.Value;
+            
             this.logger = logger;
+            this.httpClientService = httpClientService;
+
             themes = new Theme[] { };
         }
 
@@ -28,13 +32,10 @@ namespace Questioner.Web.Repositories
         public async Task<Theme[]> GetAllThemes()
         {
             try
-            {
-                using (var client = new HttpClient())
-                {
-                    var responseMessage = await client.GetAsync(appSettings.QuestionerWebApiUrl + "theme?includeChildren=true");
-                    var content = await responseMessage.Content.ReadAsStringAsync();
-                    themes = JsonConvert.DeserializeObject<Theme[]>(content);
-                }
+            {                
+                var responseMessage = await httpClientService.GetAsync(appSettings.QuestionerWebApiUrl + "theme?includeChildren=true");
+                var content = await responseMessage.Content.ReadAsStringAsync();
+                themes = JsonConvert.DeserializeObject<Theme[]>(content);
             }
             catch (Exception ex)
             {
