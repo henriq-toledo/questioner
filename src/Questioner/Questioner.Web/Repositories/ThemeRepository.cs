@@ -11,10 +11,10 @@ namespace Questioner.Web.Repositories
 {
     public class ThemeRepository : IThemeRepository
     {
-        private readonly AppSettings appSettings;
-        private readonly ILogger logger;
-        private readonly IHttpClientService httpClientService;
         private Theme[] themes;
+        private readonly ILogger logger;
+        private readonly AppSettings appSettings;
+        private readonly IHttpClientService httpClientService;
 
         public ThemeRepository(IOptions<AppSettings> options, ILogger<ThemeRepository> logger, IHttpClientService httpClientService)
         {
@@ -35,6 +35,7 @@ namespace Questioner.Web.Repositories
             {                
                 var responseMessage = await httpClientService.GetAsync(appSettings.QuestionerWebApiUrl + "theme?includeChildren=true");
                 var content = await responseMessage.Content.ReadAsStringAsync();
+
                 themes = JsonConvert.DeserializeObject<Theme[]>(content);
             }
             catch (Exception ex)
