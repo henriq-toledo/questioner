@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Questioner.Repository.Entities;
 using Questioner.Web.Repositories;
 using Questioner.Web.Services;
 using Questioner.Web.Test.Framework.Asserts;
@@ -17,6 +18,7 @@ namespace Questioner.Web.Test.Tests
     {
         private AppSettings appSettings;
         private ThemeRepository themeRepository;
+        private HttpResponseMessage httpResponseMessage;
         private Mock<IOptions<AppSettings>> optionsMock;
         private Mock<ILogger<ThemeRepository>> loggerMock;
         private Mock<IHttpClientService> httpClientServiceMock;
@@ -24,7 +26,10 @@ namespace Questioner.Web.Test.Tests
         [SetUp]
         public void SetUp()
         {
-            appSettings = new AppSettings();
+            const string questionerWebApiUrl = "https://questioner.com/";
+            const string questionerWebApiThemeUrl = "https://questioner.com/theme?includeChildren=true";
+
+            appSettings = new AppSettings { QuestionerWebApiUrl = questionerWebApiUrl };
 
             optionsMock = new Mock<IOptions<AppSettings>>();
             loggerMock = new Mock<ILogger<ThemeRepository>>();
@@ -34,29 +39,78 @@ namespace Questioner.Web.Test.Tests
             optionsMock.Setup(m => m.Value).Returns(appSettings);
 
             themeRepository = new ThemeRepository(optionsMock.Object, loggerMock.Object, httpClientServiceMock.Object);
+
+            httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
+
+            httpClientServiceMock.Setup(m => m.GetAsync(questionerWebApiThemeUrl)).ReturnsAsync(httpResponseMessage);
         }
 
         [Test]
         public async Task GetAllThemes_WhenCalled_ReturnsAllThemes()
         {
             // Arrange
-            const string questionerWebApiUrl = "https://questioner.com/";
-            const string questionerWebApiThemeUrl = "https://questioner.com/theme?includeChildren=true";
 
             var expectedThemes = ThemeDefault.DefaultArray;
 
-            appSettings.QuestionerWebApiUrl = questionerWebApiUrl;
-
-            httpClientServiceMock.Setup(m => m.GetAsync(questionerWebApiThemeUrl)).ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new StringContent(JsonConvert.SerializeObject(expectedThemes))
-            });
+            httpResponseMessage.Content = new StringContent(JsonConvert.SerializeObject(expectedThemes));
 
             // Act
             var actualThemes = await themeRepository.GetAllThemes();
 
             // Assert
             ObjectAssert.AreCollectionsEqual(expectedThemes, actualThemes);
+        }
+
+        [Test]
+        public async Task ExistsThemeById_WhenExists_RetrunsTrue()
+        {
+            // Arrange
+            const int themeId = 1;
+
+            var expectedThemes = new Theme[] { new Theme { Id = themeId } };
+
+            httpResponseMessage.Content = new StringContent(JsonConvert.SerializeObject(expectedThemes));
+
+            // Act
+            var exists = await themeRepository.ExistsThemeById(themeId);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [Test]
+        public async Task ExistsThemeById_WhenNoExists_RetrunsFalse()
+        {
+            // Arrange
+            const int themeId = 1;            
+
+            var expectedThemes = new Theme[] { new Theme { } };
+
+            httpResponseMessage.Content = new StringContent(JsonConvert.SerializeObject(expectedThemes));
+
+            // Act
+            var exists = await themeRepository.ExistsThemeById(themeId);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [Test]
+        public async Task GetThemeById_WhenCalled_Retruns()
+        {
+            // Arrange
+            const int themeId = 1;
+
+            var expectedTheme = new Theme { Id = themeId };
+            var expectedThemes = new Theme[] { expectedTheme };
+
+            httpResponseMessage.Content = new StringContent(JsonConvert.SerializeObject(expectedThemes));
+
+            // Act
+            var actualTheme = await themeRepository.GetThemeById(themeId);
+
+            // Assert
+            ObjectAssert.AreEqual(expectedTheme, actualTheme);
         }
     }
 }
