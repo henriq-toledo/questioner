@@ -4,6 +4,8 @@ using NUnit.Framework;
 using Questioner.Web.Controllers;
 using Questioner.Web.Models;
 using Questioner.Web.Services;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Questioner.Web.Test.Tests
@@ -38,6 +40,40 @@ namespace Questioner.Web.Test.Tests
             // Arrange
             Assert.IsInstanceOf<NotFoundResult>(actionResult);
             themeServiceMock.Verify(m => m.ExistsThemeById(themeViewModel.Id), Times.Once);
+        }
+
+        [Test]
+        public void Export_WhenCalled_Exports()
+        {
+            // Arrange
+            const string expectedFileContent = "Test";
+            const string expectedFileDownloadName = "result.xlsx";
+            const string expectedContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+            var resultViewModel = new ResultViewModel();
+
+            using var memoryStream = new MemoryStream();
+            using var streamWriter = new StreamWriter(memoryStream);
+
+            streamWriter.Write(expectedFileContent);
+            streamWriter.Flush();
+
+            reportExportServiceMock.Setup(m => m.Export(resultViewModel)).Returns(memoryStream);
+
+            // Act
+            var actionResult = resultController.Export(resultViewModel);
+
+            // Assert
+            Assert.IsInstanceOf<FileContentResult>(actionResult);
+
+            var fileContentResult = actionResult as FileContentResult;
+
+            Assert.AreEqual(expectedFileDownloadName, fileContentResult.FileDownloadName);
+            Assert.AreEqual(expectedContentType, fileContentResult.ContentType);
+
+            var fileContent = Encoding.UTF8.GetString(fileContentResult.FileContents);
+            
+            Assert.AreEqual(expectedFileContent, fileContent);
         }
     }
 }
