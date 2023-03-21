@@ -28,6 +28,32 @@ namespace Questioner.Web.Test.Tests
         }
 
         [Test]
+        public async Task Details_WhenCalled_ReturnsDetails()
+        {
+            // Arrange
+            var themeViewModel = new ThemeViewModel { Id = 1 };
+            var resultViewModel = new ResultViewModel();
+
+            themeServiceMock.Setup(m => m.ExistsThemeById(themeViewModel.Id)).ReturnsAsync(true);
+
+            resultServiceMock.Setup(m => m.Process(themeViewModel)).ReturnsAsync(resultViewModel);
+
+            // Act
+            var actionResult = await resultController.Details(themeViewModel);
+
+            // Arrange
+            Assert.IsInstanceOf<ViewResult>(actionResult);
+
+            var viewResult = actionResult as ViewResult;
+
+            Assert.AreSame(resultViewModel, viewResult.Model);
+
+            themeServiceMock.Verify(m => m.ExistsThemeById(themeViewModel.Id), Times.Once);
+
+            resultServiceMock.Verify(m => m.Process(themeViewModel), Times.Once);
+        }
+
+        [Test]
         public async Task Details_WithInexistentThemeId_ReturnsNotFound()
         {
             // Arrange
