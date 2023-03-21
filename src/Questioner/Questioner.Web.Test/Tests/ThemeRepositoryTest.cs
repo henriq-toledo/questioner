@@ -8,6 +8,8 @@ using Questioner.Web.Repositories;
 using Questioner.Web.Services;
 using Questioner.Web.Test.Framework.Asserts;
 using Questioner.Web.Test.Framework.Defaults;
+using Questioner.Web.Test.Framework.Extensions;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -49,7 +51,6 @@ namespace Questioner.Web.Test.Tests
         public async Task GetAllThemes_WhenCalled_ReturnsAllThemes()
         {
             // Arrange
-
             var expectedThemes = ThemeDefault.DefaultArray;
 
             httpResponseMessage.Content = new StringContent(JsonConvert.SerializeObject(expectedThemes));
@@ -59,6 +60,27 @@ namespace Questioner.Web.Test.Tests
 
             // Assert
             ObjectAssert.AreCollectionsEqual(expectedThemes, actualThemes);
+        }
+
+
+
+        [Test]
+        public async Task GetAllThemes_WhenExceptionOccurs_ReturnsAllThemes()
+        {
+            // Arrange
+            var expectedThemes = ThemeDefault.DefaultArray;
+
+            themeRepository.SetThemes(expectedThemes);
+
+            httpClientServiceMock.Setup(m => m.GetAsync(It.IsAny<string>())).Throws(new Exception());
+
+            // Act
+            var actualThemes = await themeRepository.GetAllThemes();
+
+            // Assert
+            ObjectAssert.AreEqual(expectedThemes, actualThemes);
+
+            httpClientServiceMock.Verify(m => m.GetAsync(It.IsAny<string>()), Times.Once);
         }
 
         [Test]
@@ -79,7 +101,7 @@ namespace Questioner.Web.Test.Tests
         }
 
         [Test]
-        public async Task ExistsThemeById_WhenNoExists_RetrunsFalse()
+        public async Task ExistsThemeById_WhenNoExists_ReturnsFalse()
         {
             // Arrange
             const int themeId = 1;            
@@ -96,7 +118,7 @@ namespace Questioner.Web.Test.Tests
         }
 
         [Test]
-        public async Task GetThemeById_WhenCalled_Retruns()
+        public async Task GetThemeById_WhenCalled_Returns()
         {
             // Arrange
             const int themeId = 1;
