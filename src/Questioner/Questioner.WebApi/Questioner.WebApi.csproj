@@ -15,5 +15,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Questioner.WebApi.Test"/>
+  </ItemGroup>
 
 </Project>
