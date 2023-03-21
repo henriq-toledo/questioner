@@ -8,8 +8,6 @@ namespace Questioner.WebApi.Test.Tests
         [Test]
         public void NoYes_WhenCalled_Retuns()
         {
-            // Arrange
-
             // Act
             var noYes = AnswerDefault.NoYes;
 
