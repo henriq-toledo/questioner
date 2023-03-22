@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Questioner.Web.Models;
 using Questioner.Web.Services;
@@ -7,10 +8,12 @@ namespace Questioner.Web.Controllers
 {
     public class ThemeController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IThemeService themeService;
 
-        public ThemeController(IThemeService themeService)
+        public ThemeController(IThemeService themeService, IMapper mapper)
         {
+            this.mapper = mapper;
             this.themeService = themeService;
         }
 
@@ -23,7 +26,7 @@ namespace Questioner.Web.Controllers
                 return NotFound();
             }
 
-            return View(new ThemeDetailViewModel(theme));
+            return View(mapper.Map<ThemeDetailViewModel>(theme));
         }
 
         public async Task<ActionResult> Exam(int id)
@@ -35,7 +38,7 @@ namespace Questioner.Web.Controllers
                 return NotFound();
             }
 
-            return View(new ThemeViewModel(theme));
+            return View(mapper.Map<ThemeViewModel>(theme));
         }
     }
 }

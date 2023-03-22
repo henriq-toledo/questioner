@@ -1,4 +1,3 @@
-using Questioner.Repository.Entities;
 using System.ComponentModel;
 
 namespace Questioner.Web.Models
@@ -12,16 +11,5 @@ namespace Questioner.Web.Models
 
          [DisplayName("%")]
         public byte Percentage { get; set; }
-
-        public TopicDetailViewModel()
-        {            
-        }
-
-        public TopicDetailViewModel(Topic topic)
-        {
-            Name = topic.Name;
-            QuestionsQuantity = topic.Questions.Count;
-            Percentage = topic.Percentage;
-        }
     }
 }

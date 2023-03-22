@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Questioner.Web.Mappers;
 using Questioner.Web.Repositories;
 using Questioner.Web.Services;
 using System.Diagnostics.CodeAnalysis;
@@ -33,6 +35,8 @@ namespace Questioner.Web
             services.AddScoped<IThemeRepository, ThemeRepository>();
             services.AddScoped<IHttpClientService, HttpClientService>();
             services.AddScoped<IReportExportService, ReportExportService>();
+
+            services.AddAutoMapper(typeof(QuestionerMapper));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +71,7 @@ namespace Questioner.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });         
+            });
         }
     }
 }

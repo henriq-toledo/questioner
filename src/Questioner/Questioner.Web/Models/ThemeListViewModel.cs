@@ -1,24 +1,9 @@
-using Questioner.Repository.Entities;
 using System.ComponentModel;
-using System.Linq;
 
 namespace Questioner.Web.Models
 {
     public class ThemeListViewModel
     {
-        public ThemeListViewModel()
-        {            
-        }
-
-        public ThemeListViewModel(Theme theme)
-        {
-            this.Id = theme.Id;
-            this.Name = theme.Name;
-            this.PassRate = theme.PassRate;
-            this.TopicsQuantity = theme.Topics.Count;
-            this.QuestionsQuantity = theme.Topics.Sum(topic => topic.Questions.Count);
-        }
-
         public long Id { get; set; }
 
         public string Name { get; set; }

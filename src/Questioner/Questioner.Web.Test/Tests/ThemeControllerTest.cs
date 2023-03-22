@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using Questioner.Web.Controllers;
@@ -9,15 +10,18 @@ namespace Questioner.Web.Test.Tests
 {
     internal class ThemeControllerTest
     {
+        private Mock<IMapper> mapperMock;
         private ThemeController themeController;
         private Mock<IThemeService> themeServiceMock;
 
         [SetUp]
         public void SetUp()
         {
+            mapperMock = new Mock<IMapper>();
+
             themeServiceMock = new Mock<IThemeService>();
 
-            themeController = new ThemeController(themeServiceMock.Object);
+            themeController = new ThemeController(themeServiceMock.Object, mapperMock.Object);
         }
 
         [Test]

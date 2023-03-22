@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Questioner.Web.Models;
 using Questioner.Web.Services;
 using System.Diagnostics;
@@ -9,15 +10,17 @@ namespace Questioner.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IThemeService themeService;
 
-        public HomeController(IThemeService themeService)
+        public HomeController(IThemeService themeService, IMapper mapper)
         {
+            this.mapper = mapper;
             this.themeService = themeService;
         }
 
         public async Task<IActionResult> Index() 
-            => View((await themeService.GetAllThemes()).Select(theme => new ThemeListViewModel(theme)).ToList());
+            => View((await themeService.GetAllThemes()).Select(theme => mapper.Map<ThemeListViewModel>(theme)).ToList());
 
         public IActionResult Privacy() => View();
 

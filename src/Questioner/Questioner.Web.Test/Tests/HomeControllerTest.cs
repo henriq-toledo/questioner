@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using Questioner.Repository.Entities;
 using Questioner.Web.Controllers;
+using Questioner.Web.Mappers;
 using Questioner.Web.Models;
 using Questioner.Web.Services;
 using Questioner.Web.Test.Framework.Asserts;
@@ -13,6 +15,7 @@ namespace Questioner.Web.Test.Tests
 {
     internal class HomeControllerTest
     {
+        private IMapper mapper;
         private HomeController homeController;
         private Mock<IThemeService> themeServiceMock;
 
@@ -21,7 +24,9 @@ namespace Questioner.Web.Test.Tests
         {
             themeServiceMock = new Mock<IThemeService>();
 
-            homeController = new HomeController(themeServiceMock.Object);
+            mapper = new MapperConfiguration(cfg => cfg.AddProfile<QuestionerMapper>()).CreateMapper();
+
+            homeController = new HomeController(themeServiceMock.Object, mapper);
         }
 
         [Test]

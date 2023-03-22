@@ -1,4 +1,5 @@
-﻿using Questioner.Repository.Entities;
+﻿using AutoMapper;
+using Questioner.Repository.Entities;
 using Questioner.Web.Enums;
 using Questioner.Web.Models;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ namespace Questioner.Web.Services
 {
     public class ResultService : IResultService
     {
+        private readonly IMapper mapper;
         private readonly IThemeService themeService;
 
-        public ResultService(IThemeService themeService)
+        public ResultService(IThemeService themeService, IMapper mapper)
         {
+            this.mapper = mapper;
             this.themeService = themeService;
         }
 
@@ -77,7 +80,7 @@ namespace Questioner.Web.Services
 
             foreach (var topic in topics)
             {
-                var topicResult = new TopicResultViewModel(topic);
+                var topicResult = mapper.Map<TopicResultViewModel>(topic);
                 var totalQuestionsPerTopic = questionsResult.Count(q => q.TopicId == topic.Id);
 
                 if (totalQuestionsPerTopic > 0)
