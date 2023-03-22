@@ -11,9 +11,11 @@ using Newtonsoft.Json;
 using Questioner.WebApi.Extensions;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Questioner.WebApi
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)

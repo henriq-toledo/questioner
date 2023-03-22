@@ -7,9 +7,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Questioner.Web.Repositories;
 using Questioner.Web.Services;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Questioner.Web
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)
