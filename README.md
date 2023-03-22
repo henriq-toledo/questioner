@@ -1,9 +1,7 @@
 # Questioner
 Questioner is a web application that test using questions and answers about a theme to help studying. Developed to be responsive to run in the PC web browser or mobile web browser.
 
-## Badge Status
-
-[![.NET](https://github.com/henriq-toledo/questioner/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/henriq-toledo/questioner/actions/workflows/dotnet.yml)
+## Status Badge
 
 [![Build Status](https://dev.azure.com/htapps/GitHub/_apis/build/status/henriq-toledo.questioner?branchName=master)](https://dev.azure.com/htapps/GitHub/_build/latest?definitionId=1&branchName=master)
 
