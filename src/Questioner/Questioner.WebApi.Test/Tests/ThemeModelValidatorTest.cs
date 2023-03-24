@@ -7,6 +7,7 @@ using Questioner.WebApi.Test.Framework.Defaults;
 using Questioner.WebApi.Test.Framework.Extensions;
 using Questioner.WebApi.Test.Framework.Factories;
 using Questioner.WebApi.Test.TestCases;
+using System.Linq;
 using System.Threading.Tasks;
 using ContextFactory = Questioner.WebApi.Test.Framework.Factories.ContextFactory;
 
@@ -117,8 +118,8 @@ namespace Questioner.WebApi.Test.Tests
         [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.QuestionShouldHaveAtLeastTwoAnswersTestCase))]
         public async Task QuestionShouldHaveAtLeastTwoAnswers(ThemeModel themeModel)
         {
-            // Arrange            
-            var expectedErroMessage = $"The '{QuestionTextDefault.Default}' question must have at least 2 answers.";
+            // Arrange
+            var expectedErroMessage = $"The '{QuestionTextDefault.Default}' question must have zero or null, two or more answers. When zero or null, the default answers will be True and False.";
             var themeModelValidator = ThemeModelValidatorFactory.Create();
 
             // Act
@@ -126,6 +127,20 @@ namespace Questioner.WebApi.Test.Tests
 
             // Assert
             result.ShouldHaveAnyValidationError().WithErrorMessage(expectedErroMessage);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(ThemeModelValidatorTestCase), nameof(ThemeModelValidatorTestCase.QuestionWithNullOrEmptyAnswersShouldBeValidTestCase))]
+        public async Task QuestionWithNullOrEmptyAnswersShouldBeValid(ThemeModel themeModel)
+        {
+            // Arrange
+            var themeModelValidator = ThemeModelValidatorFactory.Create();
+
+            // Act
+            var result = await themeModelValidator.TestValidateAsync(themeModel);
+
+            // Assert
+            Assert.IsFalse(result.Errors.Any(e => e.ErrorMessage.EndsWith("question must have zero or null, two or more answers. When zero or null, the default answers will be True and False.")));
         }
 
         [Test]
