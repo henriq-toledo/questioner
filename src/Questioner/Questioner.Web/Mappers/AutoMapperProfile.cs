@@ -5,30 +5,30 @@ using System.Linq;
 
 namespace Questioner.Web.Mappers
 {
-    public class QuestionerMapper : Profile
+    public class AutoMapperProfile : Profile
     {
-        public QuestionerMapper()
+        public AutoMapperProfile()
         {
             CreateMap<Answer, AnswerViewModel>();
 
             CreateMap<Question, QuestionViewModel>()
-                .ForMember(m => m.Answers, opt => opt.MapFrom(src => src.Answers))
-                .ForMember(m => m.HowManyChoices, opt => opt.MapFrom(src => (byte)src.Answers.Count(src => src.IsCorrect)));
+                .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
+                .ForMember(dest => dest.HowManyChoices, opt => opt.MapFrom(src => (byte)src.Answers.Count(src => src.IsCorrect)));
 
             CreateMap<Topic, TopicResultViewModel>();
 
             CreateMap<Topic, TopicDetailViewModel>()
-                .ForMember(m => m.QuestionsQuantity, opt => opt.MapFrom(src => src.Questions.Count));
+                .ForMember(dest => dest.QuestionsQuantity, opt => opt.MapFrom(src => src.Questions.Count));
 
             CreateMap<Theme, ThemeViewModel>()
-                .ForMember(m => m.Questions, opt => opt.MapFrom(src => src.Topics.SelectMany(topic => topic.Questions)));
+                .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Topics.SelectMany(topic => topic.Questions)));
 
             CreateMap<Theme, ThemeDetailViewModel>()
-                .ForMember(m => m.Topics, opt => opt.MapFrom(src => src.Topics));
+                .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
 
             CreateMap<Theme, ThemeListViewModel>()
-                .ForMember(m => m.TopicsQuantity, opt => opt.MapFrom(src => src.Topics.Count))
-                .ForMember(m => m.QuestionsQuantity, opt => opt.MapFrom(src => src.Topics.Sum(topic => topic.Questions.Count)));
+                .ForMember(dest => dest.TopicsQuantity, opt => opt.MapFrom(src => src.Topics.Count))
+                .ForMember(dest => dest.QuestionsQuantity, opt => opt.MapFrom(src => src.Topics.Sum(topic => topic.Questions.Count)));
         }
     }
 }
