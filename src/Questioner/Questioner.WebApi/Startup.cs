@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.WebApi.Extensions;
+using Questioner.WebApi.Mapper;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
 using System.Diagnostics.CodeAnalysis;
@@ -43,6 +44,8 @@ namespace Questioner.WebApi
 
             services.AddScoped<IThemeRepository, ThemeRepository>();            
             services.AddScoped<IThemeService, ThemeService>();
+
+            services.AddAutoMapper(typeof(AutoMapperProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,13 +3,13 @@ using Questioner.WebApi.Defaults;
 
 namespace Questioner.WebApi.Test.Tests
 {
-    internal class AnswerDefaultTest
+    internal class AnswerModelDefaultTest
     {
         [Test]
         public void NoYes_WhenCalled_Retuns()
         {
             // Act
-            var noYes = AnswerDefault.NoYes;
+            var noYes = AnswerModelDefault.NoYes;
 
             // Assert
             Assert.That(noYes.Length, Is.EqualTo(2));

@@ -1,4 +1,3 @@
-using Questioner.Repository.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Questioner.WebApi.Models
@@ -10,14 +9,5 @@ namespace Questioner.WebApi.Models
         public string AnswerText { get; set; }
 
         public bool IsCorrect { get; set; }
-
-        internal Answer ToEntity()
-        {
-            return new Answer()
-            {
-                AnswerText = AnswerText,
-                IsCorrect = IsCorrect
-            };
-        }
     }
 }

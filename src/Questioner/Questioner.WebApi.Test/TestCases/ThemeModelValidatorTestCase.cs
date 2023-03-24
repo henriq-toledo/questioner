@@ -8,9 +8,13 @@ namespace Questioner.WebApi.Test.TestCases
     {
         public static ThemeModel[] QuestionShouldHaveAtLeastTwoAnswersTestCase => new[]
         {
-            ThemeModelDefault.ThemeWithQuestionWithNullAnswers,
-            ThemeModelDefault.ThemeWithQuestionWithEmptyAnswers,
             ThemeModelDefault.ThemeWithQuestionWithOnlyOneAnswer
+        };
+
+        public static ThemeModel[] QuestionWithNullOrEmptyAnswersShouldBeValidTestCase => new[]
+        {
+            ThemeModelDefault.ThemeWithQuestionWithNullAnswers,
+            ThemeModelDefault.ThemeWithQuestionWithEmptyAnswers
         };
 
         public static ThemeModel[] TopicWithoutQuestionsShouldBeInvalidTestCase => new[]

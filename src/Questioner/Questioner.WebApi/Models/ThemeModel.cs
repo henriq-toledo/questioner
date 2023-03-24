@@ -1,7 +1,5 @@
-using Questioner.Repository.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Questioner.WebApi.Models
 {
@@ -15,15 +13,5 @@ namespace Questioner.WebApi.Models
         public byte PassRate { get; set; }
 
         public virtual List<TopicModel> Topics {get;set;}
-
-        internal Theme ToEntity()
-        {
-            return new Theme()
-            {
-                Name = Name,
-                PassRate = PassRate,
-                Topics = Topics.Select(topic => topic.ToEntity()).ToList()
-            };
-        }
     }
 }

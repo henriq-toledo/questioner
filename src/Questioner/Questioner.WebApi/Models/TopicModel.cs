@@ -1,7 +1,5 @@
-using Questioner.Repository.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Questioner.WebApi.Models
 {
@@ -15,15 +13,5 @@ namespace Questioner.WebApi.Models
         public byte Percentage { get; set; }
 
         public virtual List<QuestionModel> Questions { get; set; }
-
-        internal Topic ToEntity()
-        {
-            return new Topic()
-            {
-                Name = Name,
-                Percentage = Percentage,
-                Questions = Questions.Select(question => question.ToEntity()).ToList()
-            };
-        }
     }
 }

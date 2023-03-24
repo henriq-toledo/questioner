@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Models;
@@ -11,17 +12,19 @@ namespace Questioner.WebApi.Controllers
     [Route("[controller]")]
     public class ThemeController : ControllerBase
     {
+        private readonly IMapper mapper;
         private readonly IThemeService themeService;
 
-        public ThemeController(IThemeService themeService)
+        public ThemeController(IThemeService themeService, IMapper mapper)
         {
+            this.mapper = mapper;
             this.themeService = themeService;
         }
 
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] ThemeModel themeModel)
         {
-            var themeEntity = themeModel.ToEntity();
+            var themeEntity = mapper.Map<Theme>(themeModel);
 
             await themeService.Create(themeEntity);
 
