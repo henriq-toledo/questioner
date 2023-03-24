@@ -49,9 +49,9 @@ namespace Questioner.WebApi.Validators
                         .SelectMany(topic => topic.Questions)
                         .ToArray();
 
-                    foreach (var questionWithoutAnswers in questions.Where(q => q.Answers == null || q.Answers.Count < 2))
+                    foreach (var questionWithoutAnswers in questions.Where(q => q.Answers?.Count == 1))
                     {
-                        customContext.AddFailure($"The '{questionWithoutAnswers.QuestionText}' question must have at least 2 answers.");
+                        customContext.AddFailure($"The '{questionWithoutAnswers.QuestionText}' question must have zero or null, two or more answers. When zero or null, the default answers will be True and False.");
                     }
 
                     foreach (var questionWithoutCorrectAnswer in questions.Where(q => q.Answers?.Count >= 2 && !q.Answers.Any(a => a.IsCorrect)))
