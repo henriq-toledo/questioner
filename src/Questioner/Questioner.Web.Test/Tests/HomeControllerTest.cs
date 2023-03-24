@@ -24,7 +24,7 @@ namespace Questioner.Web.Test.Tests
         {
             themeServiceMock = new Mock<IThemeService>();
 
-            mapper = new MapperConfiguration(cfg => cfg.AddProfile<QuestionerMapper>()).CreateMapper();
+            mapper = new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>()).CreateMapper();
 
             homeController = new HomeController(themeServiceMock.Object, mapper);
         }

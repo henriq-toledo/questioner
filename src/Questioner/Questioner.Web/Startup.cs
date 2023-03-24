@@ -36,7 +36,7 @@ namespace Questioner.Web
             services.AddScoped<IHttpClientService, HttpClientService>();
             services.AddScoped<IReportExportService, ReportExportService>();
 
-            services.AddAutoMapper(typeof(QuestionerMapper));
+            services.AddAutoMapper(typeof(AutoMapperProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
