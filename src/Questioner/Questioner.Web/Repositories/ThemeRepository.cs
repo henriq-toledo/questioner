@@ -34,9 +34,17 @@ namespace Questioner.Web.Repositories
             try
             {                
                 var responseMessage = await httpClientService.GetAsync(appSettings.QuestionerWebApiUrl + "theme?includeChildren=true");
+
                 var content = await responseMessage.Content.ReadAsStringAsync();
 
-                themes = JsonConvert.DeserializeObject<Theme[]>(content);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    themes = JsonConvert.DeserializeObject<Theme[]>(content);
+                }
+                else
+                {                    
+                    logger.LogError($"Status Code: {responseMessage.StatusCode}, Reason Phrase: {responseMessage.ReasonPhrase}, Content: {content}");
+                }
             }
             catch (Exception ex)
             {
