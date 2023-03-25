@@ -1,4 +1,6 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +47,9 @@ namespace Questioner.WebApi
             services.AddScoped<IThemeRepository, ThemeRepository>();            
             services.AddScoped<IThemeService, ThemeService>();
 
-            services.AddAutoMapper(typeof(AutoMapperProfile));
+            services.AddAutoMapper(typeof(AutoMapperProfile));            
+            
+            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme).AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +74,8 @@ namespace Questioner.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

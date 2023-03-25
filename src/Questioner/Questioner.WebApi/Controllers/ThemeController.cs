@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Models;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ThemeController : ControllerBase
@@ -31,7 +33,7 @@ namespace Questioner.WebApi.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet]        
         public async Task<ActionResult<Theme[]>> Get(bool includeChildren = false)
             => await themeService.GetAll(includeChildren);
 
