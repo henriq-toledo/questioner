@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Questioner.Web.Mappers;
 using Questioner.Web.Repositories;
 using Questioner.Web.Services;
+using Questioner.Web.Settings;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Questioner.Web
@@ -28,12 +28,12 @@ namespace Questioner.Web
         {
             services.AddControllersWithViews();
 
-            services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
+            services.Configure<QuestionerWebApiSettings>(options => Configuration.GetSection(nameof(QuestionerWebApiSettings)).Bind(options));
 
             services.AddScoped<IThemeService, ThemeService>();
             services.AddScoped<IResultService, ResultService>();
             services.AddScoped<IThemeRepository, ThemeRepository>();
-            services.AddScoped<IHttpClientService, HttpClientService>();
+            services.AddScoped<IQuestionerWebApiService, QuestionerWebApiService>();
             services.AddScoped<IReportExportService, ReportExportService>();
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
@@ -44,10 +44,10 @@ namespace Questioner.Web
             IApplicationBuilder app, 
             IWebHostEnvironment env,
             ILogger<Startup> logger,
-            IOptions<AppSettings> options)
+            IOptions<QuestionerWebApiSettings> options)
         {
             logger.LogInformation($"Environment: '{env.EnvironmentName}'.");
-            logger.LogInformation($"Questioner API url: '{options.Value.QuestionerWebApiUrl}'.");
+            logger.LogInformation($"Questioner API url: '{options.Value.Url}'.");
 
             if (env.IsDevelopment())
             {

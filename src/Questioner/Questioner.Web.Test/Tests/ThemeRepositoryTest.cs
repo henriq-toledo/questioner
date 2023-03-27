@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -18,33 +17,23 @@ namespace Questioner.Web.Test.Tests
 {
     internal class ThemeRepositoryTest
     {
-        private AppSettings appSettings;
         private ThemeRepository themeRepository;
         private HttpResponseMessage httpResponseMessage;
-        private Mock<IOptions<AppSettings>> optionsMock;
         private Mock<ILogger<ThemeRepository>> loggerMock;
-        private Mock<IHttpClientService> httpClientServiceMock;
+        private Mock<IQuestionerWebApiService> questionerWebApiServiceMock;
 
         [SetUp]
         public void SetUp()
         {
-            const string questionerWebApiUrl = "https://questioner.com/";
-            const string questionerWebApiThemeUrl = "https://questioner.com/theme?includeChildren=true";
-
-            appSettings = new AppSettings { QuestionerWebApiUrl = questionerWebApiUrl };
-
-            optionsMock = new Mock<IOptions<AppSettings>>();
             loggerMock = new Mock<ILogger<ThemeRepository>>();
             loggerMock = new Mock<ILogger<ThemeRepository>>();
-            httpClientServiceMock = new Mock<IHttpClientService>();
+            questionerWebApiServiceMock = new Mock<IQuestionerWebApiService>();
 
-            optionsMock.Setup(m => m.Value).Returns(appSettings);
-
-            themeRepository = new ThemeRepository(optionsMock.Object, loggerMock.Object, httpClientServiceMock.Object);
+            themeRepository = new ThemeRepository(loggerMock.Object, questionerWebApiServiceMock.Object);
 
             httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
 
-            httpClientServiceMock.Setup(m => m.GetAsync(questionerWebApiThemeUrl)).ReturnsAsync(httpResponseMessage);
+            questionerWebApiServiceMock.Setup(m => m.GetAsync()).ReturnsAsync(httpResponseMessage);
         }
 
         [Test]
@@ -72,7 +61,7 @@ namespace Questioner.Web.Test.Tests
 
             themeRepository.SetThemes(expectedThemes);
 
-            httpClientServiceMock.Setup(m => m.GetAsync(It.IsAny<string>())).Throws(new Exception());
+            questionerWebApiServiceMock.Setup(m => m.GetAsync()).Throws(new Exception());
 
             // Act
             var actualThemes = await themeRepository.GetAllThemes();
@@ -80,7 +69,7 @@ namespace Questioner.Web.Test.Tests
             // Assert
             ObjectAssert.AreEqual(expectedThemes, actualThemes);
 
-            httpClientServiceMock.Verify(m => m.GetAsync(It.IsAny<string>()), Times.Once);
+            questionerWebApiServiceMock.Verify(m => m.GetAsync(), Times.Once);
         }
 
         [Test]

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Questioner.Web.Services
 {
-    public interface IHttpClientService
+    public interface IQuestionerWebApiService
     {
-        Task<HttpResponseMessage> GetAsync(string requestUri);
+        Task<HttpResponseMessage> GetAsync();
     }
 }

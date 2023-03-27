@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.Repository.Entities;
 using Questioner.Web.Services;
@@ -13,15 +12,12 @@ namespace Questioner.Web.Repositories
     {
         private Theme[] themes;
         private readonly ILogger logger;
-        private readonly AppSettings appSettings;
-        private readonly IHttpClientService httpClientService;
+        private readonly IQuestionerWebApiService questionerWebApiService;
 
-        public ThemeRepository(IOptions<AppSettings> options, ILogger<ThemeRepository> logger, IHttpClientService httpClientService)
-        {
-            appSettings = options.Value;
-            
+        public ThemeRepository(ILogger<ThemeRepository> logger, IQuestionerWebApiService questionerWebApiService)
+        {            
             this.logger = logger;
-            this.httpClientService = httpClientService;
+            this.questionerWebApiService = questionerWebApiService;
 
             themes = new Theme[] { };
         }
@@ -33,7 +29,7 @@ namespace Questioner.Web.Repositories
         {
             try
             {                
-                var responseMessage = await httpClientService.GetAsync(appSettings.QuestionerWebApiUrl + "theme?includeChildren=true");
+                var responseMessage = await questionerWebApiService.GetAsync();
 
                 var content = await responseMessage.Content.ReadAsStringAsync();
 
