@@ -1,6 +1,10 @@
 # Questioner
 Questioner is a web application that test using questions and answers about a theme to help studying. Developed to be responsive to run in the PC web browser or mobile web browser.
 
+You can access the Questioner application by the QR Code below or using this [link](https://questioner-web-app.azurewebsites.net/).
+
+<img src="images/questioner-web-app-qr-code.png" alt="Questioner QR Code" width="200">
+
 ## Status Badge
 
 [![Build Status](https://dev.azure.com/htapps/GitHub/_apis/build/status/henriq-toledo.questioner?branchName=master)](https://dev.azure.com/htapps/GitHub/_build/latest?definitionId=1&branchName=master)
