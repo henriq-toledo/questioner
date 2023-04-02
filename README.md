@@ -1,7 +1,7 @@
 # Questioner
 Questioner is a web application that test using questions and answers about a theme to help studying. Developed to be responsive to run in the PC web browser or mobile web browser.
 
-You can access the Questioner application by the QR Code below or using this <a target="_blank" href="https://questioner-web-app.azurewebsites.net/">link<a/>.
+You can access the Questioner application by the QR Code below or using this <a href="https://questioner-web-app.azurewebsites.net/" target="_blank">link<a/>.
 
 <img src="images/questioner-web-app-qr-code.png" alt="Questioner QR Code" width="200">
 
