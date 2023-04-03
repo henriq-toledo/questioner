@@ -1,4 +1,7 @@
 using Questioner.WebApi.Models;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Questioner.WebApi.Test")]
 
 namespace Questioner.WebApi.Defaults
 {
