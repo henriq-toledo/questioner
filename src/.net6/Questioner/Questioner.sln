@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Repository", "Qu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.Repository.Test", "Questioner.Repository.Test\Questioner.Repository.Test.csproj", "{F9772D22-25F0-437B-8340-8DCA4CEF7935}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApi", "Questioner.WebApi\Questioner.WebApi.csproj", "{1793F6F8-6DB6-4E6C-AB4E-207FA99B1369}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F9772D22-25F0-437B-8340-8DCA4CEF7935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9772D22-25F0-437B-8340-8DCA4CEF7935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9772D22-25F0-437B-8340-8DCA4CEF7935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1793F6F8-6DB6-4E6C-AB4E-207FA99B1369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1793F6F8-6DB6-4E6C-AB4E-207FA99B1369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1793F6F8-6DB6-4E6C-AB4E-207FA99B1369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1793F6F8-6DB6-4E6C-AB4E-207FA99B1369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
