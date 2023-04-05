@@ -1,0 +1,58 @@
+@using Questioner.WebApp.Models
+
+@model ThemeDetailViewModel
+
+@{
+    ViewData["Title"] = "Theme";
+}
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="row" style="padding-left: 3%;">
+    <h3 class="font-weight-bold">
+        @Html.DisplayFor(model => model.Name)
+    </h3>
+</div>
+
+<table class="table table-striped">
+    <caption style="caption-side: top;text-align: center;font-size: 20px;">@Html.DisplayNameFor(model => model.Topics)</caption>
+    <thead>
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => new TopicDetailViewModel().Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => new TopicDetailViewModel().Percentage)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => new TopicDetailViewModel().QuestionsQuantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var topic in Model.Topics)
+        {
+            <tr>
+                <td>
+                    @(Array.IndexOf(Model.Topics.ToArray(), topic) + 1)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => topic.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => topic.Percentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => topic.QuestionsQuantity)
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Start", "Exam", "Theme", new { id = Model.Id }, new { @class = "btn btn-primary" })
+</div>
