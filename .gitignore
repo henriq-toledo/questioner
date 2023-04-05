@@ -360,6 +360,8 @@ questioner.log.*
 
 # SQLite database
 *.db
+*.db-shm
+*.db-wal
 
 # dotnet config
 .config
