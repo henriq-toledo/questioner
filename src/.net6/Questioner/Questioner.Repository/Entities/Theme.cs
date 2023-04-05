@@ -10,7 +10,7 @@ namespace Questioner.Repository.Entities
         [Required]
         [StringLength(100)]
         [JsonProperty(Order = 2)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [JsonProperty(Order = 3)]
         public byte PassRate { get; set; }

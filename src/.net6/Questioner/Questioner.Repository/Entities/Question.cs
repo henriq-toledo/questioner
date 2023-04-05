@@ -10,7 +10,7 @@ namespace Questioner.Repository.Entities
         [Required]
         [StringLength(1500)]
         [JsonProperty(Order = 2)]
-        public string QuestionText { get; set; }
+        public string QuestionText { get; set; } = string.Empty;
 
         [JsonIgnore]
         public int TopicId { get; set; }

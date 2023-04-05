@@ -10,7 +10,7 @@ namespace Questioner.Repository.Entities
         [Required]
         [StringLength(1000)]
         [JsonProperty(Order = 2)]
-        public string AnswerText { get; set; }
+        public string AnswerText { get; set; } = string.Empty;
 
         [JsonProperty(Order = 3)]
         public bool IsCorrect { get; set; }
