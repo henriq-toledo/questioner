@@ -8,6 +8,8 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Logging.AddLog4Net();
+
         var startup = new Startup(builder.Configuration);
 
         startup.ConfigureServices(builder.Services);
