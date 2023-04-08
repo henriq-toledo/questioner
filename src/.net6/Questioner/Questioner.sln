@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.Repository.Test"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi", "Questioner.WebApi\Questioner.WebApi.csproj", "{1793F6F8-6DB6-4E6C-AB4E-207FA99B1369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApi.Test", "Questioner.WebApi.Test\Questioner.WebApi.Test.csproj", "{6EB88F58-D6FB-4B55-B9C5-6237A28B4A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApi.Test", "Questioner.WebApi.Test\Questioner.WebApi.Test.csproj", "{6EB88F58-D6FB-4B55-B9C5-6237A28B4A4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApp", "Questioner.WebApp\Questioner.WebApp.csproj", "{9004C38A-2C0F-4252-875E-9810B239FB95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questioner.WebApp", "Questioner.WebApp\Questioner.WebApp.csproj", "{9004C38A-2C0F-4252-875E-9810B239FB95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questioner.WebApp.Test", "Questioner.WebApp.Test\Questioner.WebApp.Test.csproj", "{E259CBD3-E938-4FE4-9ADC-33C602CBDB55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9004C38A-2C0F-4252-875E-9810B239FB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9004C38A-2C0F-4252-875E-9810B239FB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9004C38A-2C0F-4252-875E-9810B239FB95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E259CBD3-E938-4FE4-9ADC-33C602CBDB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E259CBD3-E938-4FE4-9ADC-33C602CBDB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E259CBD3-E938-4FE4-9ADC-33C602CBDB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E259CBD3-E938-4FE4-9ADC-33C602CBDB55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
