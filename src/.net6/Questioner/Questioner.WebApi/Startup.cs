@@ -58,11 +58,11 @@ namespace Questioner.WebApi
             ILogger<Startup> logger,
             IOptions<AppSettings> options)
         {
-            logger.LogInformation($"Environment: '{env.EnvironmentName}'.");
-            logger.LogInformation($"Database connector: '{options.Value.DatabaseConnector}'.");
+            logger.LogInformation("Environment: '{EnvironmentName}'.", env.EnvironmentName);
+            logger.LogInformation("Database connector: '{DatabaseConnector}'.", options.Value.DatabaseConnector);
 
             var context = contextService.GetContext();
-            logger.LogInformation($"Context database: '{context.Database.GetDbConnection().Database}'.");
+            logger.LogInformation("Context database: '{Database}'.", context.Database.GetDbConnection().Database);
 
             if (env.IsDevelopment())
             {

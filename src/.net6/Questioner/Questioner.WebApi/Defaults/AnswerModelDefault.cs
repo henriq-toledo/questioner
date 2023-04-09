@@ -7,17 +7,17 @@ namespace Questioner.WebApi.Defaults
 {
     internal static class AnswerModelDefault
     {
-        private static AnswerModel No => new AnswerModel()
+        private static AnswerModel No => new()
         {
             AnswerText = "False"
         };
 
-        private static AnswerModel Yes => new AnswerModel()
+        private static AnswerModel Yes => new()
         {
             AnswerText = "True",
             IsCorrect = true
         };
 
-        public static AnswerModel[] NoYes => new AnswerModel[] { No, Yes };
+        public static AnswerModel[] NoYes => new[] { No, Yes };
     }
 }

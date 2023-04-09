@@ -36,7 +36,7 @@ namespace Questioner.WebApi.Test.Tests
             // Assert
             var actualTheme = context.Themes.FirstOrDefault();
 
-            Assert.AreSame(theme, actualTheme);
+            Assert.That(actualTheme, Is.SameAs(theme));
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Questioner.WebApi.Test.Tests
             // Assert
             var exists = context.Themes.Any();
 
-            Assert.IsFalse(exists);
+            Assert.That(exists, Is.False);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Questioner.WebApi.Test.Tests
             var exists = await themeRepository.ExistsTheme(themeId);
 
             // Assert
-            Assert.IsTrue(exists);
+            Assert.That(exists, Is.True);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Questioner.WebApi.Test.Tests
             var exists = await themeRepository.ExistsTheme(themeId);
 
             // Assert
-            Assert.IsFalse(exists);
+            Assert.That(exists, Is.False);
         }
 
         [Test]

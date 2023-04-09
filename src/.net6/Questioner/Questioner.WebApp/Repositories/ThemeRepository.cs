@@ -1,10 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Questioner.Repository.Entities;
 using Questioner.WebApp.Services;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Repositories
 {
@@ -19,7 +15,7 @@ namespace Questioner.WebApp.Repositories
             this.logger = logger;
             this.questionerWebApiService = questionerWebApiService;
 
-            themes = new Theme[] { };
+            themes = Array.Empty<Theme>();
         }
 
         public async Task<bool> ExistsThemeById(int themeId) 
@@ -39,12 +35,12 @@ namespace Questioner.WebApp.Repositories
                 }
                 else
                 {                    
-                    logger.LogError($"Status Code: {responseMessage.StatusCode}, Reason Phrase: {responseMessage.ReasonPhrase}, Content: {content}");
+                    logger.LogError("Status Code: {StatusCode}, Reason Phrase: {ReasonPhrase}, Content: {Content}", responseMessage.StatusCode, responseMessage.ReasonPhrase, content);
                 }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.ToString());
+                logger.LogError(ex, message: "{Message}", ex.Message);
             }
 
             return themes;
