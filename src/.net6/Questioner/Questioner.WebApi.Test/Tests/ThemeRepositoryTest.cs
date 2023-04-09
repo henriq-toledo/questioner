@@ -1,13 +1,9 @@
 ﻿using Moq;
-using NUnit.Framework;
 using Questioner.Repository.Contexts;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
 using Questioner.WebApi.Test.Framework.Factories;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Test.Tests
 {
@@ -32,7 +28,7 @@ namespace Questioner.WebApi.Test.Tests
         public async Task Create_WhenCalled_Creates()
         {
             // Arrange
-            var theme = new Theme();
+            var theme = new Theme { Name = "Test theme" };
 
             // Act
             await themeRepository.Create(theme);
@@ -48,7 +44,7 @@ namespace Questioner.WebApi.Test.Tests
         {
             // Arrange
             const int themeId = 1;
-            var theme = new Theme { Id = themeId };
+            var theme = new Theme { Id = themeId, Name = "Test theme" };
 
             await context.Themes.AddAsync(theme);
             await context.SaveChangesAsync();
@@ -67,7 +63,7 @@ namespace Questioner.WebApi.Test.Tests
         {
             // Arrange
             const int themeId = 1;
-            var theme = new Theme { Id = themeId };
+            var theme = new Theme { Id = themeId, Name = "Test theme" };
 
             await context.Themes.AddAsync(theme);
             await context.SaveChangesAsync();
@@ -98,17 +94,23 @@ namespace Questioner.WebApi.Test.Tests
             // Arrange            
             var theme1 = new Theme
             {
+                Name = "Test theme 1",
                 Topics = new List<Topic>
                 {
                     new Topic
                     {
+                        Name = "Topic 1",
                         Questions = new List<Question>
                         {
                             new Question
                             {
+                                QuestionText = "Question 1",
                                 Answers = new List<Answer>
                                 {
-                                    new Answer()
+                                    new Answer
+                                    {
+                                        AnswerText = "Answer 1"
+                                    }
                                 }
                             }
                         }
@@ -117,17 +119,23 @@ namespace Questioner.WebApi.Test.Tests
             };
             var theme2 = new Theme
             {
+                Name = "Test theme 2",
                 Topics = new List<Topic>
                 {
                     new Topic
                     {
+                        Name = "Topic 2",
                         Questions = new List<Question>
                         {
                             new Question
                             {
+                                QuestionText = "Question 2",
                                 Answers = new List<Answer>
                                 {
-                                    new Answer()
+                                    new Answer
+                                    {
+                                        AnswerText = "Answer 2"
+                                    }
                                 }
                             }
                         }

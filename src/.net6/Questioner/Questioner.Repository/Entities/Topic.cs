@@ -10,7 +10,7 @@ namespace Questioner.Repository.Entities
         [Required]
         [StringLength(100)]
         [JsonProperty(Order = 2)]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
         [JsonIgnore]
         public int ThemeId { get; set; }
