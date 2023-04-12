@@ -20,6 +20,8 @@ namespace Questioner.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+
             services.AddControllersWithViews();
 
             services.Configure<QuestionerWebApiSettings>(options => Configuration.GetSection(nameof(QuestionerWebApiSettings)).Bind(options));

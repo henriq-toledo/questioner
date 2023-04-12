@@ -1,20 +1,19 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using Questioner.WebApp.Settings;
-using System;
-using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Services
 {
     public class QuestionerWebApiService : IQuestionerWebApiService
     {
+        private readonly IHttpClientFactory httpClientFactory;
         private readonly IOptions<QuestionerWebApiSettings> options;
 
-        public QuestionerWebApiService(IOptions<QuestionerWebApiSettings> options)
+        public QuestionerWebApiService(IOptions<QuestionerWebApiSettings> options, IHttpClientFactory httpClientFactory)
         {
             this.options = options;
+            this.httpClientFactory = httpClientFactory;
         }
 
         public async Task<HttpResponseMessage> GetAsync()
@@ -37,10 +36,8 @@ namespace Questioner.WebApp.Services
                 .AcquireTokenForClient(new string[] { scope })
                 .ExecuteAsync();
 
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri(options.Value.Url)
-            };            
+            var client = httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(options.Value.Url);       
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationResult.AccessToken);
 
             return client;
