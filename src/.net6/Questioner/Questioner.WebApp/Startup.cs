@@ -42,7 +42,6 @@ namespace Questioner.WebApp
             ILogger<Startup> logger,
             IOptions<QuestionerWebApiSettings> options)
         {
-            logger.LogInformation("Environment: '{EnvironmentName}'.", env.EnvironmentName);
             logger.LogInformation("Questioner API url: '{Url}'.", options.Value.Url);
 
             if (env.IsDevelopment())
