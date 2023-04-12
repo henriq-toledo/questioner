@@ -1,5 +1,4 @@
 ﻿using Questioner.Repository.Entities;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Services
 {

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Questioner.Repository.Entities;
 using Questioner.WebApp.Models;
-using System.Linq;
 
 namespace Questioner.WebApp.Mappers
 {

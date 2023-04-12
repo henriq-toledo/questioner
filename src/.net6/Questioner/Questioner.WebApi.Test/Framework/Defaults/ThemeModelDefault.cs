@@ -1,5 +1,4 @@
 ﻿using Questioner.WebApi.Models;
-using System.Collections.Generic;
 
 namespace Questioner.WebApi.Test.Framework.Defaults
 {

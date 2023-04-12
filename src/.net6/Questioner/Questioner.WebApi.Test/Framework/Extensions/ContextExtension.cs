@@ -1,6 +1,5 @@
 ﻿using Questioner.Repository.Contexts;
 using Questioner.Repository.Entities;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Test.Framework.Extensions
 {

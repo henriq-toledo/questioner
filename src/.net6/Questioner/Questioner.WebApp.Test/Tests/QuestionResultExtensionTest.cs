@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.WebApp.Enums;
-using System;
+﻿using Questioner.WebApp.Enums;
 
 namespace Questioner.WebApp.Test.Tests
 {

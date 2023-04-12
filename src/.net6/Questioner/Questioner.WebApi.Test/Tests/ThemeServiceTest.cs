@@ -1,9 +1,7 @@
 ﻿using Moq;
-using NUnit.Framework;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Test.Tests
 {

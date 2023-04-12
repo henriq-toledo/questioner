@@ -1,17 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using Questioner.Repository.Entities;
 using Questioner.WebApp.Repositories;
 using Questioner.WebApp.Services;
 using Questioner.WebApp.Test.Framework.Asserts;
 using Questioner.WebApp.Test.Framework.Defaults;
 using Questioner.WebApp.Test.Framework.Extensions;
-using System;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Test.Tests
 {

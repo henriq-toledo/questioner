@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using NUnit.Framework;
 using Questioner.WebApp.Controllers;
 using Questioner.WebApp.Models;
 using Questioner.WebApp.Services;
-using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Test.Tests
 {

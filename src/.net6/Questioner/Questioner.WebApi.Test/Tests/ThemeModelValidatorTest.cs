@@ -1,5 +1,4 @@
 ﻿using FluentValidation.TestHelper;
-using NUnit.Framework;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.Test.Framework.Constants;
@@ -7,8 +6,6 @@ using Questioner.WebApi.Test.Framework.Defaults;
 using Questioner.WebApi.Test.Framework.Extensions;
 using Questioner.WebApi.Test.Framework.Factories;
 using Questioner.WebApi.Test.TestCases;
-using System.Linq;
-using System.Threading.Tasks;
 using ContextFactory = Questioner.WebApi.Test.Framework.Factories.ContextFactory;
 
 namespace Questioner.WebApi.Test.Tests

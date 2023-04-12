@@ -1,5 +1,4 @@
 ﻿using Questioner.Repository.Entities;
-using System.Collections.Generic;
 
 namespace Questioner.WebApp.Test.Framework.Defaults
 {

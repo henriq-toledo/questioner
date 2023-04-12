@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.WebApp.Models;
-using System.Collections.Generic;
+﻿using Questioner.WebApp.Models;
 
 namespace Questioner.WebApp.Test.Framework.Asserts
 {

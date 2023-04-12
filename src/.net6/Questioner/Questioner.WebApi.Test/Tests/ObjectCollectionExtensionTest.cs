@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.WebApi.Extensions;
+﻿using Questioner.WebApi.Extensions;
 
 namespace Questioner.WebApi.Test.Tests
 {

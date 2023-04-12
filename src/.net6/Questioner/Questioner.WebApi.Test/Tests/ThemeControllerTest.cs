@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
-using NUnit.Framework;
 using Questioner.Repository.Contexts;
 using Questioner.WebApi.Controllers;
 using Questioner.WebApi.Services;
@@ -8,8 +7,6 @@ using Questioner.WebApi.Test.Framework.Asserts;
 using Questioner.WebApi.Test.Framework.Defaults;
 using Questioner.WebApi.Test.Framework.Extensions;
 using Questioner.WebApi.Test.Framework.Factories;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Test.Tests
 {

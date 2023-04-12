@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Questioner.Repository.Contexts;
-using System;
 
 namespace Questioner.WebApi.Test.Framework.Factories
 {

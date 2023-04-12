@@ -1,6 +1,4 @@
 ﻿using Questioner.Repository.Entities;
-using System.Collections.Generic;
-using System.Linq;
 using static NUnit.Framework.Assert;
 
 namespace Questioner.WebApi.Test.Framework.Asserts

@@ -2,9 +2,6 @@
 using Questioner.Repository.Entities;
 using Questioner.WebApp.Enums;
 using Questioner.WebApp.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Services
 {
@@ -38,7 +35,7 @@ namespace Questioner.WebApp.Services
             return model;
         }
 
-        private List<QuestionResultViewModel> ProcessQuestions(Topic[] topics, List<QuestionViewModel> answeredQuestions)
+        private static List<QuestionResultViewModel> ProcessQuestions(Topic[] topics, List<QuestionViewModel> answeredQuestions)
         {
             var questionsResult = new List<QuestionResultViewModel>();
 

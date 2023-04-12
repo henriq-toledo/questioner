@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using NUnit.Framework;
 using Questioner.Repository.Entities;
 using Questioner.WebApp.Controllers;
 using Questioner.WebApp.Mappers;
 using Questioner.WebApp.Models;
 using Questioner.WebApp.Services;
 using Questioner.WebApp.Test.Framework.Asserts;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Test.Tests
 {

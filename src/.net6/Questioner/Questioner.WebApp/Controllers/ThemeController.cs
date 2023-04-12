@@ -2,7 +2,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Questioner.WebApp.Models;
 using Questioner.WebApp.Services;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Controllers
 {

@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Questioner.WebApp.Models;
 using Questioner.WebApp.Services;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApp.Controllers
 {
