@@ -14,7 +14,7 @@ namespace Questioner.WebApp.Test.Tests
             var actualDescription = questionResult.GetDescription();
 
             // Assert
-            Assert.AreEqual(expectedDescription, actualDescription);
+            Assert.That(actualDescription, Is.EqualTo(expectedDescription));
         }
 
         [Test]

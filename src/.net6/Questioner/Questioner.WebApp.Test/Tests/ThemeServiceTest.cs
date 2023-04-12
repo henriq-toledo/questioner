@@ -60,7 +60,7 @@ namespace Questioner.WebApp.Test.Tests
             var actualThemes = await themeService.GetAllThemes();
 
             // Assert
-            Assert.AreSame(expectedThemes, actualThemes);
+            Assert.That(actualThemes, Is.SameAs(expectedThemes));
 
         }
 
@@ -78,7 +78,7 @@ namespace Questioner.WebApp.Test.Tests
             var actualTheme = await themeService.GetThemeById(themeId);
 
             // Assert
-            Assert.AreSame(expectedTheme, actualTheme);
+            Assert.That(actualTheme, Is.SameAs(expectedTheme));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Questioner.WebApp.Test.Framework.Asserts
     {
         public static void AreEqual(XLWorkbook expected, XLWorkbook actual)
         {
-            Assert.AreEqual(expected.Worksheets.Count, actual.Worksheets.Count,
+            Assert.That(actual.Worksheets, Has.Count.EqualTo(expected.Worksheets.Count),
                 message: $"The expected Worksheets number should be {expected.Worksheets.Count} and not {actual.Worksheets.Count}.");
 
             for (int worksheetIndex = 0; worksheetIndex < expected.Worksheets.Count; worksheetIndex++)
@@ -14,13 +14,13 @@ namespace Questioner.WebApp.Test.Framework.Asserts
                 var actualWorksheet = actual.Worksheets.ToArray()[worksheetIndex];
                 var expectedWorksheet = expected.Worksheets.ToArray()[worksheetIndex];
 
-                Assert.AreEqual(expectedWorksheet.Name, actualWorksheet.Name,
+                Assert.That(actualWorksheet.Name, Is.EqualTo(expectedWorksheet.Name),
                     message: $"Worksheet number {worksheetIndex}, the name should be {expectedWorksheet.Name} and not {actualWorksheet.Name}.");
 
-                Assert.AreEqual(expectedWorksheet.Rows().Count(), actualWorksheet.Rows().Count(),
+                Assert.That(actualWorksheet.Rows().Count(), Is.EqualTo(expectedWorksheet.Rows().Count()),
                     message: $"{expectedWorksheet.Name} worksheet rows should be {expectedWorksheet.Rows().Count()} and not {actualWorksheet.Rows().Count()}.");
 
-                Assert.AreEqual(expectedWorksheet.Columns().Count(), actualWorksheet.Columns().Count(),
+                Assert.That(actualWorksheet.Columns().Count(), Is.EqualTo(expectedWorksheet.Columns().Count()),
                     message: $"{expectedWorksheet.Name} worksheet columns should be {expectedWorksheet.Columns().Count()} and not {actualWorksheet.Columns().Count()}.");
 
                 for (int columnIndex = 0; columnIndex < expectedWorksheet.Columns().Count(); columnIndex++)
@@ -33,7 +33,7 @@ namespace Questioner.WebApp.Test.Framework.Asserts
                         var actualCell = actualColumn.Cell(rowIndex);
                         var expectedCell = expectedColumn.Cell(rowIndex);
 
-                        Assert.AreEqual(expectedCell.Value, actualCell.Value,
+                        Assert.That(actualCell.Value, Is.EqualTo(expectedCell.Value),
                             message: $"The in the {expectedCell.Address.ColumnNumber}{expectedCell.Address.ColumnNumber} column, {expectedCell.Address.RowNumber} row, the expected value should be {expectedCell.Value} and not {actualCell.Value}.");
                     }
                 }

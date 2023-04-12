@@ -92,7 +92,7 @@ namespace Questioner.WebApi.Test.Tests
             var actualThemes = await themeService.GetAll(includeChildren);
 
             // Assert
-            Assert.AreSame(themes, actualThemes);
+            Assert.That(actualThemes, Is.SameAs(themes));
 
             themeRepositoryMock.Verify(m => m.GetAll(includeChildren), Times.Once);
         }

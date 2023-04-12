@@ -60,7 +60,7 @@ namespace Questioner.WebApp.Test.Tests
 
             themeServiceMock.Verify(m => m.GetThemeById(themeId), Times.Once);
 
-            Assert.AreSame(themeDetailViewModel, actualThemeDetailViewModel);
+            Assert.That(actualThemeDetailViewModel, Is.SameAs(themeDetailViewModel));
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace Questioner.WebApp.Test.Tests
 
             themeServiceMock.Verify(m => m.GetThemeById(themeId), Times.Once);
 
-            Assert.AreSame(themeViewModel, actualThemeViewModel);
+            Assert.That(actualThemeViewModel, Is.SameAs(themeViewModel));
         }
     }
 }

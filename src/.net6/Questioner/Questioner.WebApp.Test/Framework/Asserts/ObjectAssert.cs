@@ -20,7 +20,7 @@ namespace Questioner.WebApp.Test.Framework.Asserts
                 }
                 else
                 {
-                    Assert.AreEqual(expectedPropertyValue, actualPropertyValue,
+                    Assert.That(actualPropertyValue, Is.EqualTo(expectedPropertyValue),
                         message: $"The {property.Name} property of the {type.Name} class should be {expectedPropertyValue} and not {actualPropertyValue}.");
                 }
             }
@@ -40,7 +40,7 @@ namespace Questioner.WebApp.Test.Framework.Asserts
                 var actualArray = actual.Cast<object>().ToArray();
                 var expectedArray = expected.Cast<object>().ToArray();
 
-                Assert.AreEqual(expectedArray.Length, actualArray.Length,
+                Assert.That(actualArray.Length, Is.EqualTo(expectedArray.Length),
                     message: $"The {expected.GetType().Name} collection length should be {expectedArray.Length} and not {actualArray.Length}.");
 
                 for (int i = 0; i < expectedArray.Length; i++)

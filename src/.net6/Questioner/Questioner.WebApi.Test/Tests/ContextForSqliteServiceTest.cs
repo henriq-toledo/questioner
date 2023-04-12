@@ -16,7 +16,7 @@ namespace Questioner.WebApi.Test.Tests
             var actualContext = contextForSqliteService.GetContext();
 
             // Assert
-            Assert.AreSame(context, actualContext);
+            Assert.That(actualContext, Is.SameAs(context));
         }
     }
 }

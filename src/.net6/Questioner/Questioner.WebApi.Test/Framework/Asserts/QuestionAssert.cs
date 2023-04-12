@@ -7,7 +7,7 @@ namespace Questioner.WebApi.Test.Framework.Asserts
     {
         public static void Assert(List<Question> expectedQuestions, List<Question> actualQuestions)
         {
-            AreEqual(expectedQuestions?.Count, actualQuestions?.Count, 
+            That(actualQuestions?.Count, Is.EqualTo(expectedQuestions?.Count), 
                 message: $"The expected number of questions should be {expectedQuestions?.Count} and not {actualQuestions?.Count}.");
 
             foreach (var expectedQuestion in expectedQuestions)

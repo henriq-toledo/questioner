@@ -39,11 +39,11 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = await resultController.Details(themeViewModel);
 
             // Arrange
-            Assert.IsInstanceOf<ViewResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<ViewResult>());
 
             var viewResult = actionResult as ViewResult;
 
-            Assert.AreSame(resultViewModel, viewResult.Model);
+            Assert.That(viewResult.Model, Is.SameAs(resultViewModel));
 
             themeServiceMock.Verify(m => m.ExistsThemeById(themeViewModel.Id), Times.Once);
 
@@ -87,16 +87,16 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = resultController.Export(resultViewModel);
 
             // Assert
-            Assert.IsInstanceOf<FileContentResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<FileContentResult>());
 
             var fileContentResult = actionResult as FileContentResult;
 
-            Assert.AreEqual(expectedFileDownloadName, fileContentResult.FileDownloadName);
-            Assert.AreEqual(expectedContentType, fileContentResult.ContentType);
+            Assert.That(fileContentResult.FileDownloadName, Is.EqualTo(expectedFileDownloadName));
+            Assert.That(fileContentResult.ContentType, Is.EqualTo(expectedContentType));
 
             var fileContent = Encoding.UTF8.GetString(fileContentResult.FileContents);
             
-            Assert.AreEqual(expectedFileContent, fileContent);
+            Assert.That(fileContent, Is.EqualTo(expectedFileContent));
         }
     }
 }
