@@ -4,7 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyName>Questioner.WebApp.Test</AssemblyName>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>

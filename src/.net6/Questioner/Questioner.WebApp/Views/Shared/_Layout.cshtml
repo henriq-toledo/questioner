@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -38,7 +39,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Questioner - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Questioner - @string.Format("v{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString()) - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
