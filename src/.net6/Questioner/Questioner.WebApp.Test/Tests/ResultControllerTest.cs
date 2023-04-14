@@ -61,7 +61,7 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = await resultController.Details(themeViewModel);
 
             // Arrange
-            Assert.IsInstanceOf<NotFoundResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<NotFoundResult>());
             themeServiceMock.Verify(m => m.ExistsThemeById(themeViewModel.Id), Times.Once);
         }
 
@@ -91,8 +91,11 @@ namespace Questioner.WebApp.Test.Tests
 
             var fileContentResult = actionResult as FileContentResult;
 
-            Assert.That(fileContentResult.FileDownloadName, Is.EqualTo(expectedFileDownloadName));
-            Assert.That(fileContentResult.ContentType, Is.EqualTo(expectedContentType));
+            Assert.Multiple(() =>
+            {
+                Assert.That(fileContentResult.FileDownloadName, Is.EqualTo(expectedFileDownloadName));
+                Assert.That(fileContentResult.ContentType, Is.EqualTo(expectedContentType));
+            });
 
             var fileContent = Encoding.UTF8.GetString(fileContentResult.FileContents);
             

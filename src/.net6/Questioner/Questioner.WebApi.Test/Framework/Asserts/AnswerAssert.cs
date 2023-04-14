@@ -14,7 +14,8 @@ namespace Questioner.WebApi.Test.Framework.Asserts
             {
                 var actualAnswer = actualAnswers.FirstOrDefault(a => a.AnswerText == expectedAnswer.AnswerText);
 
-                NotNull(actualAnswer, message: $"The answer '{expectedAnswer.AnswerText}' should exist.");
+                That(actualAnswer, Is.Not.Null, message: $"The answer '{expectedAnswer.AnswerText}' should exist.");
+
                 That(actualAnswer.IsCorrect, Is.EqualTo(expectedAnswer.IsCorrect),
                     message: $"The answer '{expectedAnswer.AnswerText}' should be {expectedAnswer.IsCorrect} and not {actualAnswer.IsCorrect}.");
             }

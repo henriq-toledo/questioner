@@ -34,7 +34,7 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = await themeController.Details(themeId);
 
             // Assert
-            Assert.IsInstanceOf<NotFoundResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<NotFoundResult>());
             themeServiceMock.Verify(m => m.GetThemeById(themeId), Times.Once);
         }
 
@@ -54,7 +54,7 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = await themeController.Details(themeId);
 
             // Assert
-            Assert.IsInstanceOf<ViewResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<ViewResult>());
 
             var actualThemeDetailViewModel = (actionResult as ViewResult).Model as ThemeDetailViewModel;
 
@@ -73,7 +73,7 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = await themeController.Exam(themeId);
 
             // Assert
-            Assert.IsInstanceOf<NotFoundResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<NotFoundResult>());
             themeServiceMock.Verify(m => m.GetThemeById(themeId), Times.Once);
         }
 
@@ -93,7 +93,7 @@ namespace Questioner.WebApp.Test.Tests
             var actionResult = await themeController.Exam(themeId);
 
             // Assert
-            Assert.IsInstanceOf<ViewResult>(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<ViewResult>());
 
             var actualThemeViewModel = (actionResult as ViewResult).Model as ThemeViewModel;
 

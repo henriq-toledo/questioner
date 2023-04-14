@@ -70,7 +70,7 @@ namespace Questioner.WebApp.Test.Tests
 
             // Assert
             themeServiceMock.Verify(m => m.GetAllThemes(), Times.Once);
-            Assert.IsInstanceOf<List<ThemeListViewModel>>(actionResult.Model);
+            Assert.That(actionResult.Model, Is.InstanceOf<List<ThemeListViewModel>>());
             ThemeListViewModelAssert.AreEqual(expectedThemeListViewModels, (List<ThemeListViewModel>)actionResult.Model);
         }
     }

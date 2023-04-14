@@ -82,7 +82,7 @@ namespace Questioner.WebApp.Test.Tests
             var exists = await themeRepository.ExistsThemeById(themeId);
 
             // Assert
-            Assert.IsTrue(exists);
+            Assert.That(exists, Is.True);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace Questioner.WebApp.Test.Tests
             var exists = await themeRepository.ExistsThemeById(themeId);
 
             // Assert
-            Assert.IsFalse(exists);
+            Assert.That(exists, Is.False);
         }
 
         [Test]

@@ -30,7 +30,7 @@ namespace Questioner.WebApp.Test.Tests
             var exist = await themeService.ExistsThemeById(themeId);
 
             // Assert
-            Assert.IsTrue(exist);
+            Assert.That(exist, Is.True);
         }
 
         [Test]
@@ -45,14 +45,14 @@ namespace Questioner.WebApp.Test.Tests
             var exist = await themeService.ExistsThemeById(themeId);
 
             // Assert
-            Assert.IsFalse(exist);
+            Assert.That(exist, Is.False);
         }
 
         [Test]
         public async Task GetAllThemes_WhenCalled_ReturnsAllThemes()
         {
             // Arrange
-            var expectedThemes = new Theme[] { };
+            var expectedThemes = Array.Empty<Theme>();
 
             themeRepositoryMock.Setup(m => m.GetAllThemes()).ReturnsAsync(expectedThemes);
 
@@ -61,7 +61,6 @@ namespace Questioner.WebApp.Test.Tests
 
             // Assert
             Assert.That(actualThemes, Is.SameAs(expectedThemes));
-
         }
 
         [Test]

@@ -5,7 +5,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
     public static class ThemeModelDefault
     {
         public static ThemeModel ThemeWithChildren =>
-            new ThemeModel()
+            new()
             {
                 Name = "Test theme 1",
                 PassRate = ThemePassRateDefault.Default,
@@ -38,7 +38,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
                 }
             };
 
-        public static ThemeModel ThemeWithQuestionWithOnlyOneAnswer => new ThemeModel
+        public static ThemeModel ThemeWithQuestionWithOnlyOneAnswer => new()
         {
             Topics = new List<TopicModel>
                 {
@@ -59,7 +59,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
                 }
         };
 
-        public static ThemeModel ThemeWithQuestionWithEmptyAnswers => new ThemeModel
+        public static ThemeModel ThemeWithQuestionWithEmptyAnswers => new()
         {
             Topics = new List<TopicModel>
                 {
@@ -77,7 +77,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
                 }
         };
 
-        public static ThemeModel ThemeWithQuestionWithNullAnswers => new ThemeModel
+        public static ThemeModel ThemeWithQuestionWithNullAnswers => new()
         {
             Topics = new List<TopicModel>
                 {
@@ -95,7 +95,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
                 }
         };
 
-        public static ThemeModel ThemeWithQuestionWithoutCorrectAnswer => new ThemeModel
+        public static ThemeModel ThemeWithQuestionWithoutCorrectAnswer => new()
         {
             Topics = new List<TopicModel>
                 {
@@ -123,17 +123,17 @@ namespace Questioner.WebApi.Test.Framework.Defaults
                 }
         };
 
-        public static ThemeModel ThemeWithTopicWithEmptyQuestions => new ThemeModel
+        public static ThemeModel ThemeWithTopicWithEmptyQuestions => new()
         {
             Topics = new List<TopicModel> { new TopicModel { Name = TopicNameDefault.Default, Questions = new List<QuestionModel>() } }
         };
 
-        public static ThemeModel ThemeWithTopicWithNullQuestions => new ThemeModel
+        public static ThemeModel ThemeWithTopicWithNullQuestions => new()
         {
             Topics = new List<TopicModel> { new TopicModel { Name = TopicNameDefault.Default, Questions = null } }
         };
 
-        public static ThemeModel ThemeWithTopicsPercentageMoreThanOneHundred => new ThemeModel
+        public static ThemeModel ThemeWithTopicsPercentageMoreThanOneHundred => new()
         {
             Topics = new List<TopicModel>
             {
@@ -142,7 +142,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
             }
         };
 
-        public static ThemeModel ThemeWithTopicsPercentageLessThanOneHundred = new ThemeModel
+        public static ThemeModel ThemeWithTopicsPercentageLessThanOneHundred => new()
         {
             Topics = new List<TopicModel>
             {
@@ -151,7 +151,7 @@ namespace Questioner.WebApi.Test.Framework.Defaults
             }
         };
 
-        public static ThemeModel ThemeWithTopicsPercentageOneHundred => new ThemeModel
+        public static ThemeModel ThemeWithTopicsPercentageOneHundred => new()
         {
             Topics = new List<TopicModel>
             {
@@ -160,22 +160,22 @@ namespace Questioner.WebApi.Test.Framework.Defaults
             }
         };
 
-        public static ThemeModel ThemeWithNullTopics => new ThemeModel { Topics = null };
+        public static ThemeModel ThemeWithNullTopics => new() { Topics = null };
 
-        public static ThemeModel ThemeWithEmptyTopics => new ThemeModel { Topics = new List<TopicModel>() };
+        public static ThemeModel ThemeWithEmptyTopics => new() { Topics = new List<TopicModel>() };
 
-        public static ThemeModel ThemeWithEmptyName => new ThemeModel { Name = string.Empty };
+        public static ThemeModel ThemeWithEmptyName => new() { Name = string.Empty };
 
-        public static ThemeModel ThemeWithNullName => new ThemeModel { Name = null };
+        public static ThemeModel ThemeWithNullName => new() { Name = null };
 
-        public static ThemeModel ThemeWithDefaultName => new ThemeModel { Name = ThemeNameDefault.Default };
+        public static ThemeModel ThemeWithDefaultName => new() { Name = ThemeNameDefault.Default };
 
-        public static ThemeModel ThemeWithPassRateLessThanMin => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.LessThanMin };
+        public static ThemeModel ThemeWithPassRateLessThanMin => new() { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.LessThanMin };
 
-        public static ThemeModel ThemeWithPassRateMoreThanMax => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MoreThanMax };
+        public static ThemeModel ThemeWithPassRateMoreThanMax => new() { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MoreThanMax };
 
-        public static ThemeModel ThemeWithMinValidPassRate => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MinValid };
+        public static ThemeModel ThemeWithMinValidPassRate => new() { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MinValid };
 
-        public static ThemeModel ThemeWithMaxValidPassRate => new ThemeModel { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MaxValid };
+        public static ThemeModel ThemeWithMaxValidPassRate => new() { Name = ThemeNameDefault.Default, PassRate = ThemePassRateDefault.MaxValid };
     }
 }

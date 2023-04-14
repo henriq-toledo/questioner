@@ -33,14 +33,14 @@ namespace Questioner.WebApp.Test.Framework.Asserts
                 var message = propertyName == null ?
                     "The value should be null." : $"The value of the {propertyName} property should be null.";
 
-                Assert.IsNull(actual, message);
+                Assert.That(actual, Is.Null, message);
             }
             else
             {
                 var actualArray = actual.Cast<object>().ToArray();
                 var expectedArray = expected.Cast<object>().ToArray();
 
-                Assert.That(actualArray.Length, Is.EqualTo(expectedArray.Length),
+                Assert.That(actualArray, Has.Length.EqualTo(expectedArray.Length),
                     message: $"The {expected.GetType().Name} collection length should be {expectedArray.Length} and not {actualArray.Length}.");
 
                 for (int i = 0; i < expectedArray.Length; i++)
