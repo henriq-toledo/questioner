@@ -1,33 +1,37 @@
 using Microsoft.Extensions.Options;
-using Questioner.WebApi;
 using Questioner.WebApi.Services;
+using System.Diagnostics.CodeAnalysis;
 
-internal class Program
+namespace Questioner.WebApi
 {
-    private static void Main(string[] args)
+    [ExcludeFromCodeCoverage]
+    internal static class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        builder.Logging.AddLog4Net();
-
-        var startup = new Startup(builder.Configuration);
-
-        startup.ConfigureServices(builder.Services);
-
-        var app = builder.Build();
-
-        using (var serviceScope = app.Services.CreateScope())
+        private static void Main(string[] args)
         {
-            var services = serviceScope.ServiceProvider;
+            var builder = WebApplication.CreateBuilder(args);
 
-            startup.Configure(
-                app,
-                app.Environment,
-                services.GetRequiredService<IContextService>(),
-                services.GetRequiredService<ILogger<Startup>>(),
-                services.GetRequiredService<IOptions<AppSettings>>());
+            builder.Logging.AddLog4Net();
+
+            var startup = new Startup(builder.Configuration);
+
+            startup.ConfigureServices(builder.Services);
+
+            var app = builder.Build();
+
+            using (var serviceScope = app.Services.CreateScope())
+            {
+                var services = serviceScope.ServiceProvider;
+
+                startup.Configure(
+                    app,
+                    app.Environment,
+                    services.GetRequiredService<IContextService>(),
+                    services.GetRequiredService<ILogger<Startup>>(),
+                    services.GetRequiredService<IOptions<AppSettings>>());
+            }
+
+            app.Run();
         }
-
-        app.Run();
     }
 }
