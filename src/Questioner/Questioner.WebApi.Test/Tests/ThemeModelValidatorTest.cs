@@ -137,7 +137,8 @@ namespace Questioner.WebApi.Test.Tests
             var result = await themeModelValidator.TestValidateAsync(themeModel);
 
             // Assert
-            Assert.IsFalse(result.Errors.Any(e => e.ErrorMessage.EndsWith("question must have zero or null, two or more answers. When zero or null, the default answers will be True and False.")));
+            Assert.That(result.Errors.Any(e => e.ErrorMessage.EndsWith("question must have zero or null, two or more answers. When zero or null, the default answers will be True and False.")),
+                Is.False);
         }
 
         [Test]

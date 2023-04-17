@@ -56,7 +56,7 @@ namespace Questioner.WebApi.Test.Tests
             var exists = await themeService.ExistsTheme(themeId);
 
             // Assert
-            Assert.IsTrue(exists);
+            Assert.That(exists, Is.True);
 
             themeRepositoryMock.Verify(m => m.ExistsTheme(themeId), Times.Once);
         }
@@ -73,7 +73,7 @@ namespace Questioner.WebApi.Test.Tests
             var exists = await themeService.ExistsTheme(themeId);
 
             // Assert
-            Assert.IsFalse(exists);
+            Assert.That(exists, Is.False);
 
             themeRepositoryMock.Verify(m => m.ExistsTheme(themeId), Times.Once);
         }
@@ -84,7 +84,7 @@ namespace Questioner.WebApi.Test.Tests
         public async Task GetAll_WhenCalled_ReturnsAllThemes(bool includeChildren)
         {
             // Arrange
-            var themes = new Theme[] { };
+            var themes = Array.Empty<Theme>();
 
             themeRepositoryMock.Setup(m => m.GetAll(includeChildren)).ReturnsAsync(themes);
 
