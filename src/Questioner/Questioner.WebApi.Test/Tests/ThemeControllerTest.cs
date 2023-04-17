@@ -67,7 +67,7 @@ namespace Questioner.WebApi.Test.Tests
             await themeController.Delete(themeId);
 
             // Assert
-            Assert.False(context.Themes.Any(t => t.Id == themeId),
+            Assert.That(context.Themes.Any(t => t.Id == themeId), Is.False,
                 message: $"The theme id {themeId} should be deleted.");
         }
     }
