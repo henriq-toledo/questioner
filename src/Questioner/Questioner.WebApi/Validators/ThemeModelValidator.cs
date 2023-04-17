@@ -2,7 +2,6 @@
 using Questioner.WebApi.Constants;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.Services;
-using System.Linq;
 
 namespace Questioner.WebApi.Validators
 {

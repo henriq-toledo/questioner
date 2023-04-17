@@ -3,7 +3,6 @@ using Questioner.Repository.Entities;
 using Questioner.WebApi.Defaults;
 using Questioner.WebApi.Extensions;
 using Questioner.WebApi.Models;
-using System.Linq;
 
 namespace Questioner.WebApi.Mapper
 {

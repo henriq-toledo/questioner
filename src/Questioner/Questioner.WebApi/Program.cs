@@ -1,27 +1,33 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Options;
+using Questioner.WebApi;
+using Questioner.WebApi.Services;
 
-namespace Questioner.WebApi
+internal class Program
 {
-    [ExcludeFromCodeCoverage]
-    public static class Program
+    private static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Logging.AddLog4Net();
+
+        var startup = new Startup(builder.Configuration);
+
+        startup.ConfigureServices(builder.Services);
+
+        var app = builder.Build();
+
+        using (var serviceScope = app.Services.CreateScope())
         {
-            CreateHostBuilder(args).Build().Run();
+            var services = serviceScope.ServiceProvider;
+
+            startup.Configure(
+                app,
+                app.Environment,
+                services.GetRequiredService<IContextService>(),
+                services.GetRequiredService<ILogger<Startup>>(),
+                services.GetRequiredService<IOptions<AppSettings>>());
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    logging.AddLog4Net();
-                })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        app.Run();
     }
 }

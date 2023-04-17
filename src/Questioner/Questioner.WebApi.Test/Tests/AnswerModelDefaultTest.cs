@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.WebApi.Defaults;
+﻿using Questioner.WebApi.Defaults;
 
 namespace Questioner.WebApi.Test.Tests
 {
@@ -12,17 +11,23 @@ namespace Questioner.WebApi.Test.Tests
             var noYes = AnswerModelDefault.NoYes;
 
             // Assert
-            Assert.That(noYes.Length, Is.EqualTo(2));
+            Assert.That(noYes, Has.Length.EqualTo(2));
 
             var no = noYes[0];
 
-            Assert.That(no.IsCorrect, Is.False);
-            Assert.That(no.AnswerText, Is.EqualTo("False"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(no.IsCorrect, Is.False);
+                Assert.That(no.AnswerText, Is.EqualTo("False"));
+            });
 
             var yes = noYes[1];
 
-            Assert.That(yes.IsCorrect, Is.True);
-            Assert.That(yes.AnswerText, Is.EqualTo("True"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(yes.IsCorrect, Is.True);
+                Assert.That(yes.AnswerText, Is.EqualTo("True"));
+            });
         }
     }
 }

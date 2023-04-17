@@ -1,19 +1,15 @@
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Questioner.WebApi.Extensions;
 using Questioner.WebApi.Mapper;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
+using Questioner.WebApi.Validators;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Questioner.WebApi
@@ -37,8 +33,10 @@ namespace Questioner.WebApi
             {
                 setup.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 setup.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            })
-            .AddFluentValidation(setup => setup.RegisterValidatorsFromAssemblyContaining<Startup>(lifetime: ServiceLifetime.Scoped));
+            });
+
+            services.AddFluentValidationAutoValidation();            
+            services.AddValidatorsFromAssemblyContaining<ThemeModelValidator>();
 
             services.Configure<AppSettings>(options => Configuration.GetSection(nameof(AppSettings)).Bind(options));
 
@@ -60,11 +58,10 @@ namespace Questioner.WebApi
             ILogger<Startup> logger,
             IOptions<AppSettings> options)
         {
-            logger.LogInformation($"Environment: '{env.EnvironmentName}'.");
-            logger.LogInformation($"Database connector: '{options.Value.DatabaseConnector}'.");
+            logger.LogInformation("Database connector: '{DatabaseConnector}'.", options.Value.DatabaseConnector);
 
             var context = contextService.GetContext();
-            logger.LogInformation($"Context database: '{context.Database.GetDbConnection().Database}'.");
+            logger.LogInformation("Context database: '{Database}'.", context.Database.GetDbConnection().Database);
 
             if (env.IsDevelopment())
             {

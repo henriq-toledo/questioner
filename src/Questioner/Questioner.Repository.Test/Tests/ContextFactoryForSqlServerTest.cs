@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.Repository.Contexts;
+﻿using Questioner.Repository.Contexts;
 
 namespace Questioner.Repository.Test.Tests
 {
@@ -11,13 +10,13 @@ namespace Questioner.Repository.Test.Tests
             // Arrange
             const string expectedProviderName = "Microsoft.EntityFrameworkCore.SqlServer";
 
-            var contextFactoryForSqlServer = new ContextFactoryForSqlServer();
+            ContextFactoryForSqlServer contextFactoryForSqlServer = new();
 
             // Act
-            var context = contextFactoryForSqlServer.CreateDbContext(new string[] { });
+            var context = contextFactoryForSqlServer.CreateDbContext(Array.Empty<string>());
 
             // Assert
-            Assert.AreEqual(expectedProviderName, context.Database.ProviderName);
+            Assert.That(context.Database.ProviderName, Is.EqualTo(expectedProviderName));
         }
     }
 }

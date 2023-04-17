@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.WebApi.Extensions;
+﻿using Questioner.WebApi.Extensions;
 
 namespace Questioner.WebApi.Test.Tests
 {
@@ -15,7 +14,7 @@ namespace Questioner.WebApi.Test.Tests
             var actualResult = collection.IsNullOrEmpty();
 
             // Assert
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.That(actualResult, Is.EqualTo(expectedResult));
         }
     }
 }

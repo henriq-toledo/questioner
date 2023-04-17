@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Questioner.Repository.Contexts;
 using Questioner.WebApi.Services;
-using System;
 
 namespace Questioner.WebApi.Extensions
 {
@@ -27,7 +24,7 @@ namespace Questioner.WebApi.Extensions
                 case "sqlserver":
 
                     serviceCollection.AddDbContext<ContextForSqlServer>
-                    (options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+                        (options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
 
                     serviceCollection.AddScoped<IContextService, ContextForSqlServerService>();
 

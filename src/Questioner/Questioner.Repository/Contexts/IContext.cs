@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Questioner.Repository.Entities;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Questioner.Repository.Contexts
 {

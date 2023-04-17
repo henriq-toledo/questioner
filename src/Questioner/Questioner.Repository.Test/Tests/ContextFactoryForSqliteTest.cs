@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using Questioner.Repository.Contexts;
 
 namespace Questioner.Repository.Test.Tests
@@ -11,13 +10,13 @@ namespace Questioner.Repository.Test.Tests
             // Arrange
             const string expectedProviderName = "Microsoft.EntityFrameworkCore.Sqlite";
 
-            var contextFactoryForSqlite = new ContextFactoryForSqlite();
+            ContextFactoryForSqlite contextFactoryForSqlite = new();
 
             // Act
-            var context = contextFactoryForSqlite.CreateDbContext(new string[] { });
+            var context = contextFactoryForSqlite.CreateDbContext(Array.Empty<string>());
 
             // Assert
-            Assert.AreEqual(expectedProviderName, context.Database.ProviderName);
+            Assert.That(context.Database.ProviderName, Is.EqualTo(expectedProviderName));
         }
     }
 }

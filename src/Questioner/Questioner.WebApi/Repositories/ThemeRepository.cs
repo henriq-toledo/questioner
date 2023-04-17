@@ -2,7 +2,6 @@
 using Questioner.Repository.Contexts;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Services;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Repositories
 {
@@ -12,7 +11,7 @@ namespace Questioner.WebApi.Repositories
 
         public ThemeRepository(IContextService contextService)
         {
-            this.context = contextService.GetContext();
+            context = contextService.GetContext();
         }
 
         public async Task Create(Theme theme)
@@ -24,6 +23,8 @@ namespace Questioner.WebApi.Repositories
         public async Task Delete(int themeId)
         {
             var theme = await context.Themes.FindAsync(themeId);
+
+            if (theme is null) return;
 
             context.Themes.Remove(theme);
             await context.SaveChangesAsync();

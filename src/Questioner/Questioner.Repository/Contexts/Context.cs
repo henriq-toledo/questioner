@@ -6,9 +6,13 @@ namespace Questioner.Repository.Contexts
     public abstract class Context : DbContext, IContext
     {
         public virtual DbSet<Theme> Themes { get; set; }
+
         public virtual DbSet<Topic> Topics { get; set; }
+
         public virtual DbSet<Question> Questions { get; set; }
+
         public virtual DbSet<Answer> Answers { get; set; }
+
         public virtual DbSet<Link> Links { get; set; }
 
         protected Context(DbContextOptions options)

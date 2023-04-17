@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Moq;
-using System.Collections.Generic;
 
 namespace Questioner.WebApi.Test.Framework.Mocks
 {

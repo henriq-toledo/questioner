@@ -7,7 +7,7 @@ namespace Questioner.Repository.Contexts
     {
         public ContextForSqlite CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<ContextForSqlite>();
+            DbContextOptionsBuilder<ContextForSqlite> optionsBuilder = new();
             optionsBuilder.UseSqlite(@"Data Source=.\QUESTIONER_DB.db;");
 
             return new ContextForSqlite(optionsBuilder.Options);

@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using NUnit.Framework;
 using Questioner.WebApi.Extensions;
 using Questioner.WebApi.Test.Framework.Mocks;
-using System;
-using System.Linq;
 
 namespace Questioner.WebApi.Test.Tests
 {

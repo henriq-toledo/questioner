@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Questioner.WebApi.Services;
+﻿using Questioner.WebApi.Services;
 using Questioner.WebApi.Test.Framework.Factories;
 
 namespace Questioner.WebApi.Test.Tests
@@ -17,7 +16,7 @@ namespace Questioner.WebApi.Test.Tests
             var actualContext = contextForSqlServerService.GetContext();
 
             // Assert
-            Assert.AreSame(context, actualContext);
+            Assert.That(actualContext, Is.SameAs(context));
         }
     }
 }

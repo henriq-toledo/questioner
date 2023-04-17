@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Models;
 using Questioner.WebApi.Services;
-using System;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Controllers
 {

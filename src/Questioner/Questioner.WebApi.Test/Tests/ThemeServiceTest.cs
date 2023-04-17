@@ -1,9 +1,7 @@
 ﻿using Moq;
-using NUnit.Framework;
 using Questioner.Repository.Entities;
 using Questioner.WebApi.Repositories;
 using Questioner.WebApi.Services;
-using System.Threading.Tasks;
 
 namespace Questioner.WebApi.Test.Tests
 {
@@ -94,7 +92,7 @@ namespace Questioner.WebApi.Test.Tests
             var actualThemes = await themeService.GetAll(includeChildren);
 
             // Assert
-            Assert.AreSame(themes, actualThemes);
+            Assert.That(actualThemes, Is.SameAs(themes));
 
             themeRepositoryMock.Verify(m => m.GetAll(includeChildren), Times.Once);
         }
