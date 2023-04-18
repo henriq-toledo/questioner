@@ -27,7 +27,7 @@ steps:
     projectName: 'questioner'
     sources: './src/Questioner'
     extraProperties: |
-      sonar.exclusions=src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css,src/Questioner/Questioner.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.css,src/Questioner/Questioner.Web/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
+      sonar.exclusions=src/Questioner/Questioner.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css,src/Questioner/Questioner.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap.css,src/Questioner/Questioner.WebApp/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
       sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
       sonar.cobertura.reportsPaths=$(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml      
 
@@ -74,7 +74,7 @@ steps:
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
     zipAfterPublish: True
-    projects: '**/Questioner.Web.csproj'
+    projects: '**/Questioner.WebApp.csproj'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
